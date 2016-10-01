@@ -1,0 +1,589 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BD0246451D9D03A8008AEC26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0246441D9D03A8008AEC26 /* AppDelegate.swift */; };
+		BD0246471D9D03A8008AEC26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD0246461D9D03A8008AEC26 /* Assets.xcassets */; };
+		BD02464A1D9D03A8008AEC26 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD0246481D9D03A8008AEC26 /* MainMenu.xib */; };
+		BD0246581D9D03D3008AEC26 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD0246571D9D03D3008AEC26 /* Cocoa.framework */; };
+		BD02465D1D9D03D3008AEC26 /* BlockCommentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD02465C1D9D03D3008AEC26 /* BlockCommentExtension.swift */; };
+		BD02465F1D9D03D3008AEC26 /* BlockCommentCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD02465E1D9D03D3008AEC26 /* BlockCommentCommand.swift */; };
+		BD0246631D9D03D3008AEC26 /* BlockCommentCommand.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BD0246551D9D03D3008AEC26 /* BlockCommentCommand.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BD8DD1041D9DD839007BA1D3 /* BlockCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD1031D9DD839007BA1D3 /* BlockCommentTests.swift */; };
+		BD8DD10C1D9DD866007BA1D3 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD10B1D9DD866007BA1D3 /* Parser.swift */; };
+		BD8DD10D1D9DD87A007BA1D3 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD10B1D9DD866007BA1D3 /* Parser.swift */; };
+		BD8DD10E1D9DD87D007BA1D3 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD10B1D9DD866007BA1D3 /* Parser.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BD0246611D9D03D3008AEC26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BD0246391D9D03A8008AEC26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BD0246541D9D03D3008AEC26;
+			remoteInfo = Cleaner;
+		};
+		BD8DD1061D9DD839007BA1D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BD0246391D9D03A8008AEC26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BD0246401D9D03A8008AEC26;
+			remoteInfo = CleanClosureSyntax;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BD0246671D9D03D3008AEC26 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BD0246631D9D03D3008AEC26 /* BlockCommentCommand.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		BD0246411D9D03A8008AEC26 /* BlockCommentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlockCommentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD0246441D9D03A8008AEC26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BD0246461D9D03A8008AEC26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BD0246491D9D03A8008AEC26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		BD02464B1D9D03A8008AEC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD0246551D9D03D3008AEC26 /* BlockCommentCommand.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BlockCommentCommand.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD0246571D9D03D3008AEC26 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		BD02465B1D9D03D3008AEC26 /* BlockComment.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BlockComment.entitlements; sourceTree = "<group>"; };
+		BD02465C1D9D03D3008AEC26 /* BlockCommentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCommentExtension.swift; sourceTree = "<group>"; };
+		BD02465E1D9D03D3008AEC26 /* BlockCommentCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCommentCommand.swift; sourceTree = "<group>"; };
+		BD0246601D9D03D3008AEC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD8DD1011D9DD839007BA1D3 /* BlockCommentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockCommentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD8DD1031D9DD839007BA1D3 /* BlockCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCommentTests.swift; sourceTree = "<group>"; };
+		BD8DD1051D9DD839007BA1D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD8DD10B1D9DD866007BA1D3 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BD02463E1D9D03A8008AEC26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD0246521D9D03D3008AEC26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD0246581D9D03D3008AEC26 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD8DD0FE1D9DD839007BA1D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BD0246381D9D03A8008AEC26 = {
+			isa = PBXGroup;
+			children = (
+				BD0246431D9D03A8008AEC26 /* BlockCommentApp */,
+				BD0246591D9D03D3008AEC26 /* BlockCommentCommand */,
+				BD8DD1021D9DD839007BA1D3 /* BlockCommentTests */,
+				BD0246561D9D03D3008AEC26 /* Frameworks */,
+				BD0246421D9D03A8008AEC26 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BD0246421D9D03A8008AEC26 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BD0246411D9D03A8008AEC26 /* BlockCommentApp.app */,
+				BD0246551D9D03D3008AEC26 /* BlockCommentCommand.appex */,
+				BD8DD1011D9DD839007BA1D3 /* BlockCommentTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BD0246431D9D03A8008AEC26 /* BlockCommentApp */ = {
+			isa = PBXGroup;
+			children = (
+				BD0246441D9D03A8008AEC26 /* AppDelegate.swift */,
+				BD0246461D9D03A8008AEC26 /* Assets.xcassets */,
+				BD0246481D9D03A8008AEC26 /* MainMenu.xib */,
+				BD02464B1D9D03A8008AEC26 /* Info.plist */,
+			);
+			path = BlockCommentApp;
+			sourceTree = "<group>";
+		};
+		BD0246561D9D03D3008AEC26 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BD0246571D9D03D3008AEC26 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BD0246591D9D03D3008AEC26 /* BlockCommentCommand */ = {
+			isa = PBXGroup;
+			children = (
+				BD02465C1D9D03D3008AEC26 /* BlockCommentExtension.swift */,
+				BD02465E1D9D03D3008AEC26 /* BlockCommentCommand.swift */,
+				BD8DD10B1D9DD866007BA1D3 /* Parser.swift */,
+				BD0246601D9D03D3008AEC26 /* Info.plist */,
+				BD02465A1D9D03D3008AEC26 /* Supporting Files */,
+			);
+			path = BlockCommentCommand;
+			sourceTree = "<group>";
+		};
+		BD02465A1D9D03D3008AEC26 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BD02465B1D9D03D3008AEC26 /* BlockComment.entitlements */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BD8DD1021D9DD839007BA1D3 /* BlockCommentTests */ = {
+			isa = PBXGroup;
+			children = (
+				BD8DD1031D9DD839007BA1D3 /* BlockCommentTests.swift */,
+				BD8DD1051D9DD839007BA1D3 /* Info.plist */,
+			);
+			path = BlockCommentTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BD0246401D9D03A8008AEC26 /* BlockCommentApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD02464E1D9D03A8008AEC26 /* Build configuration list for PBXNativeTarget "BlockCommentApp" */;
+			buildPhases = (
+				BD02463D1D9D03A8008AEC26 /* Sources */,
+				BD02463E1D9D03A8008AEC26 /* Frameworks */,
+				BD02463F1D9D03A8008AEC26 /* Resources */,
+				BD0246671D9D03D3008AEC26 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BD0246621D9D03D3008AEC26 /* PBXTargetDependency */,
+			);
+			name = BlockCommentApp;
+			productName = CleanClosureSyntax;
+			productReference = BD0246411D9D03A8008AEC26 /* BlockCommentApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BD0246541D9D03D3008AEC26 /* BlockCommentCommand */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD0246641D9D03D3008AEC26 /* Build configuration list for PBXNativeTarget "BlockCommentCommand" */;
+			buildPhases = (
+				BD0246511D9D03D3008AEC26 /* Sources */,
+				BD0246521D9D03D3008AEC26 /* Frameworks */,
+				BD0246531D9D03D3008AEC26 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BlockCommentCommand;
+			productName = Cleaner;
+			productReference = BD0246551D9D03D3008AEC26 /* BlockCommentCommand.appex */;
+			productType = "com.apple.product-type.xcode-extension";
+		};
+		BD8DD1001D9DD839007BA1D3 /* BlockCommentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD8DD10A1D9DD839007BA1D3 /* Build configuration list for PBXNativeTarget "BlockCommentTests" */;
+			buildPhases = (
+				BD8DD0FD1D9DD839007BA1D3 /* Sources */,
+				BD8DD0FE1D9DD839007BA1D3 /* Frameworks */,
+				BD8DD0FF1D9DD839007BA1D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BD8DD1071D9DD839007BA1D3 /* PBXTargetDependency */,
+			);
+			name = BlockCommentTests;
+			productName = CleanClosureSyntaxTests;
+			productReference = BD8DD1011D9DD839007BA1D3 /* BlockCommentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BD0246391D9D03A8008AEC26 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Brad Howes";
+				TargetAttributes = {
+					BD0246401D9D03A8008AEC26 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = Z7R62JH5A8;
+						ProvisioningStyle = Automatic;
+					};
+					BD0246541D9D03D3008AEC26 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = Z7R62JH5A8;
+						ProvisioningStyle = Automatic;
+					};
+					BD8DD1001D9DD839007BA1D3 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = Z7R62JH5A8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = BD0246401D9D03A8008AEC26;
+					};
+				};
+			};
+			buildConfigurationList = BD02463C1D9D03A8008AEC26 /* Build configuration list for PBXProject "BlockComment" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BD0246381D9D03A8008AEC26;
+			productRefGroup = BD0246421D9D03A8008AEC26 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BD0246401D9D03A8008AEC26 /* BlockCommentApp */,
+				BD0246541D9D03D3008AEC26 /* BlockCommentCommand */,
+				BD8DD1001D9DD839007BA1D3 /* BlockCommentTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BD02463F1D9D03A8008AEC26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD0246471D9D03A8008AEC26 /* Assets.xcassets in Resources */,
+				BD02464A1D9D03A8008AEC26 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD0246531D9D03D3008AEC26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD8DD0FF1D9DD839007BA1D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BD02463D1D9D03A8008AEC26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD8DD10E1D9DD87D007BA1D3 /* Parser.swift in Sources */,
+				BD0246451D9D03A8008AEC26 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD0246511D9D03D3008AEC26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD02465D1D9D03D3008AEC26 /* BlockCommentExtension.swift in Sources */,
+				BD02465F1D9D03D3008AEC26 /* BlockCommentCommand.swift in Sources */,
+				BD8DD10C1D9DD866007BA1D3 /* Parser.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD8DD0FD1D9DD839007BA1D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD8DD10D1D9DD87A007BA1D3 /* Parser.swift in Sources */,
+				BD8DD1041D9DD839007BA1D3 /* BlockCommentTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BD0246621D9D03D3008AEC26 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BD0246541D9D03D3008AEC26 /* BlockCommentCommand */;
+			targetProxy = BD0246611D9D03D3008AEC26 /* PBXContainerItemProxy */;
+		};
+		BD8DD1071D9DD839007BA1D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BD0246401D9D03A8008AEC26 /* BlockCommentApp */;
+			targetProxy = BD8DD1061D9DD839007BA1D3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BD0246481D9D03A8008AEC26 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BD0246491D9D03A8008AEC26 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BD02464C1D9D03A8008AEC26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BD02464D1D9D03A8008AEC26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		BD02464F1D9D03A8008AEC26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				INFOPLIST_FILE = BlockCommentApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.brhcode.BlockCommentApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		BD0246501D9D03A8008AEC26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				INFOPLIST_FILE = BlockCommentApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.brhcode.BlockCommentApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		BD0246651D9D03D3008AEC26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = BlockCommentCommand/BlockComment.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				INFOPLIST_FILE = BlockCommentCommand/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brhcode.BlockCommentApp.BlockComment;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		BD0246661D9D03D3008AEC26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = BlockCommentCommand/BlockComment.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = BlockCommentCommand/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brhcode.BlockCommentApp.BlockComment;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		BD8DD1081D9DD839007BA1D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				INFOPLIST_FILE = BlockCommentTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.brhcode.BlockCommentTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlockCommentApp.app/Contents/MacOS/BlockCommentApp";
+			};
+			name = Debug;
+		};
+		BD8DD1091D9DD839007BA1D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				INFOPLIST_FILE = BlockCommentTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.brhcode.BlockCommentTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlockCommentApp.app/Contents/MacOS/BlockCommentApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BD02463C1D9D03A8008AEC26 /* Build configuration list for PBXProject "BlockComment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD02464C1D9D03A8008AEC26 /* Debug */,
+				BD02464D1D9D03A8008AEC26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BD02464E1D9D03A8008AEC26 /* Build configuration list for PBXNativeTarget "BlockCommentApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD02464F1D9D03A8008AEC26 /* Debug */,
+				BD0246501D9D03A8008AEC26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BD0246641D9D03D3008AEC26 /* Build configuration list for PBXNativeTarget "BlockCommentCommand" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD0246651D9D03D3008AEC26 /* Debug */,
+				BD0246661D9D03D3008AEC26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BD8DD10A1D9DD839007BA1D3 /* Build configuration list for PBXNativeTarget "BlockCommentTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD8DD1081D9DD839007BA1D3 /* Debug */,
+				BD8DD1091D9DD839007BA1D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BD0246391D9D03A8008AEC26 /* Project object */;
+}
