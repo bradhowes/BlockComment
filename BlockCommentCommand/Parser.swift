@@ -228,13 +228,11 @@ public final class Parser {
     }
 
     /**
-     Create a Range instance that indicates a set of characters in the parsed text.
-     
-     - Note: removes whitespace characters from the front and back of the set.
-     
-     - parameter start: the index of the first character in the range
-     - parameter end: the index of the character *after* the last character in the range
-     - returns: new Range instance
+     This is a test
+     - parameter start: first parameter
+     - parameter end: second parameter
+     - returns: blah blah blah
+     - throws: <#error#>
      */
     private func makeRange(start: String.UnicodeScalarIndex, end: String.UnicodeScalarIndex) throws -> Range {
         var s = start
