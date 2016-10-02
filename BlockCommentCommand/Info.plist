@@ -32,7 +32,7 @@
 					<key>XCSourceEditorCommandClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).BlockCommentCommand</string>
 					<key>XCSourceEditorCommandIdentifier</key>
-					<string>$(PRODUCT_BUNDLE_IDENTIFIER).BlockCommentCommand</string>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).Block Comment</string>
 					<key>XCSourceEditorCommandName</key>
 					<string>Insert</string>
 				</dict>

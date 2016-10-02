@@ -78,6 +78,10 @@ public final class Parser {
         var description: String {
             return String(view[start..<end])
         }
+
+        var first: UnicodeScalar {
+            return view.first!
+        }
     }
     
     /**
@@ -114,13 +118,22 @@ public final class Parser {
         }
     }
 
+    /**
+     Contains meta data associated with a func/init call.
+     */
     public struct FuncMeta {
-        
         let name: String
         let args: [ArgInfo]
         let returnType: String
         let canThrow: Bool
 
+        /**
+         Collect meta data for a func/init
+         - parameter name: the name of the func/init
+         - parameter args: the argument specifications for the func/init
+         - parameter returnType: the return type (empty string if returns nil)
+         - parameter canThrow: true if can throw an error
+         */
         internal init(name: String, args: [ArgInfo], returnType: String, canThrow: Bool) {
             self.name = name
             self.args = args
@@ -129,22 +142,38 @@ public final class Parser {
         }
     }
 
-    public struct ContainerMeta {
+    /** 
+     Contains meta data associated with type (struct, class, enum)
+     */
+    public struct TypeMeta {
         
         let name: String
         let superType: String
         
+        /**
+         Collect meta data for a type
+         - parameter name: the name of the type
+         - parameter superType: what the type inherits from (if anything)
+         */
         internal init(name: String, superType: String) {
             self.name = name
             self.superType = superType
         }
     }
     
+    /**
+     Contains meta data associated with a property
+     */
     public struct PropertyMeta {
         
         let name: String
         let type: String
 
+        /**
+         Collect meta data for a property
+         - parameter name: the name of the property
+         - parameter type: the type of the property
+         */
         internal init(name: String, type: String) {
             self.name = name
             self.type = type
@@ -202,8 +231,13 @@ public final class Parser {
         case Underflow
     }
     
+    /// Meta info if a function was last commented
     private(set) var funcMeta: FuncMeta?
-    private(set) var containerMeta: ContainerMeta?
+    
+    /// Meta info if a type was last commented
+    private(set) var typeMeta: TypeMeta?
+
+    /// Meta info if a property was last commented
     private(set) var propertyMeta: PropertyMeta?
 
     /**
@@ -213,46 +247,40 @@ public final class Parser {
         self.lines = lines
         self.currentLine = currentLine
         self.indent = indent
-        
+
         text = lines[currentLine]
         chars = text.unicodeScalars
         pos = chars.startIndex
 
         clear()
     }
-    
+
+    /**
+     Clear any meta data collected from previous parse.
+     */
     private func clear() {
         funcMeta = nil
-        containerMeta = nil
+        typeMeta = nil
         propertyMeta = nil
     }
 
     /**
-     This is a test
-     - parameter start: first parameter
-     - parameter end: second parameter
-     - returns: blah blah blah
-     - throws: <#error#>
+     Create a Range instance that marks a set of characters in the parsed text.
+
+     - Note: removes whitespace characters from the front and back of the set.
+     
+     - parameter start: the index of the first character in the range
+     - parameter end: the index of the character *after* the last character in the range
+     - returns: new Range instance
      */
     private func makeRange(start: String.UnicodeScalarIndex, end: String.UnicodeScalarIndex) throws -> Range {
-        var s = start
-        while Parser.whitespace.contains(chars[s]) {
-            s = chars.index(after: s)
-            if s == chars.endIndex {
-                throw ParseError.EndOfData
-            }
+        let subView = chars[start..<end]
+        guard let s = (subView.index { !Parser.whitespace.contains($0) }) else {
+            throw ParseError.EndOfData
         }
-        
-        var e = chars.index(before: end)
-        while Parser.whitespace.contains(chars[e]) {
-            if e == chars.startIndex {
-                throw ParseError.Underflow
-            }
-            e = chars.index(before: e)
-        }
-        e = chars.index(after: e)
-        
-        return Range(view: chars, start: s, end: e)
+
+        let e = subView.reversed().index { !Parser.whitespace.contains($0) }
+        return Range(view: subView, start: s, end: e!.base)
     }
     
     /**
@@ -297,13 +325,13 @@ public final class Parser {
         }
     }
     
+    private static let nextTokenTerminals = Set([leftParen, comma, rightParen, colon])
+
     /**
      Build a range of characters until a whitespace character is found or one of '(', ',', '), or ':' is found
      - returns: Range of characters for the token
      - throws: `ParseError.EndOfData` if no more characters available
      */
-    private static let nextTokenTerminals = Set([leftParen, comma, rightParen, colon])
-    
     private func nextToken() throws -> Range {
         var start = pos
         var end = start
@@ -401,7 +429,7 @@ public final class Parser {
         // If next token is ':' then we only have a name, not a label + name
         //
         var name = try nextToken()
-        if chars[name.start] == Parser.colon {
+        if name.first == Parser.colon {
             name = label
         }
         else {
@@ -409,7 +437,7 @@ public final class Parser {
             // Must be a ':' here
             //
             let c = try nextToken()
-            if chars[c.start] != Parser.colon {
+            if c.first != Parser.colon {
                 throw ParseError.Unexpected(chars[c.start])
             }
         }
@@ -433,10 +461,10 @@ public final class Parser {
         var args = [ArgInfo]()
         while true {
             let label = try nextToken()
-            if chars[label.start] == Parser.rightParen {
+            if label.first == Parser.rightParen {
                 return args
             }
-            else if chars[label.start] == Parser.comma {
+            else if label.first == Parser.comma {
                 continue
             }
             
@@ -513,9 +541,9 @@ public final class Parser {
                 superType = try fetchType()
             }
             
-            containerMeta = ContainerMeta(name: name.description, superType: superType.description)
+            typeMeta = TypeMeta(name: name.description, superType: superType.description)
 
-            return containerBlockComment(meta: containerMeta!)
+            return containerBlockComment(meta: typeMeta!)
         } catch {
             return []
         }
@@ -604,7 +632,7 @@ public final class Parser {
         return blk
     }
 
-    private func containerBlockComment(meta: ContainerMeta) -> [String] {
+    private func containerBlockComment(meta: TypeMeta) -> [String] {
         var blk = [
             "\(indent)/**\n",
             "\(indent) \(Parser.beginTag)Description for \(meta.name)\(Parser.endTag)\n",
@@ -617,15 +645,12 @@ public final class Parser {
         
         return blk
     }
+
     
     private func propertyBlockComment(meta: PropertyMeta) -> [String] {
-        let blk = [
-            "\(indent)/**\n",
-            "\(indent) \(Parser.beginTag)Description for \(meta.name)\(Parser.endTag)\n",
-            "\(indent) */\n"
+        return [
+            "\(indent)/// \(Parser.beginTag)Description for \(meta.name)\(Parser.endTag)\n",
         ]
-
-        return blk
     }
     
     /**

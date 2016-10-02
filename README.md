@@ -2,6 +2,10 @@
 
 Xcode 8 source editor extension for Swift editing that will insert a block comment, possibly with some tags.
 
+> **NOTE**: I know about Xcode's own `Add Documentation` command which does the same thing, but with more
+> knowledge about the code being commented on. This was more of a learning exercise. I also like my style of
+> comments over Xcode's use of '///' everywhere.
+
 ![](screenshot.gif)
 
 The command does a rudimentary scan forward from the cursor, looking for something to comment. If it finds a
@@ -22,12 +26,3 @@ and you should now have the extension installed. May need a restart of Xcode bef
 
 Place cursor before the entity to document, then select the `Insert` menu command (or assign a key shortcut in
 Xcode preferences
-
-## Things To Do
-
-- Improve type handling (e.g. function types)
-- Position cursor at first tag (how?)
-- Honor tab vs. spaces preference setting
-- A 'document entire file' command?
-- Update comment when function prototype changes? (merge)
-

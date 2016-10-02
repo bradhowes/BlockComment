@@ -1,4 +1,3 @@
-     //
 //  BlockCommentTests.swift
 //  BlockCommentTests
 //
@@ -86,8 +85,8 @@ class BlockCommentTests: XCTestCase {
         let z = Parser(lines: lines, currentLine: 0, indent: " ")
         let y = z.parse()
         XCTAssertEqual(y.count, 4)
-        XCTAssertEqual(z.containerMeta!.name, "FooBar")
-        XCTAssertEqual(z.containerMeta!.superType, "Blah")
+        XCTAssertEqual(z.typeMeta!.name, "FooBar")
+        XCTAssertEqual(z.typeMeta!.superType, "Blah")
     }
     
     func testInit() {
@@ -124,19 +123,19 @@ class BlockCommentTests: XCTestCase {
                      "let blah : (_ x: Int, _ y: Int) -> Int\n"]
         var z = Parser(lines: lines, currentLine: 0, indent: " ")
         var y = z.parse()
-        XCTAssertEqual(y.count, 3)
+        XCTAssertEqual(y.count, 1)
         XCTAssertEqual(z.propertyMeta!.name, "blah")
         XCTAssertEqual(z.propertyMeta!.type, "Int")
         
         z = Parser(lines: lines, currentLine: 1, indent: " ")
         y = z.parse()
-        XCTAssertEqual(y.count, 3)
+        XCTAssertEqual(y.count, 1)
         XCTAssertEqual(z.propertyMeta!.name, "blah")
         XCTAssertEqual(z.propertyMeta!.type, "Int")
 
         z = Parser(lines: lines, currentLine: 2, indent: " ")
         y = z.parse()
-        XCTAssertEqual(y.count, 3)
+        XCTAssertEqual(y.count, 1)
         XCTAssertEqual(z.propertyMeta!.name, "blah")
         XCTAssertEqual(z.propertyMeta!.type, "Int")
     }

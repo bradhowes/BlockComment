@@ -18,7 +18,6 @@
 		BD8DD10C1D9DD866007BA1D3 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD10B1D9DD866007BA1D3 /* Parser.swift */; };
 		BD8DD10D1D9DD87A007BA1D3 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD10B1D9DD866007BA1D3 /* Parser.swift */; };
 		BD8DD10E1D9DD87D007BA1D3 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD10B1D9DD866007BA1D3 /* Parser.swift */; };
-		BD9B64E71DA0543A004E4319 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = BD9B64E61DA0543A004E4319 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -314,7 +313,6 @@
 			files = (
 				BD02465D1D9D03D3008AEC26 /* BlockCommentExtension.swift in Sources */,
 				BD02465F1D9D03D3008AEC26 /* BlockCommentCommand.swift in Sources */,
-				BD9B64E71DA0543A004E4319 /* README.md in Sources */,
 				BD8DD10C1D9DD866007BA1D3 /* Parser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
