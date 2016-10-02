@@ -274,11 +274,16 @@ public final class Parser {
      - returns: new Range instance
      */
     private func makeRange(start: String.UnicodeScalarIndex, end: String.UnicodeScalarIndex) throws -> Range {
+
+        // Remove whitespace characters from front of range
+        //
         let subView = chars[start..<end]
         guard let s = (subView.index { !Parser.whitespace.contains($0) }) else {
             throw ParseError.EndOfData
         }
 
+        // Trim from the end all whitespace characters.
+        //
         let e = subView.reversed().index { !Parser.whitespace.contains($0) }
         return Range(view: subView, start: s, end: e!.base)
     }
