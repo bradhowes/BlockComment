@@ -18,8 +18,6 @@ public final class Parser {
      Represents a subsequence of Unicode scalar values found in a larger one.
      */
     internal struct Range : CustomStringConvertible {
-        private static let nilText = String("")!
-        private static let nilView = nilText.unicodeScalars
         
         /**
          The Unicode scalar sequence containing the subsequence
@@ -36,22 +34,15 @@ public final class Parser {
          */
         let end: String.UnicodeScalarIndex
         
-        /**
-         Return the length of the sequence
-         */
-        var length: Int {
-            return view.distance(from: start, to: end)
-        }
+        /// Return the length of the sequence
+        var length: Int { return view.distance(from: start, to: end) }
         
-        /**
-         Initialize an empty sequence
-         */
-        init() {
-            self.view = Range.nilView
-            self.start = self.view.startIndex
-            self.end = start
-        }
-        
+        /// Obtain a Swift String containing the subsequence
+        var description: String { return String(view[start..<end]) }
+
+        /// Fetch the first scalar from the range. NOTE: this will crash if the range is empty.
+        var first: UnicodeScalar { return view.first! }
+
         /**
          Define a range of Unicode scalars in a given scalar view.
          - parameter view: the scalar view
@@ -70,17 +61,6 @@ public final class Parser {
          */
         func isEmpty() -> Bool {
             return self.start == self.end
-        }
-        
-        /**
-         Obtain a Swift String containing the subsequence
-         */
-        var description: String {
-            return String(view[start..<end])
-        }
-
-        var first: UnicodeScalar {
-            return view.first!
         }
     }
     
@@ -621,13 +601,13 @@ public final class Parser {
     private func containerDef() -> [String] {
         do {
             let name = try fetchType()
-            var superType = Range()
+            var superType: Range?
             let c = try nextNonWhiteSpace()
             if c == Parser.colon {
                 superType = try fetchType()
             }
             
-            typeMeta = TypeMeta(name: name.description, superType: superType.description)
+            typeMeta = TypeMeta(name: name.description, superType: superType?.description ?? "")
 
             return containerBlockComment(meta: typeMeta!)
         } catch {
@@ -638,13 +618,13 @@ public final class Parser {
     private func propertyDef() -> [String] {
         do {
             let name = try fetchType()
-            var type = Range()
+            var type: Range?
             let c = try nextNonWhiteSpace()
             if c == Parser.colon {
                 type = try fetchType()
             }
 
-            propertyMeta = PropertyMeta(name: name.description, type: type.description)
+            propertyMeta = PropertyMeta(name: name.description, type: type?.description ?? "")
             
             return propertyBlockComment(meta: propertyMeta!)
         } catch {
