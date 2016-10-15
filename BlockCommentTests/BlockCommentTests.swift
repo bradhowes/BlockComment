@@ -41,6 +41,35 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(y[7], "   */\n")
     }
     
+    func test2() {
+        let lines = ["static func save(to url: URL, done: @escaping (Int64)   ->    ()) {\n"]
+        let z = Parser(lines: lines, currentLine: 0, indent: "  ")
+        let y = z.parse()
+        let x = z.funcMeta!
+
+        XCTAssertEqual(x.name, "save")
+        XCTAssertTrue(x.returnType.isEmpty)
+        XCTAssertEqual(x.args.count, 2)
+        XCTAssertEqual(x.args[0].name, "url")
+        XCTAssertEqual(x.args[0].type, "URL")
+        XCTAssertEqual(x.args[1].name, "done")
+        XCTAssertEqual(y.count, 5)
+    }
+
+    func testDefaultArgument() {
+        let lines = ["private init(timestampGenerator: TimestampGeneratorInterface = TimestampGenerator()) {\n"]
+        let z = Parser(lines: lines, currentLine: 0, indent: "  ")
+        let y = z.parse()
+        let x = z.funcMeta!
+
+        XCTAssertEqual(x.name, "init")
+        XCTAssertTrue(x.returnType.isEmpty)
+        XCTAssertEqual(x.args.count, 1)
+        XCTAssertEqual(x.args[0].name, "timestampGenerator")
+        XCTAssertEqual(x.args[0].type, "TimestampGeneratorInterface")
+        XCTAssertEqual(y.count, 4)
+    }
+    
     func testMinimal() {
         let lines = ["func a()\n"]
         let z = Parser(lines: lines, currentLine: 0, indent: " ")
@@ -69,7 +98,7 @@ class BlockCommentTests: XCTestCase {
         XCTAssertTrue(y.count > 0)
         XCTAssertFalse(z.funcMeta!.returnType.isEmpty)
     }
-    
+
     func testGeneric() {
         let lines = ["func a<T: Blah where T.Element = Foo>   (          )     \n"]
         let z = Parser(lines: lines, currentLine: 0, indent: " ")
@@ -88,7 +117,7 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(z.typeMeta!.name, "FooBar")
         XCTAssertEqual(z.typeMeta!.superType, "Blah")
     }
-    
+//
     func testInit() {
         let lines = ["init()\n", "init? ()\n", "convenience init?()\n",
                      "    init(view: String.UnicodeScalarView, start: String.UnicodeScalarIndex, end: String.UnicodeScalarIndex) {\n"]
@@ -115,7 +144,7 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(z.funcMeta!.args.count, 3)
         XCTAssertEqual(z.funcMeta!.name, "init")
     }
-    
+
     func testProperty() {
         let lines = ["public private(set) var blah:Int\n",
                      "private static var blah : Int\n",
@@ -139,15 +168,15 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(z.propertyMeta!.name, "blah")
         XCTAssertEqual(z.propertyMeta!.type, "Int")
     }
-    
-    func NOT_testProperty() {
+
+    func testProperty2() {
         let _ : (_ x: Int, _ y: Int) -> Int
         let lines = ["let blah : (_ x: Int, _ y: Int) -> Int\n"]
         let z = Parser(lines: lines, currentLine: 0, indent: " ")
         _ = z.parse()
 
         XCTAssertEqual(z.propertyMeta!.name, "blah")
-        XCTAssertEqual(z.propertyMeta!.type, "Int")
+        XCTAssertEqual(z.propertyMeta!.type, "(_ x: Int, _ y: Int) -> Int")
     }
 
 }
