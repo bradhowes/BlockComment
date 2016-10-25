@@ -160,19 +160,19 @@ public final class Parser {
         }
     }
 
-    static let atSign = "@" as UnicodeScalar
-    static let leftParen = "(" as UnicodeScalar
-    static let rightParen = ")" as UnicodeScalar
-    static let lessThan = "<" as UnicodeScalar
-    static let greaterThan = ">" as UnicodeScalar
-    static let comma = "," as UnicodeScalar
-    static let colon = ":" as UnicodeScalar
-    static let semicolon = ";" as UnicodeScalar
-    static let dash = "-" as UnicodeScalar
-    static let equals = "=" as UnicodeScalar
-    static let beginTag = "<" + "#"
-    static let endTag = "#" + ">"
-    static let whitespace = CharacterSet.whitespacesAndNewlines
+    private static let atSign = "@" as UnicodeScalar
+    private static let leftParen = "(" as UnicodeScalar
+    private static let rightParen = ")" as UnicodeScalar
+    private static let lessThan = "<" as UnicodeScalar
+    private static let greaterThan = ">" as UnicodeScalar
+    private static let comma = "," as UnicodeScalar
+    private static let colon = ":" as UnicodeScalar
+    private static let semicolon = ";" as UnicodeScalar
+    private static let dash = "-" as UnicodeScalar
+    private static let equals = "=" as UnicodeScalar
+    private static let beginTag = "<" + "#"
+    private static let endTag = "#" + ">"
+    private static let whitespace = CharacterSet.whitespacesAndNewlines
 
     /**
      The lines of text available for parsing. This comes from the editor.
@@ -313,6 +313,7 @@ public final class Parser {
         }
     }
 
+    /// Characters that act as terminals when scanning for a token
     private static let nextTokenTerminals = Set([leftParen, comma, rightParen, colon])
 
     /**
@@ -354,6 +355,11 @@ public final class Parser {
     private static let permsTerms = Set(["public", "private", "internal", "fileinternal"])
     private static let ignoredTerms = Set(["override", "convenience", "required", "final", "static", "class"])
 
+    /**
+     Fetch the next token from the input.
+     - returns: start and end of the token in the input
+     - throws: UnexpectedToken, UnexpectedCharacter
+     */
     private func nextToken() throws -> Range {
         while true {
             let token = try anyNextToken()
@@ -387,6 +393,7 @@ public final class Parser {
         }
     }
 
+    /// Characters that act as terminals when scanning for a Swift type.
     private static let fetchTypeTerminals = Set([comma, rightParen, colon, semicolon])
 
     /**
@@ -597,24 +604,33 @@ public final class Parser {
         comment.append("\(indent) */\n")
         return comment
     }
-    
+
+    /**
+     Create a block comment for a container (struct, class)
+     - returns: String array containing the comment block
+     */
     private func containerDef() -> [String] {
         do {
             let name = try fetchType()
-            var superType: Range?
             let c = try nextNonWhiteSpace()
+
+            var superType: Range?
             if c == Parser.colon {
                 superType = try fetchType()
             }
-            
+
             typeMeta = TypeMeta(name: name.description, superType: superType?.description ?? "")
 
-            return containerBlockComment(meta: typeMeta!)
+            return containerComment(meta: typeMeta!)
         } catch {
             return []
         }
     }
 
+    /**
+     Create a one-line comment for a property.
+     - returns: Array of one String
+     */
     private func propertyDef() -> [String] {
         do {
             let name = try fetchType()
@@ -625,8 +641,8 @@ public final class Parser {
             }
 
             propertyMeta = PropertyMeta(name: name.description, type: type?.description ?? "")
-            
-            return propertyBlockComment(meta: propertyMeta!)
+
+            return propertyComment(meta: propertyMeta!)
         } catch {
             return []
         }
@@ -651,7 +667,7 @@ public final class Parser {
             let returnType = try fetchReturnType()
 
             funcMeta = FuncMeta(name: name, args: args, returnType: returnType.type, canThrow: returnType.canThrow)
-            return funcBlockComment(meta: funcMeta!)
+            return funcComment(meta: funcMeta!)
         } catch {
             return []
         }
@@ -679,7 +695,7 @@ public final class Parser {
      - parameter returnType: contains the return type spec and a boolean indicating if function can throw
      - returns: array of String elements that make up the block comment in separate lines
      */
-    private func funcBlockComment(meta: FuncMeta) -> [String] {
+    private func funcComment(meta: FuncMeta) -> [String] {
         var blk = [
             "\(indent)/**\n",
             "\(indent) \(Parser.beginTag)Description for \(meta.name)\(Parser.endTag)\n"
@@ -698,7 +714,7 @@ public final class Parser {
         return blk
     }
 
-    private func containerBlockComment(meta: TypeMeta) -> [String] {
+    private func containerComment(meta: TypeMeta) -> [String] {
         var blk = [
             "\(indent)/**\n",
             "\(indent) \(Parser.beginTag)Description for \(meta.name)\(Parser.endTag)\n",
@@ -713,7 +729,7 @@ public final class Parser {
     }
 
     
-    private func propertyBlockComment(meta: PropertyMeta) -> [String] {
+    private func propertyComment(meta: PropertyMeta) -> [String] {
         return [
             "\(indent)/// \(Parser.beginTag)Description for \(meta.name)\(Parser.endTag)\n",
         ]
@@ -724,7 +740,7 @@ public final class Parser {
      - parameter line: the text to scan
      - returns: true if found and valid, false otherwise
      */
-    func parse() -> [String] {
+    public func parse() -> [String] {
         
         clear()
 
