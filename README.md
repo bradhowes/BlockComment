@@ -26,3 +26,8 @@ and you should now have the extension installed. May need a restart of Xcode bef
 
 Place cursor before the entity to document, then select the `Insert` menu command (or assign a key shortcut in
 Xcode preferences
+
+# Code
+
+The code parsing takes place in `BulkCommentCommand/Parse.swift` The other files are there to provide the plumbing for 
+Xcode extension and the application which delivers the extension.
