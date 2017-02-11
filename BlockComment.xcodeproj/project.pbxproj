@@ -9,15 +9,15 @@
 /* Begin PBXBuildFile section */
 		BD0246451D9D03A8008AEC26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0246441D9D03A8008AEC26 /* AppDelegate.swift */; };
 		BD0246471D9D03A8008AEC26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD0246461D9D03A8008AEC26 /* Assets.xcassets */; };
-		BD02464A1D9D03A8008AEC26 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD0246481D9D03A8008AEC26 /* MainMenu.xib */; };
 		BD0246581D9D03D3008AEC26 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD0246571D9D03D3008AEC26 /* Cocoa.framework */; };
 		BD02465D1D9D03D3008AEC26 /* BlockCommentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD02465C1D9D03D3008AEC26 /* BlockCommentExtension.swift */; };
-		BD02465F1D9D03D3008AEC26 /* BlockCommentCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD02465E1D9D03D3008AEC26 /* BlockCommentCommand.swift */; };
-		BD0246631D9D03D3008AEC26 /* BlockCommentCommand.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BD0246551D9D03D3008AEC26 /* BlockCommentCommand.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BD02465F1D9D03D3008AEC26 /* BlockComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD02465E1D9D03D3008AEC26 /* BlockComment.swift */; };
+		BD0246631D9D03D3008AEC26 /* BlockComment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BD0246551D9D03D3008AEC26 /* BlockComment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BD8DD1041D9DD839007BA1D3 /* BlockCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD1031D9DD839007BA1D3 /* BlockCommentTests.swift */; };
 		BD8DD10C1D9DD866007BA1D3 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD10B1D9DD866007BA1D3 /* Parser.swift */; };
 		BD8DD10D1D9DD87A007BA1D3 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD10B1D9DD866007BA1D3 /* Parser.swift */; };
 		BD8DD10E1D9DD87D007BA1D3 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD10B1D9DD866007BA1D3 /* Parser.swift */; };
+		BD8ECDF61E4FD318006A4297 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD8ECDF41E4FD318006A4297 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +44,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				BD0246631D9D03D3008AEC26 /* BlockCommentCommand.appex in Embed App Extensions */,
+				BD0246631D9D03D3008AEC26 /* BlockComment.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,18 +55,18 @@
 		BD0246411D9D03A8008AEC26 /* BlockCommentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlockCommentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD0246441D9D03A8008AEC26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD0246461D9D03A8008AEC26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BD0246491D9D03A8008AEC26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		BD02464B1D9D03A8008AEC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BD0246551D9D03D3008AEC26 /* BlockCommentCommand.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BlockCommentCommand.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD0246551D9D03D3008AEC26 /* BlockComment.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BlockComment.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD0246571D9D03D3008AEC26 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BD02465B1D9D03D3008AEC26 /* BlockComment.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BlockComment.entitlements; sourceTree = "<group>"; };
 		BD02465C1D9D03D3008AEC26 /* BlockCommentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCommentExtension.swift; sourceTree = "<group>"; };
-		BD02465E1D9D03D3008AEC26 /* BlockCommentCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCommentCommand.swift; sourceTree = "<group>"; };
+		BD02465E1D9D03D3008AEC26 /* BlockComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockComment.swift; sourceTree = "<group>"; };
 		BD0246601D9D03D3008AEC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD8DD1011D9DD839007BA1D3 /* BlockCommentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockCommentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD8DD1031D9DD839007BA1D3 /* BlockCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCommentTests.swift; sourceTree = "<group>"; };
 		BD8DD1051D9DD839007BA1D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD8DD10B1D9DD866007BA1D3 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		BD8ECDF51E4FD318006A4297 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		BD9B64E61DA0543A004E4319 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,8 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				BD9B64E61DA0543A004E4319 /* README.md */,
-				BD0246431D9D03A8008AEC26 /* BlockCommentApp */,
-				BD0246591D9D03D3008AEC26 /* BlockCommentCommand */,
+				BD0246431D9D03A8008AEC26 /* App */,
+				BD0246591D9D03D3008AEC26 /* BlockComment */,
 				BD8DD1021D9DD839007BA1D3 /* BlockCommentTests */,
 				BD0246561D9D03D3008AEC26 /* Frameworks */,
 				BD0246421D9D03A8008AEC26 /* Products */,
@@ -112,20 +112,21 @@
 			isa = PBXGroup;
 			children = (
 				BD0246411D9D03A8008AEC26 /* BlockCommentApp.app */,
-				BD0246551D9D03D3008AEC26 /* BlockCommentCommand.appex */,
+				BD0246551D9D03D3008AEC26 /* BlockComment.appex */,
 				BD8DD1011D9DD839007BA1D3 /* BlockCommentTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BD0246431D9D03A8008AEC26 /* BlockCommentApp */ = {
+		BD0246431D9D03A8008AEC26 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				BD8ECDF41E4FD318006A4297 /* MainMenu.xib */,
 				BD0246441D9D03A8008AEC26 /* AppDelegate.swift */,
 				BD0246461D9D03A8008AEC26 /* Assets.xcassets */,
-				BD0246481D9D03A8008AEC26 /* MainMenu.xib */,
 				BD02464B1D9D03A8008AEC26 /* Info.plist */,
 			);
+			name = App;
 			path = BlockCommentApp;
 			sourceTree = "<group>";
 		};
@@ -137,15 +138,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BD0246591D9D03D3008AEC26 /* BlockCommentCommand */ = {
+		BD0246591D9D03D3008AEC26 /* BlockComment */ = {
 			isa = PBXGroup;
 			children = (
 				BD02465C1D9D03D3008AEC26 /* BlockCommentExtension.swift */,
-				BD02465E1D9D03D3008AEC26 /* BlockCommentCommand.swift */,
+				BD02465E1D9D03D3008AEC26 /* BlockComment.swift */,
 				BD8DD10B1D9DD866007BA1D3 /* Parser.swift */,
 				BD0246601D9D03D3008AEC26 /* Info.plist */,
 				BD02465A1D9D03D3008AEC26 /* Supporting Files */,
 			);
+			name = BlockComment;
 			path = BlockCommentCommand;
 			sourceTree = "<group>";
 		};
@@ -188,9 +190,9 @@
 			productReference = BD0246411D9D03A8008AEC26 /* BlockCommentApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		BD0246541D9D03D3008AEC26 /* BlockCommentCommand */ = {
+		BD0246541D9D03D3008AEC26 /* BlockComment */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BD0246641D9D03D3008AEC26 /* Build configuration list for PBXNativeTarget "BlockCommentCommand" */;
+			buildConfigurationList = BD0246641D9D03D3008AEC26 /* Build configuration list for PBXNativeTarget "BlockComment" */;
 			buildPhases = (
 				BD0246511D9D03D3008AEC26 /* Sources */,
 				BD0246521D9D03D3008AEC26 /* Frameworks */,
@@ -200,9 +202,9 @@
 			);
 			dependencies = (
 			);
-			name = BlockCommentCommand;
+			name = BlockComment;
 			productName = Cleaner;
-			productReference = BD0246551D9D03D3008AEC26 /* BlockCommentCommand.appex */;
+			productReference = BD0246551D9D03D3008AEC26 /* BlockComment.appex */;
 			productType = "com.apple.product-type.xcode-extension";
 		};
 		BD8DD1001D9DD839007BA1D3 /* BlockCommentTests */ = {
@@ -237,11 +239,21 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = Z7R62JH5A8;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					BD0246541D9D03D3008AEC26 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = Z7R62JH5A8;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					BD8DD1001D9DD839007BA1D3 = {
 						CreatedOnToolsVersion = 8.0;
@@ -265,7 +277,7 @@
 			projectRoot = "";
 			targets = (
 				BD0246401D9D03A8008AEC26 /* BlockCommentApp */,
-				BD0246541D9D03D3008AEC26 /* BlockCommentCommand */,
+				BD0246541D9D03D3008AEC26 /* BlockComment */,
 				BD8DD1001D9DD839007BA1D3 /* BlockCommentTests */,
 			);
 		};
@@ -277,7 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD0246471D9D03A8008AEC26 /* Assets.xcassets in Resources */,
-				BD02464A1D9D03A8008AEC26 /* MainMenu.xib in Resources */,
+				BD8ECDF61E4FD318006A4297 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,7 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD02465D1D9D03D3008AEC26 /* BlockCommentExtension.swift in Sources */,
-				BD02465F1D9D03D3008AEC26 /* BlockCommentCommand.swift in Sources */,
+				BD02465F1D9D03D3008AEC26 /* BlockComment.swift in Sources */,
 				BD8DD10C1D9DD866007BA1D3 /* Parser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,7 +343,7 @@
 /* Begin PBXTargetDependency section */
 		BD0246621D9D03D3008AEC26 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BD0246541D9D03D3008AEC26 /* BlockCommentCommand */;
+			target = BD0246541D9D03D3008AEC26 /* BlockComment */;
 			targetProxy = BD0246611D9D03D3008AEC26 /* PBXContainerItemProxy */;
 		};
 		BD8DD1071D9DD839007BA1D3 /* PBXTargetDependency */ = {
@@ -342,10 +354,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		BD0246481D9D03A8008AEC26 /* MainMenu.xib */ = {
+		BD8ECDF41E4FD318006A4297 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				BD0246491D9D03A8008AEC26 /* Base */,
+				BD8ECDF51E4FD318006A4297 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -395,7 +407,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -440,7 +452,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -569,7 +581,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BD0246641D9D03D3008AEC26 /* Build configuration list for PBXNativeTarget "BlockCommentCommand" */ = {
+		BD0246641D9D03D3008AEC26 /* Build configuration list for PBXNativeTarget "BlockComment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BD0246651D9D03D3008AEC26 /* Debug */,

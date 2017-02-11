@@ -161,6 +161,7 @@ public final class Parser {
     }
 
     private static let atSign = "@" as UnicodeScalar
+    private static let poundSign = "#" as UnicodeScalar
     private static let leftParen = "(" as UnicodeScalar
     private static let rightParen = ")" as UnicodeScalar
     private static let lessThan = "<" as UnicodeScalar
@@ -507,6 +508,7 @@ public final class Parser {
      - returns: array of `ArgInfo` instances
      - throws: `ParseError`
      */
+    
     private func fetchArgs() throws -> [ArgInfo] {
         var args = [ArgInfo]()
         while true {

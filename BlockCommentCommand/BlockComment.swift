@@ -9,11 +9,10 @@
 import Foundation
 import XcodeKit
 
-import Foundation
-
-class BlockCommentCommand: NSObject, XCSourceEditorCommand {
+class BlockComment: NSObject, XCSourceEditorCommand {
 
     func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
+
         let buffer = invocation.buffer
         let lines = buffer.lines
 
@@ -52,10 +51,11 @@ class BlockCommentCommand: NSObject, XCSourceEditorCommand {
 
             // Replace current (first) selection with new block comment
             //
-            invocation.buffer.lines.replaceObjects(in: NSMakeRange(selection.start.line, selection.end.line - selection.start.line + 1), withObjectsFrom: comment)
+            invocation.buffer.lines.replaceObjects(in: NSMakeRange(selection.start.line,
+                                                                   selection.end.line - selection.start.line + 1),
+                                                   withObjectsFrom: comment)
         }
 
         completionHandler(nil)
     }
-    
 }
