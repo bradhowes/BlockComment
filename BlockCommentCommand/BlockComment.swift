@@ -11,6 +11,7 @@ import XcodeKit
 
 class BlockComment: NSObject, XCSourceEditorCommand {
 
+
     func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
 
         let buffer = invocation.buffer
@@ -45,8 +46,22 @@ class BlockComment: NSObject, XCSourceEditorCommand {
         }
         
         let indent = String(repeating: " ", count: chars.distance(from: chars.startIndex, to: cursor))
+        let parser = Parser(lines: (lines as NSArray as! [String]), currentLine: pos, indent: indent)
+        let command = invocation.commandIdentifier
 
-        let comment = Parser(lines: (lines as NSArray as! [String]), currentLine: pos, indent: indent).parse()
+        let comment: [String] = {
+            switch command {
+            case "insertBlockComment":
+                return parser.makeBlockComment()
+            case "insertMarkComment":
+                return parser.makeMarkComment()
+            case "uppercase":
+                return  ["Foo"]
+            default:
+                return []
+            }
+        }()
+
         if comment.count > 0 {
 
             // Replace current (first) selection with new block comment

@@ -18,6 +18,10 @@
 		BD8DD10D1D9DD87A007BA1D3 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD10B1D9DD866007BA1D3 /* Parser.swift */; };
 		BD8DD10E1D9DD87D007BA1D3 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD10B1D9DD866007BA1D3 /* Parser.swift */; };
 		BD8ECDF61E4FD318006A4297 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD8ECDF41E4FD318006A4297 /* MainMenu.xib */; };
+		BDACC57E1EA39BA7000E8640 /* BlockComment_XPCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDACC5701EA39B42000E8640 /* BlockComment_XPCProtocol.swift */; };
+		BDACC5801EA39CF0000E8640 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDACC5741EA39B42000E8640 /* main.swift */; };
+		BDACC5821EA3AB4A000E8640 /* BlockComment-XPC.xpc in Resources */ = {isa = PBXBuildFile; fileRef = BDACC56E1EA39B42000E8640 /* BlockComment-XPC.xpc */; };
+		BDACC5831EA3ABE4000E8640 /* BlockComment_XPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDACC5721EA39B42000E8640 /* BlockComment_XPC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,13 @@
 			remoteGlobalIDString = BD0246401D9D03A8008AEC26;
 			remoteInfo = CleanClosureSyntax;
 		};
+		BDACC5771EA39B42000E8640 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BD0246391D9D03A8008AEC26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BDACC56D1EA39B42000E8640;
+			remoteInfo = "BlockComment-XPC";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +58,16 @@
 				BD0246631D9D03D3008AEC26 /* BlockComment.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDACC57D1EA39B42000E8640 /* Embed XPC Services */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed XPC Services";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -68,6 +89,11 @@
 		BD8DD10B1D9DD866007BA1D3 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		BD8ECDF51E4FD318006A4297 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		BD9B64E61DA0543A004E4319 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BDACC56E1EA39B42000E8640 /* BlockComment-XPC.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = "BlockComment-XPC.xpc"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDACC5701EA39B42000E8640 /* BlockComment_XPCProtocol.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = BlockComment_XPCProtocol.swift; sourceTree = "<group>"; };
+		BDACC5721EA39B42000E8640 /* BlockComment_XPC.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = BlockComment_XPC.swift; sourceTree = "<group>"; };
+		BDACC5741EA39B42000E8640 /* main.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		BDACC5761EA39B42000E8640 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +119,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BDACC56B1EA39B42000E8640 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -103,6 +136,7 @@
 				BD0246431D9D03A8008AEC26 /* App */,
 				BD0246591D9D03D3008AEC26 /* BlockComment */,
 				BD8DD1021D9DD839007BA1D3 /* BlockCommentTests */,
+				BDACC56F1EA39B42000E8640 /* BlockComment-XPC */,
 				BD0246561D9D03D3008AEC26 /* Frameworks */,
 				BD0246421D9D03A8008AEC26 /* Products */,
 			);
@@ -114,6 +148,7 @@
 				BD0246411D9D03A8008AEC26 /* BlockCommentApp.app */,
 				BD0246551D9D03D3008AEC26 /* BlockComment.appex */,
 				BD8DD1011D9DD839007BA1D3 /* BlockCommentTests.xctest */,
+				BDACC56E1EA39B42000E8640 /* BlockComment-XPC.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,6 +203,17 @@
 			path = BlockCommentTests;
 			sourceTree = "<group>";
 		};
+		BDACC56F1EA39B42000E8640 /* BlockComment-XPC */ = {
+			isa = PBXGroup;
+			children = (
+				BDACC5701EA39B42000E8640 /* BlockComment_XPCProtocol.swift */,
+				BDACC5721EA39B42000E8640 /* BlockComment_XPC.swift */,
+				BDACC5741EA39B42000E8640 /* main.swift */,
+				BDACC5761EA39B42000E8640 /* Info.plist */,
+			);
+			path = "BlockComment-XPC";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -179,11 +225,13 @@
 				BD02463E1D9D03A8008AEC26 /* Frameworks */,
 				BD02463F1D9D03A8008AEC26 /* Resources */,
 				BD0246671D9D03D3008AEC26 /* Embed App Extensions */,
+				BDACC57D1EA39B42000E8640 /* Embed XPC Services */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				BD0246621D9D03D3008AEC26 /* PBXTargetDependency */,
+				BDACC5781EA39B42000E8640 /* PBXTargetDependency */,
 			);
 			name = BlockCommentApp;
 			productName = CleanClosureSyntax;
@@ -225,6 +273,23 @@
 			productReference = BD8DD1011D9DD839007BA1D3 /* BlockCommentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		BDACC56D1EA39B42000E8640 /* BlockComment-XPC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BDACC57C1EA39B42000E8640 /* Build configuration list for PBXNativeTarget "BlockComment-XPC" */;
+			buildPhases = (
+				BDACC56A1EA39B42000E8640 /* Sources */,
+				BDACC56B1EA39B42000E8640 /* Frameworks */,
+				BDACC56C1EA39B42000E8640 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BlockComment-XPC";
+			productName = "BlockComment-XPC";
+			productReference = BDACC56E1EA39B42000E8640 /* BlockComment-XPC.xpc */;
+			productType = "com.apple.product-type.xpc-service";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -261,6 +326,11 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = BD0246401D9D03A8008AEC26;
 					};
+					BDACC56D1EA39B42000E8640 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = Z7R62JH5A8;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = BD02463C1D9D03A8008AEC26 /* Build configuration list for PBXProject "BlockComment" */;
@@ -278,6 +348,7 @@
 			targets = (
 				BD0246401D9D03A8008AEC26 /* BlockCommentApp */,
 				BD0246541D9D03D3008AEC26 /* BlockComment */,
+				BDACC56D1EA39B42000E8640 /* BlockComment-XPC */,
 				BD8DD1001D9DD839007BA1D3 /* BlockCommentTests */,
 			);
 		};
@@ -297,10 +368,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDACC5821EA3AB4A000E8640 /* BlockComment-XPC.xpc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BD8DD0FF1D9DD839007BA1D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDACC56C1EA39B42000E8640 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -338,6 +417,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BDACC56A1EA39B42000E8640 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDACC5831EA3ABE4000E8640 /* BlockComment_XPC.swift in Sources */,
+				BDACC57E1EA39BA7000E8640 /* BlockComment_XPCProtocol.swift in Sources */,
+				BDACC5801EA39CF0000E8640 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -350,6 +439,11 @@
 			isa = PBXTargetDependency;
 			target = BD0246401D9D03A8008AEC26 /* BlockCommentApp */;
 			targetProxy = BD8DD1061D9DD839007BA1D3 /* PBXContainerItemProxy */;
+		};
+		BDACC5781EA39B42000E8640 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BDACC56D1EA39B42000E8640 /* BlockComment-XPC */;
+			targetProxy = BDACC5771EA39B42000E8640 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -413,6 +507,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -456,6 +551,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -560,6 +656,36 @@
 			};
 			name = Release;
 		};
+		BDACC57A1EA39B42000E8640 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				INFOPLIST_FILE = "BlockComment-XPC/Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.brhcode.BlockComment-XPC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		BDACC57B1EA39B42000E8640 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				INFOPLIST_FILE = "BlockComment-XPC/Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.brhcode.BlockComment-XPC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -595,6 +721,15 @@
 			buildConfigurations = (
 				BD8DD1081D9DD839007BA1D3 /* Debug */,
 				BD8DD1091D9DD839007BA1D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BDACC57C1EA39B42000E8640 /* Build configuration list for PBXNativeTarget "BlockComment-XPC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BDACC57A1EA39B42000E8640 /* Debug */,
+				BDACC57B1EA39B42000E8640 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

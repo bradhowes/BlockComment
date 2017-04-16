@@ -45,6 +45,7 @@ public final class Parser {
 
         /**
          Define a range of Unicode scalars in a given scalar view.
+
          - parameter view: the scalar view
          - parameter start: the start of the sequence
          - parameter end: the end of the sequence (last scalar + 1)
@@ -108,7 +109,8 @@ public final class Parser {
         let canThrow: Bool
 
         /**
-         Collect meta data for a func/init
+         Collect meta data for a func/init.
+
          - parameter name: the name of the func/init
          - parameter args: the argument specifications for the func/init
          - parameter returnType: the return type (empty string if returns nil)
@@ -274,6 +276,7 @@ public final class Parser {
     
     /**
      Obtain the next character to be parsed.
+
      - returns: next character
      - throws: `ParseError.EndOfData` if no more characters available
      */
@@ -293,6 +296,7 @@ public final class Parser {
     /**
      Reverse over the character set, making the last character returned from `nextChar()` available again. This may
      be called multiple times, but the current code only needs to undo the most recent one.
+
      - throws: `ParseError.Underflow` if attempting to backup before start of parse text.
      */
     private func backup() throws {
@@ -301,7 +305,8 @@ public final class Parser {
     }
     
     /**
-     Find the next character that is not found in `CharacterSet.whitespaces`
+     Find the next character that is not found in `CharacterSet.whitespaces`.
+
      - returns: next non-whitespace character
      - throws: `ParseError.EndOfData` if no more characters available
      */
@@ -318,7 +323,8 @@ public final class Parser {
     private static let nextTokenTerminals = Set([leftParen, comma, rightParen, colon])
 
     /**
-     Build a range of characters until a whitespace character is found or one of '(', ',', '), or ':' is found
+     Build a range of characters until a whitespace character is found or one of '(', ',', '), or ':' is found.
+
      - returns: Range of characters for the token
      - throws: `ParseError.EndOfData` if no more characters available
      */
@@ -399,6 +405,7 @@ public final class Parser {
 
     /**
      Fetch a type specifier, either for a function parameter or for the function return type.
+
      - returns: Range of characters in the type
      - throws: `ParseError.EndOfData` if no more data
      */
@@ -471,6 +478,7 @@ public final class Parser {
     
     /**
      Fetch the description of a function argument and store in a new `ArgInfo` instance.
+
      - parameter label: potential argument label
      - returns: `ArgInfo` instance
      - throws: `ParseError`
@@ -505,10 +513,10 @@ public final class Parser {
     
     /**
      Fetch the arguments of the function. There can be none, one or many.
+
      - returns: array of `ArgInfo` instances
      - throws: `ParseError`
      */
-    
     private func fetchArgs() throws -> [ArgInfo] {
         var args = [ArgInfo]()
         while true {
@@ -597,6 +605,7 @@ public final class Parser {
     
     /**
      Create and return a generic block comment.
+
      - returns: array containing the lines of the comment
      */
     private func genericDef() -> [String] {
@@ -608,7 +617,8 @@ public final class Parser {
     }
 
     /**
-     Create a block comment for a container (struct, class)
+     Create a block comment for a container (struct, class, extension)
+
      - returns: String array containing the comment block
      */
     private func containerDef() -> [String] {
@@ -631,6 +641,7 @@ public final class Parser {
 
     /**
      Create a one-line comment for a property.
+
      - returns: Array of one String
      */
     private func propertyDef() -> [String] {
@@ -651,7 +662,8 @@ public final class Parser {
     }
     
     /**
-     Generate a block comment for an `init` statement
+     Generate a block comment for an `init` statement.
+
      - parameter token: either "init" or "init?"
      - returns: block comment
      */
@@ -700,17 +712,25 @@ public final class Parser {
     private func funcComment(meta: FuncMeta) -> [String] {
         var blk = [
             "\(indent)/**\n",
-            "\(indent) \(Parser.beginTag)Description for \(meta.name)\(Parser.endTag)\n"
+            "\(indent) \(Parser.beginTag)Description for \(meta.name)\(Parser.endTag)\n",
         ]
+
+        if !meta.args.isEmpty || !meta.returnType.isEmpty || meta.canThrow {
+            blk.append("\(indent)\n")
+        }
+
         for arg in meta.args {
             blk.append("\(indent) - parameter \(arg.name): \(Parser.beginTag)\(arg.name) description\(Parser.endTag)\n")
         }
+
         if !meta.returnType.isEmpty {
             blk.append("\(indent) - returns: \(Parser.beginTag)\(meta.returnType)\(Parser.endTag)\n")
         }
+
         if meta.canThrow {
             blk.append("\(indent) - throws: \(Parser.beginTag)error\(Parser.endTag)\n")
         }
+        
         blk.append("\(indent) */\n")
 
         return blk
@@ -730,19 +750,48 @@ public final class Parser {
         return blk
     }
 
-    
     private func propertyComment(meta: PropertyMeta) -> [String] {
         return [
             "\(indent)/// \(Parser.beginTag)Description for \(meta.name)\(Parser.endTag)\n",
         ]
     }
-    
+
+    private func markComment() -> [String] {
+        let description: String = {
+            do {
+                let kind = try nextToken()
+                switch kind.description {
+                case "struct", "class", "enum", "extension":
+                    let name = try fetchType()
+                    let c = try nextNonWhiteSpace()
+                    var superType: Range?
+                    if c == Parser.colon {
+                        superType = try fetchType()
+                    }
+
+                    return superType?.description ?? name.description
+                default:
+                    break
+                }
+            } catch {
+
+            }
+
+            return "Description"
+        }()
+
+        return [
+            "\(indent)// MARK: - \(Parser.beginTag)\(description)\(Parser.endTag)\n",
+        ]
+    }
+
     /**
-     Parse a string for a valid function definition
+     Parse a string for a valid function definition.
+
      - parameter line: the text to scan
      - returns: true if found and valid, false otherwise
      */
-    public func parse() -> [String] {
+    public func makeBlockComment() -> [String] {
         
         clear()
 
@@ -750,7 +799,7 @@ public final class Parser {
             do {
                 let kind = try nextToken()
                 switch kind.description {
-                case "struct", "class", "enum": return containerDef()
+                case "struct", "class", "enum", "extension": return containerDef()
                 case "var", "let": return propertyDef()
                 case "func": return funcDef()
                 case "init", "init?": return initDef(token: kind)
@@ -763,5 +812,10 @@ public final class Parser {
         }
         
         return genericDef()
+    }
+
+    public func makeMarkComment() -> [String] {
+        clear()
+        return markComment()
     }
 }
