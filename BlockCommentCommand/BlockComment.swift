@@ -11,7 +11,6 @@ import XcodeKit
 
 class BlockComment: NSObject, XCSourceEditorCommand {
 
-
     func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
 
         let buffer = invocation.buffer
@@ -55,8 +54,6 @@ class BlockComment: NSObject, XCSourceEditorCommand {
                 return parser.makeBlockComment()
             case "insertMarkComment":
                 return parser.makeMarkComment()
-            case "uppercase":
-                return  ["Foo"]
             default:
                 return []
             }

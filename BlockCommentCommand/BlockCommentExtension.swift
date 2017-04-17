@@ -9,13 +9,9 @@
 import Foundation
 import XcodeKit
 
-public let xpcConnection = NSXPCConnection(machServiceName: "com.brhcode.BlockComment-XPC", options: [])
-
 class BlockCommentExtension: NSObject, XCSourceEditorExtension {
     
     func extensionDidFinishLaunching() {
-        xpcConnection.remoteObjectInterface = NSXPCInterface(with: BlockComment_XPCProtocol.self)
-        xpcConnection.resume()
     }
 
     /*

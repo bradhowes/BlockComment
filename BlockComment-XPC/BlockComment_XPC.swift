@@ -1,7 +1,5 @@
 
 
-
-
 import Foundation
 
 @objc class BlockComment_XPC: NSObject, BlockComment_XPCProtocol {

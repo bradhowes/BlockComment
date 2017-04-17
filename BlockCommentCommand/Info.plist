@@ -32,6 +32,14 @@
 					<key>XCSourceEditorCommandClassName</key>
 					<string>${PRODUCT_MODULE_NAME}.BlockComment</string>
 					<key>XCSourceEditorCommandIdentifier</key>
+					<string>uppercase</string>
+					<key>XCSourceEditorCommandName</key>
+					<string>XPC</string>
+				</dict>
+				<dict>
+					<key>XCSourceEditorCommandClassName</key>
+					<string>${PRODUCT_MODULE_NAME}.BlockComment</string>
+					<key>XCSourceEditorCommandIdentifier</key>
 					<string>insertMarkComment</string>
 					<key>XCSourceEditorCommandName</key>
 					<string>Insert Mark Comment</string>

@@ -166,6 +166,8 @@ public final class Parser {
     private static let poundSign = "#" as UnicodeScalar
     private static let leftParen = "(" as UnicodeScalar
     private static let rightParen = ")" as UnicodeScalar
+    private static let leftArray = "[" as UnicodeScalar
+    private static let rightArray = "]" as UnicodeScalar
     private static let lessThan = "<" as UnicodeScalar
     private static let greaterThan = ">" as UnicodeScalar
     private static let comma = "," as UnicodeScalar
@@ -351,6 +353,11 @@ public final class Parser {
                 end = pos
                 break
             }
+
+            if c == Parser.greaterThan {
+                end = chars.index(after: pos)
+                break
+            }
         }
         
         return try makeRange(start: start, end: end)
@@ -371,6 +378,12 @@ public final class Parser {
         while true {
             let token = try anyNextToken()
 
+            if token.first == "{" || token.first == "}"
+            {
+                try backup()
+                throw Parser.ParseError.EndOfData
+            }
+
             if token.first == Parser.atSign || Parser.ignoredTerms.contains(token.description) {
                 continue
             }
@@ -383,6 +396,9 @@ public final class Parser {
                 }
                 else {
                     let kind = try anyNextToken()
+
+                    // Skip something like private(set) -- I think
+                    //
                     if kind.description != "set" {
                         throw Parser.ParseError.UnexpectedToken(kind.description)
                     }
@@ -401,7 +417,7 @@ public final class Parser {
     }
 
     /// Characters that act as terminals when scanning for a Swift type.
-    private static let fetchTypeTerminals = Set([comma, rightParen, colon, semicolon])
+    private static let fetchTypeTerminals = Set([comma, rightParen, colon, semicolon, rightArray])
 
     /**
      Fetch a type specifier, either for a function parameter or for the function return type.
@@ -431,7 +447,7 @@ public final class Parser {
                             continue
                         }
                     }
-                    
+
                     if Parser.fetchTypeTerminals.contains(c) || (c == Parser.leftParen && foundSomething) {
                         try backup()
                         end = pos
@@ -439,14 +455,14 @@ public final class Parser {
                     }
                 }
 
-                if c == Parser.leftParen || c == Parser.lessThan {
+                if c == Parser.leftParen || c == Parser.lessThan || c == Parser.leftArray {
                     if c == Parser.leftParen && !foundSomething {
                         isTuple = true
                     }
                     depth += 1
                 }
 
-                if c == Parser.rightParen || c == Parser.greaterThan {
+                if c == Parser.rightParen || c == Parser.greaterThan || c == Parser.rightArray {
                     depth -= 1
                     if depth == 0 {
                         end = pos
@@ -466,11 +482,14 @@ public final class Parser {
         }
 
         if isTuple {
+            end = pos
 
             // We are returning a tuple. We need to see if this is a closure (return type ignored for now)
             //
-            _ = try fetchReturnType()
-            end = pos
+            let maybe = try fetchReturnType()
+            if !maybe.type.isEmpty {
+                end = pos
+            }
         }
 
         return try makeRange(start: start, end: end)
@@ -592,7 +611,7 @@ public final class Parser {
         var returnType = ""
         if c?.description == "->" {
             returnType = try fetchType().description
-            if returnType == "()" || returnType == "nil" {
+            if returnType == "()" || returnType == "nil" || returnType == "Void" {
                 returnType = ""
             }
         }

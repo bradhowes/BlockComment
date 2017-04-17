@@ -22,6 +22,8 @@
 		BDACC5801EA39CF0000E8640 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDACC5741EA39B42000E8640 /* main.swift */; };
 		BDACC5821EA3AB4A000E8640 /* BlockComment-XPC.xpc in Resources */ = {isa = PBXBuildFile; fileRef = BDACC56E1EA39B42000E8640 /* BlockComment-XPC.xpc */; };
 		BDACC5831EA3ABE4000E8640 /* BlockComment_XPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDACC5721EA39B42000E8640 /* BlockComment_XPC.swift */; };
+		BDACC5841EA3ADF3000E8640 /* BlockComment_XPCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDACC5701EA39B42000E8640 /* BlockComment_XPCProtocol.swift */; };
+		BDACC5851EA3ADF4000E8640 /* BlockComment_XPCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDACC5701EA39B42000E8640 /* BlockComment_XPCProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -395,6 +397,7 @@
 			files = (
 				BD8DD10E1D9DD87D007BA1D3 /* Parser.swift in Sources */,
 				BD0246451D9D03A8008AEC26 /* AppDelegate.swift in Sources */,
+				BDACC5851EA3ADF4000E8640 /* BlockComment_XPCProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +408,7 @@
 				BD02465D1D9D03D3008AEC26 /* BlockCommentExtension.swift in Sources */,
 				BD02465F1D9D03D3008AEC26 /* BlockComment.swift in Sources */,
 				BD8DD10C1D9DD866007BA1D3 /* Parser.swift in Sources */,
+				BDACC5841EA3ADF3000E8640 /* BlockComment_XPCProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
