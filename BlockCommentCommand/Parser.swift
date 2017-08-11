@@ -367,8 +367,16 @@ public final class Parser {
      Set of terms that will be skipped
      */
     private static let permsTerms = Set(["open", "public", "internal", "fileprivate", "private"])
-    private static let ignoredTerms = Set(["override", "convenience", "required", "final", "static", "class",
-                                           "optional"])
+    private static let ignoredTerms = Set([
+        "class",
+        "convenience",
+        "final",
+        "mutating",
+        "optional",
+        "override",
+        "required",
+        "static",
+        ])
 
     /**
      Fetch the next token from the input.
