@@ -9,7 +9,7 @@
 import Foundation
 import XcodeKit
 
-class BlockCommentExtension: NSObject, XCSourceEditorExtension {
+final class BlockCommentExtension: NSObject, XCSourceEditorExtension {
     
     func extensionDidFinishLaunching() {
     }

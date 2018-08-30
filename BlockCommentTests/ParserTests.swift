@@ -11,16 +11,6 @@ import XCTest
 @testable import BlockComment
 
 class ParserTests: XCTestCase {
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
     func testNextCharacterThrowsIfNothingLeft() {
         let lines = [""]
         let p = Parser(lines: lines, currentLine: 0, indent: "  ")
@@ -130,6 +120,13 @@ class ParserTests: XCTestCase {
         XCTAssertEqual("Int", a)
     }
     
+    func testFetchTypeOptional() {
+        let lines = ["  Int?  "]
+        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
+        let a = try! p.fetchType()
+        XCTAssertEqual("Int?", a)
+    }
+    
     func testFetchTypeBeforeTeriminal() {
         for terminal in Parser.fetchTypeTerminals {
             let lines = ["  Int\(terminal)z "]
@@ -140,10 +137,10 @@ class ParserTests: XCTestCase {
     }
 
     func testFetchFunctionType() {
-        let lines = ["  ((Int, Float)) -> ())"]
+        let lines = ["  ((Int?, Float)) -> ())"]
         let p = Parser(lines: lines, currentLine: 0, indent: "  ")
         let a = try! p.fetchType()
-        XCTAssertEqual("((Int, Float)) -> ()", a)
+        XCTAssertEqual("((Int?, Float)) -> ()", a)
     }
 
     func testFetchArgsNone() {
@@ -164,7 +161,7 @@ class ParserTests: XCTestCase {
     }
     
     func testFetchArgs() {
-        let lines = ["foo bar: Int, blah: Int, baz: (Int, Int), z: (Int) -> ())"]
+        let lines = ["foo bar: Int, blah: Int?, baz: (Int, Int)?, z: (Int) -> ())"]
         let p = Parser(lines: lines, currentLine: 0, indent: "  ")
         let a = try! p.fetchArgs()
         XCTAssertEqual(4, a.count)
@@ -174,11 +171,11 @@ class ParserTests: XCTestCase {
 
         XCTAssertEqual("blah", a[1].label)
         XCTAssertEqual("blah", a[1].name)
-        XCTAssertEqual("Int", a[1].type)
+        XCTAssertEqual("Int?", a[1].type)
 
         XCTAssertEqual("baz", a[2].label)
         XCTAssertEqual("baz", a[2].name)
-        XCTAssertEqual("(Int, Int)", a[2].type)
+        XCTAssertEqual("(Int, Int)?", a[2].type)
 
         XCTAssertEqual("z", a[3].label)
         XCTAssertEqual("z", a[3].name)

@@ -7,10 +7,6 @@
 
 import XCTest
 
-protocol Foo {
-    static func save(to url: URL, blah: @escaping (Int64) -> ()) -> ()
-}
-
 class BlockCommentTests: XCTestCase {
     
     func testComplex() {
@@ -49,11 +45,12 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(x.args[0].name, "url")
         XCTAssertEqual(x.args[0].type, "URL")
         XCTAssertEqual(x.args[1].name, "done")
+        XCTAssertEqual(x.args[1].type, "(Int64) -> ()")
         XCTAssertEqual(y.count, 6)
     }
 
     func testReturnsDouble() {
-        let lines = ["static func save(to url: URL, blah: @escaping (Int64) -> ()) -> Double {\n"]
+        let lines = ["static func save(to url: URL, blah: @escaping (Int64?) -> ()) -> Double {\n"]
         let z = Parser(lines: lines, currentLine: 0, indent: "  ")
         let y = z.makeBlockComment()
         let x = z.funcMeta!
@@ -65,11 +62,12 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(x.args[0].name, "url")
         XCTAssertEqual(x.args[0].type, "URL")
         XCTAssertEqual(x.args[1].name, "blah")
+        XCTAssertEqual(x.args[1].type, "(Int64?) -> ()")
         XCTAssertEqual(y.count, 7)
     }
     
     func testReturnsArray() {
-        let lines = ["static func save(to url: URL, blah: @escaping (Int64) -> ()) -> [Int] {\n"]
+        let lines = ["static func save(to url: URL, blah: @escaping ([Int64]) -> ()) -> [Int] {\n"]
         let z = Parser(lines: lines, currentLine: 0, indent: "  ")
         let y = z.makeBlockComment()
         let x = z.funcMeta!
@@ -77,25 +75,30 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(x.name, "save")
         XCTAssertFalse(x.returnType.isNil)
         XCTAssertEqual(x.returnType.type, "[Int]")
+
         XCTAssertEqual(x.args.count, 2)
         XCTAssertEqual(x.args[0].name, "url")
         XCTAssertEqual(x.args[0].type, "URL")
         XCTAssertEqual(x.args[1].name, "blah")
+        XCTAssertEqual(x.args[1].type, "([Int64]) -> ()")
         XCTAssertEqual(y.count, 7)
     }
-    
+
     func testReturnsMap() {
-        let lines = ["static func save(to url: URL, blah: @escaping (Int64) -> ()) -> [Int:Int] {\n"]
+        let lines = ["static func save(to url: URL, blah: @escaping (Int64, Boolean) -> ()) -> [Int:Int] {\n"]
         let z = Parser(lines: lines, currentLine: 0, indent: "  ")
         let y = z.makeBlockComment()
         let x = z.funcMeta!
 
         XCTAssertEqual(x.name, "save")
         XCTAssertFalse(x.returnType.isNil)
+        XCTAssertEqual(x.returnType.type, "[Int:Int]")
+
         XCTAssertEqual(x.args.count, 2)
         XCTAssertEqual(x.args[0].name, "url")
         XCTAssertEqual(x.args[0].type, "URL")
         XCTAssertEqual(x.args[1].name, "blah")
+        XCTAssertEqual(x.args[1].type, "(Int64, Boolean) -> ()")
         XCTAssertEqual(y.count, 7)
     }
     
@@ -111,41 +114,46 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(x.args[0].name, "url")
         XCTAssertEqual(x.args[0].type, "URL")
         XCTAssertEqual(x.args[1].name, "blah")
+        XCTAssertEqual(x.args[1].type, "(Int64) -> ()")
         XCTAssertEqual(y.count, 6)
     }
     
     func testReturnsNil() {
-        let lines = ["static func save(to url: URL, blah: @escaping (Int64) -> ()) -> nil {\n"]
+        let lines = ["static func save(to url: URL) -> nil {\n"]
         let z = Parser(lines: lines, currentLine: 0, indent: "  ")
         let y = z.makeBlockComment()
         let x = z.funcMeta!
 
         XCTAssertEqual(x.name, "save")
         XCTAssertTrue(x.returnType.isNil)
-        XCTAssertEqual(x.args.count, 2)
+
+        XCTAssertEqual(x.args.count, 1)
+        XCTAssertEqual(x.args[0].label, "to")
         XCTAssertEqual(x.args[0].name, "url")
         XCTAssertEqual(x.args[0].type, "URL")
-        XCTAssertEqual(x.args[1].name, "blah")
-        XCTAssertEqual(y.count, 6)
+
+        XCTAssertEqual(y.count, 5)
     }
     
     func testReturnsEmptyTuple() {
-        let lines = ["static func save(to url: URL, blah: @escaping (Int64) -> ()) -> () {\n"]
+        let lines = ["static func save(url: URL) -> () {\n"]
         let z = Parser(lines: lines, currentLine: 0, indent: "  ")
         let y = z.makeBlockComment()
         let x = z.funcMeta!
 
         XCTAssertEqual(x.name, "save")
         XCTAssertTrue(x.returnType.isNil)
-        XCTAssertEqual(x.args.count, 2)
+
+        XCTAssertEqual(x.args.count, 1)
+        XCTAssertEqual(x.args[0].label, "url")
         XCTAssertEqual(x.args[0].name, "url")
         XCTAssertEqual(x.args[0].type, "URL")
-        XCTAssertEqual(x.args[1].name, "blah")
-        XCTAssertEqual(y.count, 6)
+
+        XCTAssertEqual(y.count, 5)
     }
     
     func testPrototype() {
-        let lines = ["static func save(to url: URL, blah: @escaping (Int64) -> ()) -> ()"]
+        let lines = ["static func save(url: URL) -> ()"]
         let z = Parser(lines: lines, currentLine: 0, indent: "  ")
         let y = z.makeBlockComment()
         let x = z.funcMeta!
@@ -153,25 +161,29 @@ class BlockCommentTests: XCTestCase {
         print(y)
         XCTAssertEqual(x.name, "save")
         XCTAssertTrue(x.returnType.isNil)
-        XCTAssertEqual(x.args.count, 2)
+        XCTAssertEqual(x.args.count, 1)
         XCTAssertEqual(x.args[0].name, "url")
         XCTAssertEqual(x.args[0].type, "URL")
-        XCTAssertEqual(x.args[1].name, "blah")
-        XCTAssertEqual(y.count, 6)
+
+        XCTAssertEqual(y.count, 5)
     }
     
     func testDefaultArgument() {
-        let lines = ["private init(timestampGenerator: TimestampGeneratorInterface = TimestampGenerator()) {\n"]
+        let lines = ["private init(timestampGenerator: TimestampGeneratorInterface = TimestampGenerator(), um: Int = 12, z: String? = nil) {\n"]
         let z = Parser(lines: lines, currentLine: 0, indent: "  ")
         let y = z.makeBlockComment()
         let x = z.funcMeta!
 
         XCTAssertEqual(x.name, "init")
         XCTAssertFalse(x.returnType.hasReturn)
-        XCTAssertEqual(x.args.count, 1)
+        XCTAssertEqual(x.args.count, 3)
         XCTAssertEqual(x.args[0].name, "timestampGenerator")
         XCTAssertEqual(x.args[0].type, "TimestampGeneratorInterface")
-        XCTAssertEqual(y.count, 5)
+        XCTAssertEqual(x.args[1].name, "um")
+        XCTAssertEqual(x.args[1].type, "Int")
+        XCTAssertEqual(x.args[2].name, "z")
+        XCTAssertEqual(x.args[2].type, "String?")
+        XCTAssertEqual(y.count, 7)
     }
     
     func testMinimal() {
@@ -284,4 +296,43 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(z.propertyMeta!.type, "(_ x: Int, _ y: Int) -> Int")
     }
 
+    func testComplex2() {
+        let lines = ["func application(_ application: UIApplication, didFinishLaunchingWithOptions",
+                     " launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool ",
+                     "{"]
+        let z = Parser(lines: lines, currentLine: 0, indent: " ")
+        let y = z.makeBlockComment()
+        let x = z.funcMeta!
+
+        XCTAssertTrue(y.count > 0)
+        XCTAssertEqual(x.name, "application")
+        XCTAssertTrue(x.returnType.hasReturn)
+        XCTAssertFalse(x.returnType.isNil)
+        XCTAssertEqual(x.returnType.type, "Bool")
+
+        XCTAssertEqual(x.args.count, 2)
+        XCTAssertEqual(x.args[0].name, "application")
+        XCTAssertEqual(x.args[0].type, "UIApplication")
+        XCTAssertEqual(x.args[1].label, "didFinishLaunchingWithOptions")
+        XCTAssertEqual(x.args[1].name, "launchOptions")
+        XCTAssertEqual(x.args[1].type, "[UIApplicationLaunchOptionsKey: Any]?")
+    }
+    
+    func testTight() {
+        let lines = ["    static func foo(a:Int)->Bool{return true}"]
+        
+        let z = Parser(lines: lines, currentLine: 0, indent: " ")
+        let y = z.makeBlockComment()
+        let x = z.funcMeta!
+        
+        XCTAssertTrue(y.count > 0)
+        XCTAssertEqual(x.name, "foo")
+        XCTAssertTrue(x.returnType.hasReturn)
+        XCTAssertFalse(x.returnType.isNil)
+        XCTAssertEqual(x.returnType.type, "Bool")
+        
+        XCTAssertEqual(x.args.count, 1)
+        XCTAssertEqual(x.args[0].name, "a")
+        XCTAssertEqual(x.args[0].type, "Int")
+    }
 }

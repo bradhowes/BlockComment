@@ -9,9 +9,9 @@
 import Foundation
 import XcodeKit
 
-class BlockComment: NSObject, XCSourceEditorCommand {
+final class BlockComment: NSObject, XCSourceEditorCommand {
 
-    func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
+    public func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
 
         let buffer = invocation.buffer
         let lines = buffer.lines
