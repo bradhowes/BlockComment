@@ -10,11 +10,14 @@ import XCTest
 class BlockCommentTests: XCTestCase {
     
     func testComplex() {
-        let lines = ["  override internal \t\tfunc \tcomp김lex   (_ a김: inout Int, o23김 b: (one: Int, two: Int, three: Int), cc김 c김: inout Double) throws -> (four: Int, five: \t\t(six: Int, seven: Int))      \n"]
+        let lines = ["  override internal \t\tfunc \tcomp김lex   (_ a김: inout\n",
+                     "Int, o23김 b: (one: Int, two:\n",
+                     "Int, three: Int), cc김 c김: inout Double) throws \n",
+                     "-> (four: Int, five: \t\t(six: Int, seven: Int))      \n"]
         let z = Parser(lines: lines, currentLine: 0, indent: "  ")
         let y = z.makeBlockComment()
         let x = z.funcMeta!
-        
+
         XCTAssertEqual(x.name, "comp김lex")
         XCTAssertTrue(x.returnType.hasReturn)
         XCTAssertFalse(x.returnType.isNil)
@@ -32,21 +35,69 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(y[0], "  /**\n")
         XCTAssertEqual(y[8], "   */\n")
     }
-    
-    func test2() {
-        let lines = ["static func save(to url: URL, done: @escaping (Int64)   ->    ()) {\n"]
-        let z = Parser(lines: lines, currentLine: 0, indent: "  ")
-        let y = z.makeBlockComment()
-        let x = z.funcMeta!
 
-        XCTAssertEqual(x.name, "save")
-        XCTAssertFalse(x.returnType.hasReturn)
-        XCTAssertEqual(x.args.count, 2)
-        XCTAssertEqual(x.args[0].name, "url")
-        XCTAssertEqual(x.args[0].type, "URL")
-        XCTAssertEqual(x.args[1].name, "done")
-        XCTAssertEqual(x.args[1].type, "(Int64) -> ()")
+    func testNoIndentation() {
+        let lines = ["static func save(to url: URL, done: @escaping (Int64)   ->    ())"]
+        let z = Parser(lines: lines, currentLine: 0, indent: "")
+        let y = z.makeBlockComment()
+
         XCTAssertEqual(y.count, 6)
+        XCTAssertEqual(y.first, "/**\n")
+        XCTAssertEqual(y.last, " */\n")
+    }
+
+    func testLargeIndentation() {
+        let lines = ["static func save(to url: URL, done: @escaping (Int64)   ->    ())"]
+        let z = Parser(lines: lines, currentLine: 0, indent: String(repeating: " ", count: 20))
+        let y = z.makeBlockComment()
+
+        XCTAssertEqual(y.count, 6)
+        XCTAssertEqual(y.first, String(repeating: " ", count: 20) + "/**\n")
+        XCTAssertEqual(y.last,  String(repeating: " ", count: 20) + " */\n")
+        for each in y {
+            XCTAssertEqual(String(each.prefix(20)), String(repeating: " ", count: 20))
+        }
+    }
+
+    func testCurrentLine() {
+        let lines = ["static\n",
+                     "func first(a: Int) -> Double {\n",
+                     "\n",
+                     "func second(b: Int, c: Double) -> String {\n",
+                     "\n"]
+        for currentLine in 0..<2 {
+            let z = Parser(lines: lines, currentLine: currentLine, indent: "  ")
+            let y = z.makeBlockComment()
+            let x = z.funcMeta!
+
+            XCTAssertEqual(x.name, "first")
+            XCTAssertTrue(x.returnType.hasReturn)
+            XCTAssertEqual(x.returnType.type, "Double")
+            XCTAssertEqual(x.args.count, 1)
+            XCTAssertEqual(x.args[0].name, "a")
+            XCTAssertEqual(x.args[0].type, "Int")
+            XCTAssertEqual(y.count, 6)
+        }
+
+        for currentLine in 2..<4 {
+            let z = Parser(lines: lines, currentLine: currentLine, indent: "  ")
+            let y = z.makeBlockComment()
+            let x = z.funcMeta!
+            
+            XCTAssertEqual(x.name, "second")
+            XCTAssertTrue(x.returnType.hasReturn)
+            XCTAssertEqual(x.returnType.type, "String")
+            XCTAssertEqual(x.args.count, 2)
+            XCTAssertEqual(x.args[0].name, "b")
+            XCTAssertEqual(x.args[0].type, "Int")
+            XCTAssertEqual(x.args[1].name, "c")
+            XCTAssertEqual(x.args[1].type, "Double")
+            XCTAssertEqual(y.count, 7)
+        }
+        
+        let z = Parser(lines: lines, currentLine: 4, indent: "  ")
+        let y = z.makeBlockComment()
+        XCTAssertEqual(y.count, 3)
     }
 
     func testReturnsDouble() {
