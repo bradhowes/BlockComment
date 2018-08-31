@@ -1,6 +1,6 @@
 # BlockComment
 
-Xcode 8 source editor extension for Swift editing that will insert a block comment, possibly with some tags.
+Xcode 8+ source editor extension for Swift editing that will insert a block comment, possibly with some tags.
 
 > **NOTE**: I know about Xcode's own `Add Documentation` command which does the same thing, but with more
 > knowledge about the code being commented on. This was more of a learning exercise. I also like my style of
@@ -10,7 +10,7 @@ Xcode 8 source editor extension for Swift editing that will insert a block comme
 
 The command does a rudimentary scan forward from the cursor, looking for something to comment. If it finds a
 `func` or `init` expression, it will insert a block comment describing the function definition. It also has
-tailored block comments for `struct`, `class`, `enum` and propertie expressions (`var` and `let`). Again, it is
+tailored block comments for `struct`, `class`, `enum` and property expressions (`var` and `let`). Again, it is
 really crude and basic. If it cannot make sense of anthing, it will just punt and insert a generic block
 comment.
 
@@ -29,5 +29,5 @@ Xcode preferences
 
 # Code
 
-The code parsing takes place in `BulkCommentCommand/Parse.swift` The other files are there to provide the plumbing for 
+The code parsing takes place in `BulkCommentCommand/Parse.swift` The other files are there to provide the plumbing for
 Xcode extension and the application which delivers the extension.
