@@ -159,6 +159,16 @@ class ParserTests: XCTestCase {
         XCTAssertEqual("z", a[0].name)
         XCTAssertEqual("(Int) -> ()", a[0].type)
     }
+
+    func testFetchFuncArg2() {
+        let lines = ["recorder: ((MusicTimeStamp, Note)->Void)? = nil)"]
+        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
+        let a = try! p.fetchArgs()
+        XCTAssertEqual(1, a.count)
+        XCTAssertEqual("recorder", a[0].label)
+        XCTAssertEqual("recorder", a[0].name)
+        XCTAssertEqual("((MusicTimeStamp, Note)->Void)?", a[0].type)
+    }
     
     func testFetchArgs() {
         let lines = ["foo bar: Int, blah: Int?, baz: (Int, Int)?, z: (Int) -> ())"]

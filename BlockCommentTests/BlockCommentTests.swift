@@ -22,7 +22,6 @@ class BlockCommentTests: XCTestCase {
         XCTAssertTrue(x.returnType.hasReturn)
         XCTAssertFalse(x.returnType.isNil)
         XCTAssertEqual(x.returnType.type, "(four: Int, five: (six: Int, seven: Int))")
-        
         XCTAssertEqual(x.args.count, 3)
         XCTAssertEqual(x.args[0].name, "a김")
         XCTAssertEqual(x.args[0].type, "Int")
@@ -36,6 +35,15 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(y[8], "   */\n")
     }
 
+    func testComplex2() {
+        let lines = ["func record(clock: MusicTimeStamp, recorder: ((MusicTimeStamp, Note)->Void)? = nil) -> MusicTimeStamp {"]
+        let z = Parser(lines: lines, currentLine: 0, indent: "  ")
+        let y = z.makeBlockComment()
+        let x = z.funcMeta
+        XCTAssertEqual(y.count, 7)
+        XCTAssert(x != nil)
+        XCTAssertEqual(x?.name, "record")
+    }
     func testNoIndentation() {
         let lines = ["static func save(to url: URL, done: @escaping (Int64)   ->    ())"]
         let z = Parser(lines: lines, currentLine: 0, indent: "")
@@ -347,7 +355,7 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(z.propertyMeta!.type, "(_ x: Int, _ y: Int) -> Int")
     }
 
-    func testComplex2() {
+    func testComplex3() {
         let lines = ["func application(_ application: UIApplication, didFinishLaunchingWithOptions",
                      " launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool ",
                      "{"]
