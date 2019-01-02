@@ -320,7 +320,7 @@ public final class Parser {
         return String(text[text.index(text.startIndex, offsetBy: start)..<text.index(text.startIndex, offsetBy: end)])
     }
 
-    internal static let permsTerms = Set(["open", "public", "internal", "filepublic", "private"])
+    internal static let permsTerms = Set(["open", "public", "internal", "fileprivate", "private"])
     internal static let ignoredTerms = Set([
         "class",
         "convenience",
@@ -677,12 +677,12 @@ public final class Parser {
     }
 
     /**
-     Generate a block comment for an `init` statement.
+     Generate a block comment for an `func`, `init`, or `subscript` definition.
 
-     - parameter token: either "init" or "init?"
+     - parameter token: name of the definition
      - returns: block comment
      */
-    internal func initDef(token: String) -> [String] {
+    internal func funcDef(token: String) -> [String] {
         let name = token
         do {
             // Scan for '('
@@ -709,7 +709,7 @@ public final class Parser {
     internal func funcDef() -> [String] {
         do {
             let name = try fetchType()
-            return initDef(token: name)
+            return funcDef(token: name)
         } catch {
             return []
         }
@@ -814,7 +814,7 @@ public final class Parser {
                 case "struct", "class", "enum", "extension": return containerDef()
                 case "var", "let": return propertyDef()
                 case "func": return funcDef()
-                case "init", "init?": return initDef(token: kind)
+                case "init", "init?", "subscript": return funcDef(token: kind)
                 default: return genericDef()
                 }
             }

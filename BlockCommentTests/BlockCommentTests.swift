@@ -309,7 +309,8 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(z.funcMeta!.args.count, 0)
         XCTAssertEqual(z.funcMeta!.name, "init?")
         
-        y = Parser(lines: lines, currentLine: 2, indent: " ").makeBlockComment()
+        z = Parser(lines: lines, currentLine: 2, indent: " ")
+        y = z.makeBlockComment()
         XCTAssertTrue(y.count > 0)
         XCTAssertEqual(z.funcMeta!.args.count, 0)
         XCTAssertEqual(z.funcMeta!.name, "init?")
@@ -321,6 +322,36 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(z.funcMeta!.name, "init")
     }
 
+    func testSubscript() {
+        let lines = ["subscript(index: Int) -> String {\n",
+                     "subscript(_ index: Int) -> String {\n",
+                     "subscript(row: Int, col: Int) -> Int {\n"
+        ]
+        var z = Parser(lines: lines, currentLine: 0, indent: " ")
+        var y = z.makeBlockComment()
+        XCTAssertTrue(y.count > 0)
+        XCTAssertEqual(z.funcMeta!.args.count, 1)
+        XCTAssertEqual(z.funcMeta!.args[0].name, "index")
+        XCTAssertEqual(z.funcMeta!.name, "subscript")
+        XCTAssertEqual(z.funcMeta!.returnType.type, "String")
+
+        z = Parser(lines: lines, currentLine: 1, indent: " ")
+        y = z.makeBlockComment()
+        XCTAssertTrue(y.count > 0)
+        XCTAssertEqual(z.funcMeta!.args.count, 1)
+        XCTAssertEqual(z.funcMeta!.args[0].name, "index")
+        XCTAssertEqual(z.funcMeta!.name, "subscript")
+        XCTAssertEqual(z.funcMeta!.returnType.type, "String")
+
+        z = Parser(lines: lines, currentLine: 2, indent: " ")
+        y = z.makeBlockComment()
+        XCTAssertTrue(y.count > 0)
+        XCTAssertEqual(z.funcMeta!.args.count, 2)
+        XCTAssertEqual(z.funcMeta!.args[0].name, "row")
+        XCTAssertEqual(z.funcMeta!.name, "subscript")
+        XCTAssertEqual(z.funcMeta!.returnType.type, "Int")
+    }
+    
     func testProperty() {
         let lines = ["public private(set) var blah:Int\n",
                      "private static var blah : Int\n",
