@@ -307,7 +307,7 @@
 				TargetAttributes = {
 					BD0246401D9D03A8008AEC26 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = Z7R62JH5A8;
+						DevelopmentTeam = UP6SS5ES7E;
 						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -318,7 +318,7 @@
 					};
 					BD0246541D9D03D3008AEC26 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = Z7R62JH5A8;
+						DevelopmentTeam = UP6SS5ES7E;
 						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -329,14 +329,14 @@
 					};
 					BD8DD1001D9DD839007BA1D3 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = Z7R62JH5A8;
+						DevelopmentTeam = UP6SS5ES7E;
 						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 						TestTargetID = BD0246401D9D03A8008AEC26;
 					};
 					BDACC56D1EA39B42000E8640 = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = Z7R62JH5A8;
+						DevelopmentTeam = UP6SS5ES7E;
 						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 					};
@@ -592,7 +592,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				INFOPLIST_FILE = BlockCommentApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.brhcode.BlockCommentApp;
@@ -609,7 +609,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				INFOPLIST_FILE = BlockCommentApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.brhcode.BlockCommentApp;
@@ -625,7 +625,7 @@
 				CODE_SIGN_ENTITLEMENTS = BlockCommentCommand/BlockComment.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				INFOPLIST_FILE = BlockCommentCommand/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -644,7 +644,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = BlockCommentCommand/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
@@ -664,7 +664,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				INFOPLIST_FILE = BlockCommentTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.brhcode.BlockCommentTests;
@@ -681,7 +681,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				INFOPLIST_FILE = BlockCommentTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.brhcode.BlockCommentTests;
@@ -698,7 +698,7 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				INFOPLIST_FILE = "BlockComment-XPC/Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.brhcode.BlockComment-XPC";
@@ -715,7 +715,7 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Z7R62JH5A8;
+				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				INFOPLIST_FILE = "BlockComment-XPC/Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.brhcode.BlockComment-XPC";
