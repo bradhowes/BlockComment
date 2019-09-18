@@ -124,6 +124,8 @@ public final class Parser {
         }
     }
 
+    // MARK: - Tokens
+    
     internal static let atSign = "@" as Character
     internal static let poundSign = "#" as Character
     internal static let leftParen = "(" as Character

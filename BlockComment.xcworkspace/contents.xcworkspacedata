@@ -2,6 +2,22 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:README.md">
+   </FileRef>
+   <FileRef
+      location = "group:LICENSE">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "Images">
+      <FileRef
+         location = "group:screenshot.gif">
+      </FileRef>
+      <FileRef
+         location = "group:menu.png">
+      </FileRef>
+   </Group>
+   <FileRef
       location = "group:BlockComment.xcodeproj">
    </FileRef>
 </Workspace>

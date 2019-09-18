@@ -88,7 +88,6 @@
 		BD02465E1D9D03D3008AEC26 /* BlockCommentCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlockCommentCommand.swift; path = ../BlockCommentExtension/BlockCommentCommand.swift; sourceTree = "<group>"; };
 		BD0246601D9D03D3008AEC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD8DD10B1D9DD866007BA1D3 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
-		BD9B64E61DA0543A004E4319 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BDD3B91923320DE300AB82CC /* XcodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XcodeKit.framework; path = Library/Frameworks/XcodeKit.framework; sourceTree = DEVELOPER_DIR; };
 		BDD3B982233232C100AB82CC /* BlockCommentLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BlockCommentLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD3B984233232C100AB82CC /* BlockCommentLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockCommentLibrary.h; sourceTree = "<group>"; };
@@ -144,7 +143,6 @@
 		BD0246381D9D03A8008AEC26 = {
 			isa = PBXGroup;
 			children = (
-				BD9B64E61DA0543A004E4319 /* README.md */,
 				BDE10F1E232FB8FC0047E558 /* BlockCommentApp */,
 				BD0246591D9D03D3008AEC26 /* BlockCommentExtension */,
 				BDD3B983233232C100AB82CC /* BlockCommentLibrary */,
