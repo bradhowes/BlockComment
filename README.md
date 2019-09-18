@@ -39,6 +39,6 @@ to insert a horizontal divider and title in the pop-down list of interesting ite
 # Code
 
 The code parsing takes place in
-[BlockCommentLibrary/Parser.swift](https://github.com/bradhowes/BlockComment/tree/master/BlockCommentLibrary/Parser.swift)
-and
-[BlockCommentLibrary/BlockComment.swift](https://github.com/bradhowes/BlockComment/tree/master/BlockCommentLibrary/BlockComment.swift)
+[BlockCommentLibrary/Parser.swift](https://github.com/bradhowes/BlockComment/tree/master/BlockCommentLibrary/Parser.swift).
+The processing of the request from Xcode happens in
+[BlockCommentLibrary/BlockComment.swift](https://github.com/bradhowes/BlockComment/tree/master/BlockCommentLibrary/BlockComment.swift).
