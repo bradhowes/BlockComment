@@ -706,21 +706,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="BlockCommentApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="279"/>
+                        <rect key="frame" x="0.0" y="0.0" width="585" height="519"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6aw-1n-hU8">
-                                <rect key="frame" x="141" y="142" width="198" height="32"/>
-                                <buttonCell key="cell" type="push" title="Show System Preferences" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vtf-6s-ulw">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="openExtensions:" target="XfG-lQ-9wD" id="GZh-qy-9Q2"/>
-                                </connections>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Urh-Nd-PA0">
-                                <rect key="frame" x="18" y="228" width="125" height="31"/>
+                                <rect key="frame" x="18" y="468" width="125" height="31"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Installation" id="qRS-wo-2bQ">
                                     <font key="font" size="26" name=".AppleSystemUIFont"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -728,7 +718,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="t6k-XP-mwR">
-                                <rect key="frame" x="18" y="99" width="444" height="34"/>
+                                <rect key="frame" x="18" y="99" width="549" height="34"/>
                                 <textFieldCell key="cell" selectable="YES" title="2. Restart Xcode. You should see a new menu item called &quot;Block Comment&quot; at the bottom of the &quot;Editor&quot; menu." id="FMj-C3-pey">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -736,7 +726,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gHk-ZR-LoW">
-                                <rect key="frame" x="18" y="57" width="444" height="34"/>
+                                <rect key="frame" x="18" y="57" width="549" height="34"/>
                                 <textFieldCell key="cell" selectable="YES" title="3. You can now quit this application. The extension is available to Xcode without having to run this application again." id="VA0-Oe-eih">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -744,7 +734,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="29N-o6-7BP">
-                                <rect key="frame" x="18" y="186" width="444" height="34"/>
+                                <rect key="frame" x="18" y="426" width="549" height="34"/>
                                 <textFieldCell key="cell" selectable="YES" title="1. Open the &quot;Extensions&quot; panel of System Preferences and under &quot;BlockComment&quot; check the &quot;Xcode Source Editor&quot; item.  " id="s6R-iH-1Vf">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -752,7 +742,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iOx-kD-lFy">
-                                <rect key="frame" x="207" y="13" width="66" height="32"/>
+                                <rect key="frame" x="260" y="13" width="66" height="32"/>
                                 <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FTb-ds-V9I">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -761,23 +751,40 @@
                                     </connections>
                                 </buttonCell>
                             </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9dM-ag-d8G">
+                                <rect key="frame" x="20" y="149" width="334" height="261"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Image" id="IXl-KV-8PH"/>
+                            </imageView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6aw-1n-hU8">
+                                <rect key="frame" x="373" y="262" width="198" height="32"/>
+                                <buttonCell key="cell" type="push" title="Show System Preferences" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vtf-6s-ulw">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openExtensions:" target="XfG-lQ-9wD" id="GZh-qy-9Q2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="t6k-XP-mwR" firstAttribute="top" secondItem="6aw-1n-hU8" secondAttribute="bottom" constant="16" id="0BJ-CN-J8e"/>
                             <constraint firstAttribute="bottom" secondItem="iOx-kD-lFy" secondAttribute="bottom" constant="20" id="0rr-Zw-3H9"/>
                             <constraint firstAttribute="trailing" secondItem="gHk-ZR-LoW" secondAttribute="trailing" constant="20" id="11a-xZ-Egk"/>
                             <constraint firstAttribute="trailing" secondItem="t6k-XP-mwR" secondAttribute="trailing" constant="20" id="2eg-PK-63l"/>
+                            <constraint firstItem="6aw-1n-hU8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9dM-ag-d8G" secondAttribute="trailing" constant="16" id="9Nq-ax-5pD"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Urh-Nd-PA0" secondAttribute="trailing" constant="20" symbolic="YES" id="9Rk-lZ-byW"/>
                             <constraint firstItem="29N-o6-7BP" firstAttribute="top" secondItem="Urh-Nd-PA0" secondAttribute="bottom" constant="8" id="HVB-tW-ZTF"/>
-                            <constraint firstItem="6aw-1n-hU8" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="KDd-uI-YOa"/>
+                            <constraint firstItem="9dM-ag-d8G" firstAttribute="top" secondItem="29N-o6-7BP" secondAttribute="bottom" constant="16" id="Hwy-Pr-Egc"/>
+                            <constraint firstItem="iOx-kD-lFy" firstAttribute="top" secondItem="gHk-ZR-LoW" secondAttribute="bottom" constant="16" id="SNB-ya-1mx"/>
+                            <constraint firstAttribute="trailing" secondItem="6aw-1n-hU8" secondAttribute="trailing" constant="20" id="TCQ-ar-dM6"/>
+                            <constraint firstItem="t6k-XP-mwR" firstAttribute="top" secondItem="9dM-ag-d8G" secondAttribute="bottom" constant="16" id="XkX-UH-SUJ"/>
                             <constraint firstAttribute="trailing" secondItem="29N-o6-7BP" secondAttribute="trailing" constant="20" id="fp6-Qc-B5V"/>
-                            <constraint firstItem="iOx-kD-lFy" firstAttribute="top" secondItem="gHk-ZR-LoW" secondAttribute="bottom" constant="16" id="hqI-DV-nDe"/>
                             <constraint firstItem="Urh-Nd-PA0" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="kRm-UK-IFe"/>
-                            <constraint firstItem="6aw-1n-hU8" firstAttribute="top" secondItem="29N-o6-7BP" secondAttribute="bottom" constant="16" id="pRu-uJ-oKK"/>
+                            <constraint firstItem="9dM-ag-d8G" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="oIi-C4-dCD"/>
                             <constraint firstItem="29N-o6-7BP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="qTT-8E-ErM"/>
                             <constraint firstItem="gHk-ZR-LoW" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="qca-1g-3sX"/>
                             <constraint firstItem="gHk-ZR-LoW" firstAttribute="top" secondItem="t6k-XP-mwR" secondAttribute="bottom" constant="8" id="tO2-hJ-EdH"/>
                             <constraint firstItem="Urh-Nd-PA0" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="tqU-Kb-WW8"/>
+                            <constraint firstItem="6aw-1n-hU8" firstAttribute="centerY" secondItem="9dM-ag-d8G" secondAttribute="centerY" id="wDo-27-tQx"/>
                             <constraint firstItem="iOx-kD-lFy" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="xvx-cV-C3j"/>
                             <constraint firstItem="t6k-XP-mwR" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="ymw-jl-0hS"/>
                         </constraints>
@@ -785,7 +792,10 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="690.5"/>
+            <point key="canvasLocation" x="-31.5" y="810.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Image" width="334" height="254"/>
+    </resources>
 </document>
