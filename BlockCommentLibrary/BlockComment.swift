@@ -1,23 +1,16 @@
-//
-//  BlockCommentCommand.swift
-//  BlockCommentCommand
-//
-//  Created by Brad Howes on 9/29/16.
-//  Copyright © 2016 Brad Howes. All rights reserved.
-//
+// Copyright © 2019 Brad Howes. All rights reserved.
 
-import Foundation
 import XcodeKit
 
-final class BlockComment: NSObject, XCSourceEditorCommand {
+public final class BlockComment: NSObject {
 
     /**
-     Perform an action in the BlockComment plugin.
-    
+     Generate a Swift block comment for a entity ahead of the current cursor location.
+
      - parameter invocation: the action to perform
      - parameter completionHandler: the callback to invoke when finished performing the requested action
      */
-    public func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
+    static public func generate(from invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) {
 
         let buffer = invocation.buffer
         let lines = buffer.lines
@@ -49,7 +42,7 @@ final class BlockComment: NSObject, XCSourceEditorCommand {
         while CharacterSet.whitespaces.contains(chars[cursor]) {
             cursor = chars.index(after: cursor)
         }
-        
+
         let indent = String(repeating: " ", count: chars.distance(from: chars.startIndex, to: cursor))
         let parser = Parser(lines: (lines as NSArray as! [String]), currentLine: pos, indent: indent)
         let command = invocation.commandIdentifier

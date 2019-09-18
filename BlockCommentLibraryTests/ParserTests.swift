@@ -1,16 +1,11 @@
-//
-//  ParserTests.swift
-//  BlockCommentTests
-//
-//  Created by Brad Howes on 8/26/18.
-//  Copyright © 2018 Brad Howes. All rights reserved.
+// Copyright © 2018 Brad Howes. All rights reserved.
 //
 
 import XCTest
-
-@testable import BlockComment
+@testable import BlockCommentLibrary
 
 class ParserTests: XCTestCase {
+
     func testNextCharacterThrowsIfNothingLeft() {
         let lines = [""]
         let p = Parser(lines: lines, currentLine: 0, indent: "  ")

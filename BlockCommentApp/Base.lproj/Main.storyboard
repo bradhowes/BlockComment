@@ -706,12 +706,12 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="BlockCommentApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="279"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6aw-1n-hU8">
-                                <rect key="frame" x="392" y="118" width="74" height="32"/>
-                                <buttonCell key="cell" type="push" title="Show" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vtf-6s-ulw">
+                                <rect key="frame" x="141" y="142" width="198" height="32"/>
+                                <buttonCell key="cell" type="push" title="Show System Preferences" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vtf-6s-ulw">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -719,32 +719,73 @@
                                     <action selector="openExtensions:" target="XfG-lQ-9wD" id="GZh-qy-9Q2"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8QR-BC-IDk">
-                                <rect key="frame" x="18" y="20" width="374" height="230"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="370" id="fox-M7-RCP"/>
-                                    <constraint firstAttribute="height" constant="230" id="kiv-f6-FHw"/>
-                                </constraints>
-                                <textFieldCell key="cell" selectable="YES" title="Extension is now available to use in Xcode. First, you will need to enable it in the &quot;Extensions&quot; pane of System Preferences." id="Aj5-ra-5x5">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Urh-Nd-PA0">
+                                <rect key="frame" x="18" y="228" width="125" height="31"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Installation" id="qRS-wo-2bQ">
+                                    <font key="font" size="26" name=".AppleSystemUIFont"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="t6k-XP-mwR">
+                                <rect key="frame" x="18" y="99" width="444" height="34"/>
+                                <textFieldCell key="cell" selectable="YES" title="2. Restart Xcode. You should see a new menu item called &quot;Block Comment&quot; at the bottom of the &quot;Editor&quot; menu." id="FMj-C3-pey">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gHk-ZR-LoW">
+                                <rect key="frame" x="18" y="57" width="444" height="34"/>
+                                <textFieldCell key="cell" selectable="YES" title="3. You can now quit this application. The extension is available to Xcode without having to run this application again." id="VA0-Oe-eih">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="29N-o6-7BP">
+                                <rect key="frame" x="18" y="186" width="444" height="34"/>
+                                <textFieldCell key="cell" selectable="YES" title="1. Open the &quot;Extensions&quot; panel of System Preferences and under &quot;BlockComment&quot; check the &quot;Xcode Source Editor&quot; item.  " id="s6R-iH-1Vf">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iOx-kD-lFy">
+                                <rect key="frame" x="207" y="13" width="66" height="32"/>
+                                <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FTb-ds-V9I">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <connections>
+                                        <action selector="quitApp:" target="XfG-lQ-9wD" id="PQa-Oi-uLr"/>
+                                    </connections>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="6aw-1n-hU8" secondAttribute="trailing" constant="20" id="1is-bD-V3b"/>
-                            <constraint firstItem="6aw-1n-hU8" firstAttribute="leading" secondItem="8QR-BC-IDk" secondAttribute="trailing" constant="8" id="5kZ-0C-Aoj"/>
-                            <constraint firstItem="8QR-BC-IDk" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="ECU-te-g7A"/>
-                            <constraint firstItem="8QR-BC-IDk" firstAttribute="centerY" secondItem="6aw-1n-hU8" secondAttribute="centerY" id="Ubb-QX-aZR"/>
-                            <constraint firstItem="8QR-BC-IDk" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="hYa-61-DPl"/>
-                            <constraint firstItem="6aw-1n-hU8" firstAttribute="leading" secondItem="8QR-BC-IDk" secondAttribute="trailing" constant="8" symbolic="YES" id="tsf-Sg-7XE"/>
+                            <constraint firstItem="t6k-XP-mwR" firstAttribute="top" secondItem="6aw-1n-hU8" secondAttribute="bottom" constant="16" id="0BJ-CN-J8e"/>
+                            <constraint firstAttribute="bottom" secondItem="iOx-kD-lFy" secondAttribute="bottom" constant="20" id="0rr-Zw-3H9"/>
+                            <constraint firstAttribute="trailing" secondItem="gHk-ZR-LoW" secondAttribute="trailing" constant="20" id="11a-xZ-Egk"/>
+                            <constraint firstAttribute="trailing" secondItem="t6k-XP-mwR" secondAttribute="trailing" constant="20" id="2eg-PK-63l"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Urh-Nd-PA0" secondAttribute="trailing" constant="20" symbolic="YES" id="9Rk-lZ-byW"/>
+                            <constraint firstItem="29N-o6-7BP" firstAttribute="top" secondItem="Urh-Nd-PA0" secondAttribute="bottom" constant="8" id="HVB-tW-ZTF"/>
+                            <constraint firstItem="6aw-1n-hU8" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="KDd-uI-YOa"/>
+                            <constraint firstAttribute="trailing" secondItem="29N-o6-7BP" secondAttribute="trailing" constant="20" id="fp6-Qc-B5V"/>
+                            <constraint firstItem="iOx-kD-lFy" firstAttribute="top" secondItem="gHk-ZR-LoW" secondAttribute="bottom" constant="16" id="hqI-DV-nDe"/>
+                            <constraint firstItem="Urh-Nd-PA0" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="kRm-UK-IFe"/>
+                            <constraint firstItem="6aw-1n-hU8" firstAttribute="top" secondItem="29N-o6-7BP" secondAttribute="bottom" constant="16" id="pRu-uJ-oKK"/>
+                            <constraint firstItem="29N-o6-7BP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="qTT-8E-ErM"/>
+                            <constraint firstItem="gHk-ZR-LoW" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="qca-1g-3sX"/>
+                            <constraint firstItem="gHk-ZR-LoW" firstAttribute="top" secondItem="t6k-XP-mwR" secondAttribute="bottom" constant="8" id="tO2-hJ-EdH"/>
+                            <constraint firstItem="Urh-Nd-PA0" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="tqU-Kb-WW8"/>
+                            <constraint firstItem="iOx-kD-lFy" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="xvx-cV-C3j"/>
+                            <constraint firstItem="t6k-XP-mwR" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="ymw-jl-0hS"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="75" y="690.5"/>
         </scene>
     </scenes>
 </document>

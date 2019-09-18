@@ -43,13 +43,43 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BDD3B8E823320A4700AB82CC"
+               BuildableName = "BlockCommentAppTests.xctest"
+               BlueprintName = "BlockCommentAppTests"
+               ReferencedContainer = "container:BlockComment.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BDD3B8FF23320BE600AB82CC"
+               BuildableName = "BlockCommentLibTests.xctest"
+               BlueprintName = "BlockCommentLibTests"
+               ReferencedContainer = "container:BlockComment.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BDD3B989233232C200AB82CC"
+               BuildableName = "BlockCommentLibraryTests.xctest"
+               BlueprintName = "BlockCommentLibraryTests"
+               ReferencedContainer = "container:BlockComment.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BD0246541D9D03D3008AEC26"
-            BuildableName = "BlockComment.appex"
-            BlueprintName = "BlockComment"
+            BlueprintIdentifier = "BDE10F1C232FB8FC0047E558"
+            BuildableName = "BlockCommentApp.app"
+            BlueprintName = "BlockCommentApp"
             ReferencedContainer = "container:BlockComment.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		BD0246581D9D03D3008AEC26 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD0246571D9D03D3008AEC26 /* Cocoa.framework */; };
 		BD02465D1D9D03D3008AEC26 /* BlockCommentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD02465C1D9D03D3008AEC26 /* BlockCommentExtension.swift */; };
-		BD02465F1D9D03D3008AEC26 /* BlockComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD02465E1D9D03D3008AEC26 /* BlockComment.swift */; };
-		BD8BA1DD2132F830002A27C3 /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8BA1D82132D2B7002A27C3 /* ParserTests.swift */; };
-		BD8DD10C1D9DD866007BA1D3 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD10B1D9DD866007BA1D3 /* Parser.swift */; };
-		BD8DD10D1D9DD87A007BA1D3 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD10B1D9DD866007BA1D3 /* Parser.swift */; };
-		BDCA58D52133145F0060BC29 /* BlockCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD1031D9DD839007BA1D3 /* BlockCommentTests.swift */; };
+		BD02465F1D9D03D3008AEC26 /* BlockCommentCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD02465E1D9D03D3008AEC26 /* BlockCommentCommand.swift */; };
+		BDD3B98B233232C200AB82CC /* BlockCommentLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD3B982233232C100AB82CC /* BlockCommentLibrary.framework */; };
+		BDD3B992233232C200AB82CC /* BlockCommentLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD3B991233232C200AB82CC /* BlockCommentLibraryTests.swift */; };
+		BDD3B994233232C200AB82CC /* BlockCommentLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = BDD3B984233232C100AB82CC /* BlockCommentLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BDD3B997233232C200AB82CC /* BlockCommentLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD3B982233232C100AB82CC /* BlockCommentLibrary.framework */; };
+		BDD3B998233232C200AB82CC /* BlockCommentLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BDD3B982233232C100AB82CC /* BlockCommentLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDD3B99F2332331D00AB82CC /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD10B1D9DD866007BA1D3 /* Parser.swift */; };
+		BDD3B9A5233241C000AB82CC /* BlockComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD3B9A4233241C000AB82CC /* BlockComment.swift */; };
 		BDE10F20232FB8FC0047E558 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE10F1F232FB8FC0047E558 /* AppDelegate.swift */; };
 		BDE10F22232FB8FC0047E558 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE10F21232FB8FC0047E558 /* ViewController.swift */; };
 		BDE10F24232FB8FD0047E558 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDE10F23232FB8FD0047E558 /* Assets.xcassets */; };
@@ -22,6 +25,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		BDD3B98C233232C200AB82CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BD0246391D9D03A8008AEC26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BDD3B981233232C100AB82CC;
+			remoteInfo = BlockCommentLibrary;
+		};
+		BDD3B98E233232C200AB82CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BD0246391D9D03A8008AEC26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BDE10F1C232FB8FC0047E558;
+			remoteInfo = BlockCommentApp;
+		};
+		BDD3B995233232C200AB82CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BD0246391D9D03A8008AEC26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BDD3B981233232C100AB82CC;
+			remoteInfo = BlockCommentLibrary;
+		};
 		BDE10F33232FBC0F0047E558 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BD0246391D9D03A8008AEC26 /* Project object */;
@@ -32,6 +56,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		BDD3B91223320BE600AB82CC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDD3B998233232C200AB82CC /* BlockCommentLibrary.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDE10F35232FBC0F0047E558 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -49,15 +84,19 @@
 		BD0246551D9D03D3008AEC26 /* BlockComment.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BlockComment.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD0246571D9D03D3008AEC26 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BD02465B1D9D03D3008AEC26 /* BlockComment.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BlockComment.entitlements; sourceTree = "<group>"; };
-		BD02465C1D9D03D3008AEC26 /* BlockCommentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCommentExtension.swift; sourceTree = "<group>"; };
-		BD02465E1D9D03D3008AEC26 /* BlockComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockComment.swift; sourceTree = "<group>"; };
+		BD02465C1D9D03D3008AEC26 /* BlockCommentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlockCommentExtension.swift; path = ../BlockCommentExtension/BlockCommentExtension.swift; sourceTree = "<group>"; };
+		BD02465E1D9D03D3008AEC26 /* BlockCommentCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlockCommentCommand.swift; path = ../BlockCommentExtension/BlockCommentCommand.swift; sourceTree = "<group>"; };
 		BD0246601D9D03D3008AEC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BD8BA1D82132D2B7002A27C3 /* ParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTests.swift; sourceTree = "<group>"; };
-		BD8DD1011D9DD839007BA1D3 /* BlockCommentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockCommentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BD8DD1031D9DD839007BA1D3 /* BlockCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCommentTests.swift; sourceTree = "<group>"; };
-		BD8DD1051D9DD839007BA1D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD8DD10B1D9DD866007BA1D3 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		BD9B64E61DA0543A004E4319 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BDD3B91923320DE300AB82CC /* XcodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XcodeKit.framework; path = Library/Frameworks/XcodeKit.framework; sourceTree = DEVELOPER_DIR; };
+		BDD3B982233232C100AB82CC /* BlockCommentLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BlockCommentLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDD3B984233232C100AB82CC /* BlockCommentLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockCommentLibrary.h; sourceTree = "<group>"; };
+		BDD3B985233232C100AB82CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BDD3B98A233232C200AB82CC /* BlockCommentLibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockCommentLibraryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDD3B991233232C200AB82CC /* BlockCommentLibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCommentLibraryTests.swift; sourceTree = "<group>"; };
+		BDD3B993233232C200AB82CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BDD3B9A4233241C000AB82CC /* BlockComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockComment.swift; sourceTree = "<group>"; };
 		BDE10F1D232FB8FC0047E558 /* BlockCommentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlockCommentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDE10F1F232FB8FC0047E558 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDE10F21232FB8FC0047E558 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,10 +115,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BD8DD0FE1D9DD839007BA1D3 /* Frameworks */ = {
+		BDD3B97F233232C100AB82CC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDD3B987233232C200AB82CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDD3B98B233232C200AB82CC /* BlockCommentLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDD3B997233232C200AB82CC /* BlockCommentLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,9 +145,10 @@
 			isa = PBXGroup;
 			children = (
 				BD9B64E61DA0543A004E4319 /* README.md */,
-				BD0246591D9D03D3008AEC26 /* BlockComment */,
-				BD8DD1021D9DD839007BA1D3 /* BlockCommentTests */,
 				BDE10F1E232FB8FC0047E558 /* BlockCommentApp */,
+				BD0246591D9D03D3008AEC26 /* BlockCommentExtension */,
+				BDD3B983233232C100AB82CC /* BlockCommentLibrary */,
+				BDD3B990233232C200AB82CC /* BlockCommentLibraryTests */,
 				BD0246561D9D03D3008AEC26 /* Frameworks */,
 				BD0246421D9D03A8008AEC26 /* Products */,
 			);
@@ -109,8 +158,9 @@
 			isa = PBXGroup;
 			children = (
 				BD0246551D9D03D3008AEC26 /* BlockComment.appex */,
-				BD8DD1011D9DD839007BA1D3 /* BlockCommentTests.xctest */,
 				BDE10F1D232FB8FC0047E558 /* BlockCommentApp.app */,
+				BDD3B982233232C100AB82CC /* BlockCommentLibrary.framework */,
+				BDD3B98A233232C200AB82CC /* BlockCommentLibraryTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,40 +168,41 @@
 		BD0246561D9D03D3008AEC26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BDD3B91923320DE300AB82CC /* XcodeKit.framework */,
 				BD0246571D9D03D3008AEC26 /* Cocoa.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BD0246591D9D03D3008AEC26 /* BlockComment */ = {
+		BD0246591D9D03D3008AEC26 /* BlockCommentExtension */ = {
 			isa = PBXGroup;
 			children = (
 				BD02465C1D9D03D3008AEC26 /* BlockCommentExtension.swift */,
-				BD02465E1D9D03D3008AEC26 /* BlockComment.swift */,
-				BD8DD10B1D9DD866007BA1D3 /* Parser.swift */,
+				BD02465E1D9D03D3008AEC26 /* BlockCommentCommand.swift */,
 				BD0246601D9D03D3008AEC26 /* Info.plist */,
-				BD02465A1D9D03D3008AEC26 /* Supporting Files */,
-			);
-			name = BlockComment;
-			path = BlockCommentCommand;
-			sourceTree = "<group>";
-		};
-		BD02465A1D9D03D3008AEC26 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
 				BD02465B1D9D03D3008AEC26 /* BlockComment.entitlements */,
 			);
-			name = "Supporting Files";
+			path = BlockCommentExtension;
 			sourceTree = "<group>";
 		};
-		BD8DD1021D9DD839007BA1D3 /* BlockCommentTests */ = {
+		BDD3B983233232C100AB82CC /* BlockCommentLibrary */ = {
 			isa = PBXGroup;
 			children = (
-				BD8DD1031D9DD839007BA1D3 /* BlockCommentTests.swift */,
-				BD8BA1D82132D2B7002A27C3 /* ParserTests.swift */,
-				BD8DD1051D9DD839007BA1D3 /* Info.plist */,
+				BDD3B9A4233241C000AB82CC /* BlockComment.swift */,
+				BD8DD10B1D9DD866007BA1D3 /* Parser.swift */,
+				BDD3B984233232C100AB82CC /* BlockCommentLibrary.h */,
+				BDD3B985233232C100AB82CC /* Info.plist */,
 			);
-			path = BlockCommentTests;
+			path = BlockCommentLibrary;
+			sourceTree = "<group>";
+		};
+		BDD3B990233232C200AB82CC /* BlockCommentLibraryTests */ = {
+			isa = PBXGroup;
+			children = (
+				BDD3B991233232C200AB82CC /* BlockCommentLibraryTests.swift */,
+				BDD3B993233232C200AB82CC /* Info.plist */,
+			);
+			path = BlockCommentLibraryTests;
 			sourceTree = "<group>";
 		};
 		BDE10F1E232FB8FC0047E558 /* BlockCommentApp */ = {
@@ -168,6 +219,17 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		BDD3B97D233232C100AB82CC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDD3B994233232C200AB82CC /* BlockCommentLibrary.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		BD0246541D9D03D3008AEC26 /* BlockComment */ = {
@@ -187,21 +249,41 @@
 			productReference = BD0246551D9D03D3008AEC26 /* BlockComment.appex */;
 			productType = "com.apple.product-type.xcode-extension";
 		};
-		BD8DD1001D9DD839007BA1D3 /* BlockCommentTests */ = {
+		BDD3B981233232C100AB82CC /* BlockCommentLibrary */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BD8DD10A1D9DD839007BA1D3 /* Build configuration list for PBXNativeTarget "BlockCommentTests" */;
+			buildConfigurationList = BDD3B999233232C200AB82CC /* Build configuration list for PBXNativeTarget "BlockCommentLibrary" */;
 			buildPhases = (
-				BD8DD0FD1D9DD839007BA1D3 /* Sources */,
-				BD8DD0FE1D9DD839007BA1D3 /* Frameworks */,
-				BD8DD0FF1D9DD839007BA1D3 /* Resources */,
+				BDD3B97D233232C100AB82CC /* Headers */,
+				BDD3B97E233232C100AB82CC /* Sources */,
+				BDD3B97F233232C100AB82CC /* Frameworks */,
+				BDD3B980233232C100AB82CC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = BlockCommentTests;
-			productName = CleanClosureSyntaxTests;
-			productReference = BD8DD1011D9DD839007BA1D3 /* BlockCommentTests.xctest */;
+			name = BlockCommentLibrary;
+			productName = BlockCommentLibrary;
+			productReference = BDD3B982233232C100AB82CC /* BlockCommentLibrary.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		BDD3B989233232C200AB82CC /* BlockCommentLibraryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BDD3B99C233232C200AB82CC /* Build configuration list for PBXNativeTarget "BlockCommentLibraryTests" */;
+			buildPhases = (
+				BDD3B986233232C200AB82CC /* Sources */,
+				BDD3B987233232C200AB82CC /* Frameworks */,
+				BDD3B988233232C200AB82CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BDD3B98D233232C200AB82CC /* PBXTargetDependency */,
+				BDD3B98F233232C200AB82CC /* PBXTargetDependency */,
+			);
+			name = BlockCommentLibraryTests;
+			productName = BlockCommentLibraryTests;
+			productReference = BDD3B98A233232C200AB82CC /* BlockCommentLibraryTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		BDE10F1C232FB8FC0047E558 /* BlockCommentApp */ = {
@@ -212,11 +294,13 @@
 				BDE10F1A232FB8FC0047E558 /* Frameworks */,
 				BDE10F1B232FB8FC0047E558 /* Resources */,
 				BDE10F35232FBC0F0047E558 /* Embed App Extensions */,
+				BDD3B91223320BE600AB82CC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				BDE10F34232FBC0F0047E558 /* PBXTargetDependency */,
+				BDD3B996233232C200AB82CC /* PBXTargetDependency */,
 			);
 			name = BlockCommentApp;
 			productName = BlockCommentApp;
@@ -244,12 +328,16 @@
 							};
 						};
 					};
-					BD8DD1001D9DD839007BA1D3 = {
-						CreatedOnToolsVersion = 8.0;
+					BDD3B981233232C100AB82CC = {
+						CreatedOnToolsVersion = 10.3;
 						DevelopmentTeam = UP6SS5ES7E;
-						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
-						TestTargetID = BD0246401D9D03A8008AEC26;
+					};
+					BDD3B989233232C200AB82CC = {
+						CreatedOnToolsVersion = 10.3;
+						DevelopmentTeam = UP6SS5ES7E;
+						ProvisioningStyle = Automatic;
+						TestTargetID = BDE10F1C232FB8FC0047E558;
 					};
 					BDE10F1C232FB8FC0047E558 = {
 						CreatedOnToolsVersion = 10.3;
@@ -273,8 +361,9 @@
 			projectRoot = "";
 			targets = (
 				BD0246541D9D03D3008AEC26 /* BlockComment */,
-				BD8DD1001D9DD839007BA1D3 /* BlockCommentTests */,
 				BDE10F1C232FB8FC0047E558 /* BlockCommentApp */,
+				BDD3B981233232C100AB82CC /* BlockCommentLibrary */,
+				BDD3B989233232C200AB82CC /* BlockCommentLibraryTests */,
 			);
 		};
 /* End PBXProject section */
@@ -287,7 +376,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BD8DD0FF1D9DD839007BA1D3 /* Resources */ = {
+		BDD3B980233232C100AB82CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDD3B988233232C200AB82CC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -311,18 +407,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD02465D1D9D03D3008AEC26 /* BlockCommentExtension.swift in Sources */,
-				BD02465F1D9D03D3008AEC26 /* BlockComment.swift in Sources */,
-				BD8DD10C1D9DD866007BA1D3 /* Parser.swift in Sources */,
+				BD02465F1D9D03D3008AEC26 /* BlockCommentCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BD8DD0FD1D9DD839007BA1D3 /* Sources */ = {
+		BDD3B97E233232C100AB82CC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDCA58D52133145F0060BC29 /* BlockCommentTests.swift in Sources */,
-				BD8BA1DD2132F830002A27C3 /* ParserTests.swift in Sources */,
-				BD8DD10D1D9DD87A007BA1D3 /* Parser.swift in Sources */,
+				BDD3B99F2332331D00AB82CC /* Parser.swift in Sources */,
+				BDD3B9A5233241C000AB82CC /* BlockComment.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDD3B986233232C200AB82CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDD3B992233232C200AB82CC /* BlockCommentLibraryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +440,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		BDD3B98D233232C200AB82CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BDD3B981233232C100AB82CC /* BlockCommentLibrary */;
+			targetProxy = BDD3B98C233232C200AB82CC /* PBXContainerItemProxy */;
+		};
+		BDD3B98F233232C200AB82CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BDE10F1C232FB8FC0047E558 /* BlockCommentApp */;
+			targetProxy = BDD3B98E233232C200AB82CC /* PBXContainerItemProxy */;
+		};
+		BDD3B996233232C200AB82CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BDD3B981233232C100AB82CC /* BlockCommentLibrary */;
+			targetProxy = BDD3B995233232C200AB82CC /* PBXContainerItemProxy */;
+		};
 		BDE10F34232FBC0F0047E558 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BD0246541D9D03D3008AEC26 /* BlockComment */;
@@ -414,7 +531,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -467,79 +584,157 @@
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 		BD0246651D9D03D3008AEC26 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = BlockCommentCommand/BlockComment.entitlements;
+				CODE_SIGN_ENTITLEMENTS = BlockCommentExtension/BlockComment.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = UP6SS5ES7E;
-				INFOPLIST_FILE = BlockCommentCommand/Info.plist;
+				INFOPLIST_FILE = BlockCommentExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.brhcode.BlockCommentApp.BlockComment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		BD0246661D9D03D3008AEC26 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = BlockCommentCommand/BlockComment.entitlements;
+				CODE_SIGN_ENTITLEMENTS = BlockCommentExtension/BlockComment.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = BlockCommentCommand/Info.plist;
+				INFOPLIST_FILE = BlockCommentExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.brhcode.BlockCommentApp.BlockComment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
-		BD8DD1081D9DD839007BA1D3 /* Debug */ = {
+		BDD3B99A233232C200AB82CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = UP6SS5ES7E;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "${DEVELOPER_FRAMEWORKS_DIR}";
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = BlockCommentLibrary/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks ${DEVELOPER_FRAMEWORKS_DIR}";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.braysoftware.BlockCommentLibrary;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		BDD3B99B233232C200AB82CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = UP6SS5ES7E;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "${DEVELOPER_FRAMEWORKS_DIR}";
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = BlockCommentLibrary/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks ${DEVELOPER_FRAMEWORKS_DIR}";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.braysoftware.BlockCommentLibrary;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BDD3B99D233232C200AB82CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = UP6SS5ES7E;
-				INFOPLIST_FILE = BlockCommentTests/Info.plist;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = BlockCommentLibraryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.brhcode.BlockCommentTests;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.braysoftware.BlockCommentLibraryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlockCommentApp.app/Contents/MacOS/BlockCommentApp";
 			};
 			name = Debug;
 		};
-		BD8DD1091D9DD839007BA1D3 /* Release */ = {
+		BDD3B99E233232C200AB82CC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = UP6SS5ES7E;
-				INFOPLIST_FILE = BlockCommentTests/Info.plist;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = BlockCommentLibraryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.brhcode.BlockCommentTests;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.braysoftware.BlockCommentLibraryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlockCommentApp.app/Contents/MacOS/BlockCommentApp";
 			};
 			name = Release;
@@ -564,7 +759,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.brhcode.BlockCommentApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -587,7 +781,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.brhcode.BlockCommentApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -612,11 +805,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BD8DD10A1D9DD839007BA1D3 /* Build configuration list for PBXNativeTarget "BlockCommentTests" */ = {
+		BDD3B999233232C200AB82CC /* Build configuration list for PBXNativeTarget "BlockCommentLibrary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BD8DD1081D9DD839007BA1D3 /* Debug */,
-				BD8DD1091D9DD839007BA1D3 /* Release */,
+				BDD3B99A233232C200AB82CC /* Debug */,
+				BDD3B99B233232C200AB82CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BDD3B99C233232C200AB82CC /* Build configuration list for PBXNativeTarget "BlockCommentLibraryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BDD3B99D233232C200AB82CC /* Debug */,
+				BDD3B99E233232C200AB82CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

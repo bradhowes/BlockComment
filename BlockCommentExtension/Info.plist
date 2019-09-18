@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>${DEVELOPMENT_LANGUAGE}</string>
 	<key>CFBundleDisplayName</key>
-	<string>Block Comment</string>
+	<string>BlockComment</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,13 +13,13 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>Block Comment</string>
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.9</string>
 	<key>CFBundleVersion</key>
-	<string>20170205</string>
+	<string>20190916</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSExtension</key>
@@ -28,14 +28,6 @@
 		<dict>
 			<key>XCSourceEditorCommandDefinitions</key>
 			<array>
-				<dict>
-					<key>XCSourceEditorCommandClassName</key>
-					<string>${PRODUCT_MODULE_NAME}.BlockComment</string>
-					<key>XCSourceEditorCommandIdentifier</key>
-					<string>uppercase</string>
-					<key>XCSourceEditorCommandName</key>
-					<string>XPC</string>
-				</dict>
 				<dict>
 					<key>XCSourceEditorCommandClassName</key>
 					<string>${PRODUCT_MODULE_NAME}.BlockComment</string>

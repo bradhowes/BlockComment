@@ -1,14 +1,11 @@
-//  BlockCommentTests.swift
-//  BlockCommentTests
-//
-//  Created by Brad Howes on 9/30/16.
-//  Copyright © 2016 Brad Howes. All rights reserved.
+// Copyright © 2019 Brad Howes. All rights reserved.
 //
 
 import XCTest
+@testable import BlockCommentLibrary
 
-class BlockCommentTests: XCTestCase {
-    
+class BlockCommentLibraryTests: XCTestCase {
+
     func testComplex() {
         let lines = ["  override internal \t\tfunc \tcomp김lex   (_ a김: inout\n",
                      "Int, o23김 b: (one: Int, two:\n",
@@ -91,7 +88,7 @@ class BlockCommentTests: XCTestCase {
             let z = Parser(lines: lines, currentLine: currentLine, indent: "  ")
             let y = z.makeBlockComment()
             let x = z.funcMeta!
-            
+
             XCTAssertEqual(x.name, "second")
             XCTAssertTrue(x.returnType.hasReturn)
             XCTAssertEqual(x.returnType.type, "String")
@@ -102,7 +99,7 @@ class BlockCommentTests: XCTestCase {
             XCTAssertEqual(x.args[1].type, "Double")
             XCTAssertEqual(y.count, 7)
         }
-        
+
         let z = Parser(lines: lines, currentLine: 4, indent: "  ")
         let y = z.makeBlockComment()
         XCTAssertEqual(y.count, 3)
@@ -124,7 +121,7 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(x.args[1].type, "(Int64?) -> ()")
         XCTAssertEqual(y.count, 7)
     }
-    
+
     func testReturnsArray() {
         let lines = ["static func save(to url: URL, blah: @escaping ([Int64]) -> ()) -> [Int] {\n"]
         let z = Parser(lines: lines, currentLine: 0, indent: "  ")
@@ -160,7 +157,7 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(x.args[1].type, "(Int64, Boolean) -> ()")
         XCTAssertEqual(y.count, 7)
     }
-    
+
     func testReturnsVoid() {
         let lines = ["static func save(to url: URL, blah: @escaping (Int64) -> ()) -> Void {\n"]
         let z = Parser(lines: lines, currentLine: 0, indent: "  ")
@@ -176,7 +173,7 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(x.args[1].type, "(Int64) -> ()")
         XCTAssertEqual(y.count, 6)
     }
-    
+
     func testReturnsNil() {
         let lines = ["static func save(to url: URL) -> nil {\n"]
         let z = Parser(lines: lines, currentLine: 0, indent: "  ")
@@ -193,7 +190,7 @@ class BlockCommentTests: XCTestCase {
 
         XCTAssertEqual(y.count, 5)
     }
-    
+
     func testReturnsEmptyTuple() {
         let lines = ["static func save(url: URL) -> () {\n"]
         let z = Parser(lines: lines, currentLine: 0, indent: "  ")
@@ -210,7 +207,7 @@ class BlockCommentTests: XCTestCase {
 
         XCTAssertEqual(y.count, 5)
     }
-    
+
     func testPrototype() {
         let lines = ["static func save(url: URL) -> ()"]
         let z = Parser(lines: lines, currentLine: 0, indent: "  ")
@@ -226,7 +223,7 @@ class BlockCommentTests: XCTestCase {
 
         XCTAssertEqual(y.count, 5)
     }
-    
+
     func testDefaultArgument() {
         let lines = ["private init(timestampGenerator: TimestampGeneratorInterface = TimestampGenerator(), um: Int = 12, z: String? = nil) {\n"]
         let z = Parser(lines: lines, currentLine: 0, indent: "  ")
@@ -244,7 +241,7 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(x.args[2].type, "String?")
         XCTAssertEqual(y.count, 7)
     }
-    
+
     func testMinimal() {
         let lines = ["func a()\n"]
         let z = Parser(lines: lines, currentLine: 0, indent: " ")
@@ -255,19 +252,19 @@ class BlockCommentTests: XCTestCase {
         XCTAssertFalse(x.returnType.hasReturn)
         XCTAssertEqual(x.args.count, 0)
     }
-    
+
     func testThrows() {
         let lines = ["func a()throws\n", "func a() throws\n", "func a() throws -> Double\n"]
         var z = Parser(lines: lines, currentLine: 0, indent: " ")
         var y = z.makeBlockComment()
         XCTAssertTrue(y.count > 0)
         XCTAssertFalse(z.funcMeta!.returnType.hasReturn)
-        
+
         z = Parser(lines: lines, currentLine: 1, indent: " ")
         y = z.makeBlockComment()
         XCTAssertTrue(y.count > 0)
         XCTAssertFalse(z.funcMeta!.returnType.hasReturn)
-        
+
         z = Parser(lines: lines, currentLine: 2, indent: " ")
         y = z.makeBlockComment()
         XCTAssertTrue(y.count > 0)
@@ -284,7 +281,7 @@ class BlockCommentTests: XCTestCase {
         XCTAssertFalse(z.funcMeta!.returnType.hasReturn)
         XCTAssertEqual(z.funcMeta!.args.count, 0)
     }
-    
+
     func testStruct() {
         let lines = ["struct FooBar: Blah {\n"]
         let z = Parser(lines: lines, currentLine: 0, indent: " ")
@@ -302,19 +299,19 @@ class BlockCommentTests: XCTestCase {
         XCTAssertTrue(y.count > 0)
         XCTAssertEqual(z.funcMeta!.args.count, 0)
         XCTAssertEqual(z.funcMeta!.name, "init")
-        
+
         z = Parser(lines: lines, currentLine: 1, indent: " ")
         y = z.makeBlockComment()
         XCTAssertTrue(y.count > 0)
         XCTAssertEqual(z.funcMeta!.args.count, 0)
         XCTAssertEqual(z.funcMeta!.name, "init?")
-        
+
         z = Parser(lines: lines, currentLine: 2, indent: " ")
         y = z.makeBlockComment()
         XCTAssertTrue(y.count > 0)
         XCTAssertEqual(z.funcMeta!.args.count, 0)
         XCTAssertEqual(z.funcMeta!.name, "init?")
-        
+
         z = Parser(lines: lines, currentLine: 3, indent: " ")
         y = z.makeBlockComment()
         XCTAssertTrue(y.count > 0)
@@ -351,7 +348,7 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(z.funcMeta!.name, "subscript")
         XCTAssertEqual(z.funcMeta!.returnType.type, "Int")
     }
-    
+
     func testProperty() {
         let lines = ["public private(set) var blah:Int\n",
                      "private static var blah : Int\n",
@@ -362,7 +359,7 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(y.count, 1)
         XCTAssertEqual(z.propertyMeta!.name, "blah")
         XCTAssertEqual(z.propertyMeta!.type, "Int")
-        
+
         z = Parser(lines: lines, currentLine: 1, indent: " ")
         y = z.makeBlockComment()
         XCTAssertEqual(y.count, 1)
@@ -407,20 +404,20 @@ class BlockCommentTests: XCTestCase {
         XCTAssertEqual(x.args[1].name, "launchOptions")
         XCTAssertEqual(x.args[1].type, "[UIApplicationLaunchOptionsKey: Any]?")
     }
-    
+
     func testTight() {
         let lines = ["    static func foo(a:Int)->Bool{return true}"]
-        
+
         let z = Parser(lines: lines, currentLine: 0, indent: " ")
         let y = z.makeBlockComment()
         let x = z.funcMeta!
-        
+
         XCTAssertTrue(y.count > 0)
         XCTAssertEqual(x.name, "foo")
         XCTAssertTrue(x.returnType.hasReturn)
         XCTAssertFalse(x.returnType.isNil)
         XCTAssertEqual(x.returnType.type, "Bool")
-        
+
         XCTAssertEqual(x.args.count, 1)
         XCTAssertEqual(x.args[0].name, "a")
         XCTAssertEqual(x.args[0].type, "Int")

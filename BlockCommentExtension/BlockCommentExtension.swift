@@ -1,16 +1,12 @@
-//
-//  BlockCommentExtension.swift
-//  BlockComment
-//
-//  Created by Brad Howes on 9/29/16.
-//  Copyright © 2016 Brad Howes. All rights reserved.
+// Copyright © 2016 Brad Howes. All rights reserved.
 //
 
 import Foundation
 import XcodeKit
+import BlockCommentLibrary
 
 final class BlockCommentExtension: NSObject, XCSourceEditorExtension {
-    
+
     func extensionDidFinishLaunching() {
     }
 
