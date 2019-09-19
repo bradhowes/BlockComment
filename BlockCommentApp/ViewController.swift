@@ -7,13 +7,13 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.wantsLayer = true
+        view.layer?.backgroundColor = NSColor(calibratedWhite: 0.1, alpha: 1.0).cgColor
     }
 
     override var representedObject: Any? {
         didSet {
-        // Update the view, if already loaded.
+            // Update the view, if already loaded.
         }
     }
 
@@ -26,4 +26,3 @@ class ViewController: NSViewController {
         NSApplication.shared.stop(sender)
     }
 }
-

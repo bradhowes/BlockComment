@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BDD3B981233232C100AB82CC"
-               BuildableName = "BlockCommentLibrary.framework"
-               BlueprintName = "BlockCommentLibrary"
+               BlueprintIdentifier = "BD3E5A8A2333C5A100E57F5E"
+               BuildableName = "BlockCommentTests.xctest"
+               BlueprintName = "BlockCommentTests"
                ReferencedContainer = "container:BlockComment.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BDD3B981233232C100AB82CC"
-            BuildableName = "BlockCommentLibrary.framework"
-            BlueprintName = "BlockCommentLibrary"
-            ReferencedContainer = "container:BlockComment.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -54,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BDD3B981233232C100AB82CC"
-            BuildableName = "BlockCommentLibrary.framework"
-            BlueprintName = "BlockCommentLibrary"
+            BlueprintIdentifier = "BD3E5A8A2333C5A100E57F5E"
+            BuildableName = "BlockCommentTests.xctest"
+            BlueprintName = "BlockCommentTests"
             ReferencedContainer = "container:BlockComment.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -72,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BDD3B981233232C100AB82CC"
-            BuildableName = "BlockCommentLibrary.framework"
-            BlueprintName = "BlockCommentLibrary"
+            BlueprintIdentifier = "BD3E5A8A2333C5A100E57F5E"
+            BuildableName = "BlockCommentTests.xctest"
+            BlueprintName = "BlockCommentTests"
             ReferencedContainer = "container:BlockComment.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

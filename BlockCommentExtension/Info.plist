@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>${DEVELOPMENT_LANGUAGE}</string>
 	<key>CFBundleDisplayName</key>
-	<string>BlockComment</string>
+	<string>Block Comment</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.9</string>
+	<string>2.1.5</string>
 	<key>CFBundleVersion</key>
-	<string>20190916</string>
+	<string>20</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSExtension</key>
@@ -30,19 +30,19 @@
 			<array>
 				<dict>
 					<key>XCSourceEditorCommandClassName</key>
-					<string>${PRODUCT_MODULE_NAME}.BlockComment</string>
-					<key>XCSourceEditorCommandIdentifier</key>
-					<string>insertMarkComment</string>
-					<key>XCSourceEditorCommandName</key>
-					<string>Insert Mark Comment</string>
-				</dict>
-				<dict>
-					<key>XCSourceEditorCommandClassName</key>
-					<string>${PRODUCT_MODULE_NAME}.BlockComment</string>
+					<string>${PRODUCT_MODULE_NAME}.BlockCommentCommand</string>
 					<key>XCSourceEditorCommandIdentifier</key>
 					<string>insertBlockComment</string>
 					<key>XCSourceEditorCommandName</key>
 					<string>Insert Block Comment</string>
+				</dict>
+				<dict>
+					<key>XCSourceEditorCommandClassName</key>
+					<string>${PRODUCT_MODULE_NAME}.BlockCommentCommand</string>
+					<key>XCSourceEditorCommandIdentifier</key>
+					<string>insertMarkComment</string>
+					<key>XCSourceEditorCommandName</key>
+					<string>Insert Mark Comment</string>
 				</dict>
 			</array>
 			<key>XCSourceEditorExtensionPrincipalClass</key>

@@ -17,22 +17,22 @@ public final class Parser {
     /**
      Holds function argument information.
      */
-    public struct ArgInfo {
+    internal struct ArgInfo {
 
         /**
          Label for the argument when the function is invoked (given by the caller)
          */
-        public let label: String
+        let label: String
 
         /**
          Name of the argument inside of the function
          */
-        public let name: String
+        let name: String
 
         /**
          Type of the argument
          */
-        public let type: String
+        let type: String
 
         /**
          Initialize function argument definition
@@ -41,7 +41,7 @@ public final class Parser {
          - parameter name: argument name inside function code
          - parameter type: type specification for the argument
          */
-        init(label: String, name: String, type: String) {
+        internal init(label: String, name: String, type: String) {
             self.label = label
             self.name = name
             self.type = type
@@ -51,12 +51,12 @@ public final class Parser {
     /**
      Container of properties that describe the type of values returned by a function.
      */
-    public struct ReturnType {
-        public let type: String?
-        public let canThrow: Bool
+    internal struct ReturnType {
+        let type: String?
+        let canThrow: Bool
 
-        public var hasReturn: Bool { return type != nil }
-        public var isNil: Bool { return type == "()" || type == "nil" || type == "Void" || type == "" }
+        var hasReturn: Bool { return type != nil }
+        var isNil: Bool { return type == "()" || type == "nil" || type == "Void" || type == "" }
 
         init(type: String?, canThrow: Bool) {
             self.type = type
@@ -67,10 +67,10 @@ public final class Parser {
     /**
      Contains meta data associated wjith a func/init call.
      */
-    public struct FuncMeta {
-        public let name: String
-        public let args: [ArgInfo]
-        public let returnType: ReturnType
+    internal struct FuncMeta {
+        let name: String
+        let args: [ArgInfo]
+        let returnType: ReturnType
 
         /**
          Collect meta data for a func/init.
@@ -80,7 +80,7 @@ public final class Parser {
          - parameter returnType: the return type (empty string if returns nil)
          - parameter canThrow: true if can throw an error
          */
-        init(name: String, args: [ArgInfo], returnType: ReturnType) {
+        internal init(name: String, args: [ArgInfo], returnType: ReturnType) {
             self.name = name
             self.args = args
             self.returnType = returnType
@@ -90,17 +90,17 @@ public final class Parser {
     /**
      Contains meta data associated with type (struct, class, enum)
      */
-    public struct TypeMeta {
+    internal struct TypeMeta {
 
-        public let name: String
-        public let superType: String?
+        let name: String
+        let superType: String?
 
         /**
          Collect meta data for a type
          - parameter name: the name of the type
          - parameter superType: what the type inherits from (if anything)
          */
-        init(name: String, superType: String?) {
+        internal init(name: String, superType: String?) {
             self.name = name
             self.superType = superType
         }
@@ -109,23 +109,21 @@ public final class Parser {
     /**
      Contains meta data associated with a property
      */
-    public struct PropertyMeta {
-        public let name: String
-        public let type: String
+    internal struct PropertyMeta {
+        let name: String
+        let type: String
 
         /**
          Collect meta data for a property
          - parameter name: the name of the property
          - parameter type: the type of the property
          */
-        init(name: String, type: String) {
+        internal init(name: String, type: String) {
             self.name = name
             self.type = type
         }
     }
 
-    // MARK: - Tokens
-    
     internal static let atSign = "@" as Character
     internal static let poundSign = "#" as Character
     internal static let leftParen = "(" as Character
@@ -174,7 +172,7 @@ public final class Parser {
     /**
      The errors the parser can encounter.
      */
-    public enum ParseError : Error {
+    internal enum ParseError : Error {
         case UnexpectedCharacter(Character)
         case UnexpectedToken(String)
         case EndOfData
@@ -182,18 +180,18 @@ public final class Parser {
     }
 
     /// Meta info if a function was last commented
-    private(set) public var funcMeta: FuncMeta?
+    private(set) var funcMeta: FuncMeta?
 
     /// Meta info if a type was last commented
-    private(set) public var typeMeta: TypeMeta?
+    private(set) var typeMeta: TypeMeta?
 
     /// Meta info if a property was last commented
-    private(set) public var propertyMeta: PropertyMeta?
+    private(set) var propertyMeta: PropertyMeta?
 
     /**
      Initialize new FuncParser instance.
      */
-    public init(lines: [String], currentLine: Int, indent: String) {
+    internal init(lines: [String], currentLine: Int, indent: String) {
         self.lines = lines
         self.currentLine = currentLine
         self.indent = indent
@@ -207,7 +205,7 @@ public final class Parser {
     /**
      Clear any meta data collected from previous parse.
      */
-    public func clear() {
+    internal func clear() {
         funcMeta = nil
         typeMeta = nil
         propertyMeta = nil

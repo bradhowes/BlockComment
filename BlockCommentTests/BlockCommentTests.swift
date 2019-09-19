@@ -2,9 +2,8 @@
 //
 
 import XCTest
-@testable import BlockCommentLibrary
 
-class BlockCommentLibraryTests: XCTestCase {
+class BlockCommentAppTests: XCTestCase {
 
     func testComplex() {
         let lines = ["  override internal \t\tfunc \tcomp김lex   (_ a김: inout\n",

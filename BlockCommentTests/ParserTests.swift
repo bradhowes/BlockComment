@@ -2,7 +2,6 @@
 //
 
 import XCTest
-@testable import BlockCommentLibrary
 
 class ParserTests: XCTestCase {
 
@@ -31,7 +30,7 @@ class ParserTests: XCTestCase {
         XCTAssertEqual(c, "d" as Character)
         XCTAssertThrowsError(try p.nextChar())
     }
-    
+
     func testBackupThrowsIfFirstPosition() {
         let lines = [""]
         let p = Parser(lines: lines, currentLine: 0, indent: "  ")
@@ -52,7 +51,7 @@ class ParserTests: XCTestCase {
         c = try! p.nextChar()
         XCTAssertEqual(c, "b" as Character)
     }
-    
+
     func testNextNonWhitespace() {
         let lines = ["  ", " a b ", "  "]
         let p = Parser(lines: lines, currentLine: 0, indent: "  ")
@@ -62,7 +61,7 @@ class ParserTests: XCTestCase {
         XCTAssertEqual(c, "b" as Character)
         XCTAssertThrowsError(try p.nextNonWhiteSpace())
     }
-    
+
     func testAnyNextToken() {
         let lines = ["one two(three, four)   five   :  six     "]
         let p = Parser(lines: lines, currentLine: 0, indent: "  ")
@@ -107,21 +106,21 @@ class ParserTests: XCTestCase {
         let a = try! p.fetchType()
         XCTAssertEqual("Int", a)
     }
-    
+
     func testFetchTypeBeforeSpace() {
         let lines = ["  Int  "]
         let p = Parser(lines: lines, currentLine: 0, indent: "  ")
         let a = try! p.fetchType()
         XCTAssertEqual("Int", a)
     }
-    
+
     func testFetchTypeOptional() {
         let lines = ["  Int?  "]
         let p = Parser(lines: lines, currentLine: 0, indent: "  ")
         let a = try! p.fetchType()
         XCTAssertEqual("Int?", a)
     }
-    
+
     func testFetchTypeBeforeTeriminal() {
         for terminal in Parser.fetchTypeTerminals {
             let lines = ["  Int\(terminal)z "]
@@ -164,7 +163,7 @@ class ParserTests: XCTestCase {
         XCTAssertEqual("recorder", a[0].name)
         XCTAssertEqual("((MusicTimeStamp, Note)->Void)?", a[0].type)
     }
-    
+
     func testFetchArgs() {
         let lines = ["foo bar: Int, blah: Int?, baz: (Int, Int)?, z: (Int) -> ())"]
         let p = Parser(lines: lines, currentLine: 0, indent: "  ")
