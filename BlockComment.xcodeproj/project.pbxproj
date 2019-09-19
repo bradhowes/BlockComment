@@ -496,7 +496,7 @@
 				CODE_SIGN_ENTITLEMENTS = BlockCommentApp/BlockCommentApp.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 44;
 				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				INFOPLIST_FILE = BlockCommentExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
@@ -517,7 +517,7 @@
 				CODE_SIGN_ENTITLEMENTS = BlockCommentApp/BlockCommentApp.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 44;
 				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = BlockCommentExtension/Info.plist;
