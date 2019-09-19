@@ -20,7 +20,11 @@ typing to replace the tag with text.
 # To Use
 
 Build the main `BlockCommentApp`. This will also build the `BlockComment.appex` extension. Run the app,
-and follow the instructions presented to you. Extension should be availabel after a restart of Xcode.
+and follow the instructions presented to you. 
+
+![](https://github.com/bradhowes/BlockComment/blob/master/images/app.png?raw=true)
+
+Extension should be availabel after a restart of Xcode.
 
 ![](https://github.com/bradhowes/BlockComment/blob/master/images/menu.png?raw=true)
 
