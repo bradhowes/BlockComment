@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BD0246541D9D03D3008AEC26"
-               BuildableName = "BlockCommentExtension.appex"
-               BlueprintName = "BlockCommentExtension"
+               BuildableName = "BlockComment.appex"
+               BlueprintName = "BlockComment"
                ReferencedContainer = "container:BlockComment.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

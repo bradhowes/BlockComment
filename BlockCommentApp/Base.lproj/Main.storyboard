@@ -683,9 +683,9 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" sceneMemberID="viewController">
                     <window key="window" title="BlockComment" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -706,33 +706,33 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="BlockCommentApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="535"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1100" height="630"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="equalSpacing" orientation="horizontal" alignment="centerY" spacing="16" horizontalStackHuggingPriority="750" verticalStackHuggingPriority="750" horizontalHuggingPriority="750" verticalHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VjK-fx-S3r" userLabel="Horizontal View">
-                                <rect key="frame" x="16" y="10" width="974" height="515"/>
+                            <stackView distribution="equalSpacing" orientation="horizontal" alignment="centerY" spacing="0.0" horizontalStackHuggingPriority="750" verticalStackHuggingPriority="250" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VjK-fx-S3r" userLabel="Horizontal View">
+                                <rect key="frame" x="32" y="10" width="1058" height="610"/>
                                 <subviews>
-                                    <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="240" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7u1-x0-DSX" userLabel="Text Layout">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="515"/>
+                                    <stackView distribution="equalCentering" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="240" verticalStackHuggingPriority="239.99998474121094" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="240" verticalCompressionResistancePriority="240" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7u1-x0-DSX" userLabel="Text Layout">
+                                        <rect key="frame" x="0.0" y="32" width="285" height="546"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Urh-Nd-PA0">
-                                                <rect key="frame" x="78" y="468" width="125" height="31"/>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Installation" id="qRS-wo-2bQ">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Urh-Nd-PA0">
+                                                <rect key="frame" x="80" y="499" width="125" height="31"/>
+                                                <textFieldCell key="cell" allowsUndo="NO" alignment="left" title="Installation" allowsEditingTextAttributes="YES" id="qRS-wo-2bQ">
                                                     <font key="font" size="26" name=".AppleSystemUIFont"/>
-                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="29N-o6-7BP">
-                                                <rect key="frame" x="-2" y="363" width="284" height="57"/>
-                                                <textFieldCell key="cell" selectable="YES" title="Open the &quot;Extensions&quot; panel of System Preferences and under &quot;BlockComment&quot; check the &quot;Xcode Source Editor&quot; item.  " id="s6R-iH-1Vf">
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29N-o6-7BP">
+                                                <rect key="frame" x="-2" y="414" width="289" height="38"/>
+                                                <textFieldCell key="cell" selectable="YES" allowsUndo="NO" alignment="center" title="Open the &quot;Extensions&quot; panel of System Preferences." allowsEditingTextAttributes="YES" id="s6R-iH-1Vf">
                                                     <font key="font" metaFont="system" size="15"/>
-                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6aw-1n-hU8">
-                                                <rect key="frame" x="41" y="287" width="198" height="32"/>
+                                                <rect key="frame" x="44" y="334" width="198" height="32"/>
                                                 <buttonCell key="cell" type="push" title="Show System Preferences" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vtf-6s-ulw">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -741,24 +741,32 @@
                                                     <action selector="openExtensions:" target="XfG-lQ-9wD" id="GZh-qy-9Q2"/>
                                                 </connections>
                                             </button>
-                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="t6k-XP-mwR">
-                                                <rect key="frame" x="-2" y="190" width="284" height="57"/>
-                                                <textFieldCell key="cell" selectable="YES" title="Restart Xcode. You should see a new menu item called &quot;Block Comment&quot; at the bottom of the &quot;Editor&quot; menu." id="FMj-C3-pey">
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnQ-Dp-YNC">
+                                                <rect key="frame" x="-2" y="252" width="289" height="38"/>
+                                                <textFieldCell key="cell" selectable="YES" allowsUndo="NO" alignment="center" title="Choose &quot;Xcode Source Editor&quot; in the list on the left side." allowsEditingTextAttributes="YES" id="4QA-Tw-TER">
                                                     <font key="font" metaFont="system" size="15"/>
-                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gHk-ZR-LoW">
-                                                <rect key="frame" x="-2" y="85" width="284" height="57"/>
-                                                <textFieldCell key="cell" selectable="YES" title="You can now quit this application. The extension is available to Xcode without having to run this application again." id="VA0-Oe-eih">
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Is2-0e-9OO">
+                                                <rect key="frame" x="-2" y="170" width="289" height="38"/>
+                                                <textFieldCell key="cell" selectable="YES" allowsUndo="NO" alignment="center" title="Make sure that &quot;Block Comment&quot; is checked on the right." allowsEditingTextAttributes="YES" id="M0n-pU-Xhh">
                                                     <font key="font" metaFont="system" size="15"/>
-                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6k-XP-mwR">
+                                                <rect key="frame" x="-2" y="79" width="289" height="57"/>
+                                                <textFieldCell key="cell" selectable="YES" allowsUndo="NO" alignment="center" title="Restart Xcode. You should see a new menu item called &quot;Block Comment&quot; at the bottom of the &quot;Editor&quot; menu." allowsEditingTextAttributes="YES" id="FMj-C3-pey">
+                                                    <font key="font" metaFont="system" size="15"/>
+                                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iOx-kD-lFy">
-                                                <rect key="frame" x="107" y="9" width="66" height="32"/>
+                                                <rect key="frame" x="110" y="9" width="66" height="32"/>
                                                 <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FTb-ds-V9I">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -776,6 +784,7 @@
                                             <integer value="1000"/>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
+                                            <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
                                             <real value="3.4028234663852886e+38"/>
@@ -784,23 +793,24 @@
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
                                     </stackView>
-                                    <imageView horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9dM-ag-d8G">
-                                        <rect key="frame" x="296" y="7" width="678" height="508"/>
+                                    <imageView horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="9dM-ag-d8G">
+                                        <rect key="frame" x="285" y="0.0" width="773" height="610"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="678" id="34s-UI-oit"/>
+                                            <constraint firstAttribute="width" constant="773" id="atN-QC-6Mg"/>
+                                            <constraint firstAttribute="height" constant="610" id="qgh-tR-ixe"/>
                                         </constraints>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Image" id="IXl-KV-8PH"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="7u1-x0-DSX" firstAttribute="top" secondItem="VjK-fx-S3r" secondAttribute="top" id="QJp-hv-j4n"/>
-                                    <constraint firstAttribute="bottom" secondItem="9dM-ag-d8G" secondAttribute="bottom" constant="7" id="feB-61-yon"/>
-                                    <constraint firstAttribute="bottom" secondItem="7u1-x0-DSX" secondAttribute="bottom" id="zLl-Ig-2xb"/>
+                                    <constraint firstItem="7u1-x0-DSX" firstAttribute="top" secondItem="VjK-fx-S3r" secondAttribute="top" constant="32" id="QJp-hv-j4n"/>
+                                    <constraint firstAttribute="bottom" secondItem="7u1-x0-DSX" secondAttribute="bottom" constant="32" id="zLl-Ig-2xb"/>
                                 </constraints>
                                 <visibilityPriorities>
-                                    <real value="1000"/>
+                                    <real value="362"/>
                                     <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
@@ -811,7 +821,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="VjK-fx-S3r" secondAttribute="bottom" constant="10" id="plr-c7-iOv"/>
-                            <constraint firstItem="VjK-fx-S3r" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="16" id="uEl-M9-mrb"/>
+                            <constraint firstItem="VjK-fx-S3r" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="32" id="uEl-M9-mrb"/>
                             <constraint firstAttribute="trailing" secondItem="VjK-fx-S3r" secondAttribute="trailing" constant="10" id="uVN-ZL-aWk"/>
                             <constraint firstItem="VjK-fx-S3r" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="10" id="ziP-Jz-Omw"/>
                         </constraints>
@@ -819,10 +829,10 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-55" y="994"/>
+            <point key="canvasLocation" x="-162" y="460"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Image" width="668" height="508"/>
+        <image name="Image" width="1546" height="1220"/>
     </resources>
 </document>

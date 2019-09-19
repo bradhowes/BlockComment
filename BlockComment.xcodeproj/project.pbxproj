@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BD0246581D9D03D3008AEC26 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD0246571D9D03D3008AEC26 /* Cocoa.framework */; };
-		BD3E5A832333C4F600E57F5E /* BlockCommentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BD0246551D9D03D3008AEC26 /* BlockCommentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BD3E5A832333C4F600E57F5E /* BlockComment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BD0246551D9D03D3008AEC26 /* BlockComment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BD3E5A992333C60500E57F5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD5A59182333BA7700AA5188 /* Main.storyboard */; };
 		BD3E5A9A2333C60A00E57F5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5A59162333B9A700AA5188 /* ViewController.swift */; };
 		BD3E5A9B2333C60D00E57F5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3E5A6C2333C26F00E57F5E /* AppDelegate.swift */; };
@@ -45,7 +45,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				BD3E5A832333C4F600E57F5E /* BlockCommentExtension.appex in Embed App Extensions */,
+				BD3E5A832333C4F600E57F5E /* BlockComment.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,7 +63,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BD0246551D9D03D3008AEC26 /* BlockCommentExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BlockCommentExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD0246551D9D03D3008AEC26 /* BlockComment.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BlockComment.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD0246571D9D03D3008AEC26 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BD02465C1D9D03D3008AEC26 /* BlockCommentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCommentExtension.swift; sourceTree = "<group>"; };
 		BD02465E1D9D03D3008AEC26 /* BlockCommentCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCommentCommand.swift; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 		BD0246421D9D03A8008AEC26 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BD0246551D9D03D3008AEC26 /* BlockCommentExtension.appex */,
+				BD0246551D9D03D3008AEC26 /* BlockComment.appex */,
 				BD8DD1011D9DD839007BA1D3 /* BlockCommentTests.xctest */,
 				BD3E5A732333C30600E57F5E /* BlockCommentApp.app */,
 				BD3E5A8B2333C5A100E57F5E /* BlockCommentTests.xctest */,
@@ -180,9 +180,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BD0246541D9D03D3008AEC26 /* BlockCommentExtension */ = {
+		BD0246541D9D03D3008AEC26 /* BlockComment */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BD0246641D9D03D3008AEC26 /* Build configuration list for PBXNativeTarget "BlockCommentExtension" */;
+			buildConfigurationList = BD0246641D9D03D3008AEC26 /* Build configuration list for PBXNativeTarget "BlockComment" */;
 			buildPhases = (
 				BD0246511D9D03D3008AEC26 /* Sources */,
 				BD0246521D9D03D3008AEC26 /* Frameworks */,
@@ -192,9 +192,9 @@
 			);
 			dependencies = (
 			);
-			name = BlockCommentExtension;
+			name = BlockComment;
 			productName = Cleaner;
-			productReference = BD0246551D9D03D3008AEC26 /* BlockCommentExtension.appex */;
+			productReference = BD0246551D9D03D3008AEC26 /* BlockComment.appex */;
 			productType = "com.apple.product-type.xcode-extension";
 		};
 		BD3E5A722333C30600E57F5E /* BlockCommentApp */ = {
@@ -283,7 +283,7 @@
 			projectRoot = "";
 			targets = (
 				BD3E5A722333C30600E57F5E /* BlockCommentApp */,
-				BD0246541D9D03D3008AEC26 /* BlockCommentExtension */,
+				BD0246541D9D03D3008AEC26 /* BlockComment */,
 				BD3E5A8A2333C5A100E57F5E /* BlockCommentTests */,
 			);
 		};
@@ -350,7 +350,7 @@
 /* Begin PBXTargetDependency section */
 		BD3E5A852333C4F600E57F5E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BD0246541D9D03D3008AEC26 /* BlockCommentExtension */;
+			target = BD0246541D9D03D3008AEC26 /* BlockComment */;
 			targetProxy = BD3E5A842333C4F600E57F5E /* PBXContainerItemProxy */;
 		};
 		BD3E5A912333C5A100E57F5E /* PBXTargetDependency */ = {
@@ -496,7 +496,7 @@
 				CODE_SIGN_ENTITLEMENTS = BlockCommentApp/BlockCommentApp.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				INFOPLIST_FILE = BlockCommentExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
@@ -517,7 +517,7 @@
 				CODE_SIGN_ENTITLEMENTS = BlockCommentApp/BlockCommentApp.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = BlockCommentExtension/Info.plist;
@@ -634,7 +634,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BD0246641D9D03D3008AEC26 /* Build configuration list for PBXNativeTarget "BlockCommentExtension" */ = {
+		BD0246641D9D03D3008AEC26 /* Build configuration list for PBXNativeTarget "BlockComment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BD0246651D9D03D3008AEC26 /* Debug */,
