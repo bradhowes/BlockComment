@@ -24,7 +24,7 @@ and follow the instructions presented to you.
 
 ![](https://github.com/bradhowes/BlockComment/blob/master/images/app.png?raw=true)
 
-Extension should be availabel after a restart of Xcode.
+Extension should be available after a restart of Xcode.
 
 ![](https://github.com/bradhowes/BlockComment/blob/master/images/menu.png?raw=true)
 
