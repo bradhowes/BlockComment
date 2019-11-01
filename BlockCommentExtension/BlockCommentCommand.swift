@@ -1,5 +1,4 @@
-//  Copyright © 2016-2019 Brad Howes. All rights reserved.
-//
+// Copyright © 2016-2019 Brad Howes. All rights reserved.
 
 import Foundation
 import XcodeKit

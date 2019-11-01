@@ -1,4 +1,3 @@
-// Source.swift
 // Copyright © 2019 Brad Howes. All rights reserved.
 
 /**
