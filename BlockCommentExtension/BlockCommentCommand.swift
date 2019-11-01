@@ -41,27 +41,12 @@ final class BlockCommentCommand: NSObject, XCSourceEditorCommand {
             pos += 1
         }
 
-        // Grab the indentation of the line
-        //
-        line = lines[pos] as! String
-        let chars = line.unicodeScalars
-        var cursor = chars.startIndex
-        while CharacterSet.whitespaces.contains(chars[cursor]) {
-            cursor = chars.index(after: cursor)
-        }
-        
-        let indent = String(repeating: " ", count: chars.distance(from: chars.startIndex, to: cursor))
-        let parser = Parser(lines: (lines as NSArray as! [String]), currentLine: pos, indent: indent)
         let command = invocation.commandIdentifier
-
         let comment: [String] = {
             switch command {
-            case "insertBlockComment":
-                return parser.makeBlockComment()
-            case "insertMarkComment":
-                return parser.makeMarkComment()
-            default:
-                return []
+            case "insertBlockComment": return parse(source: Source(lines: (lines as NSArray as! [String]), firstLine: pos))
+            case "insertMarkComment": return ["// MARK: - "]
+            default: return []
             }
         }()
 

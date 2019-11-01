@@ -16,9 +16,14 @@
 		BD3E5A9E2333C62B00E57F5E /* BlockCommentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD02465C1D9D03D3008AEC26 /* BlockCommentExtension.swift */; };
 		BD3E5A9F2333C62E00E57F5E /* BlockCommentCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD02465E1D9D03D3008AEC26 /* BlockCommentCommand.swift */; };
 		BD73E80B2333CAAC00EE834C /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD10B1D9DD866007BA1D3 /* Parser.swift */; };
-		BD73E80C2333CBEB00EE834C /* BlockCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3E5A972333C5CA00E57F5E /* BlockCommentTests.swift */; };
 		BD73E80D2333CBFA00EE834C /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DD10B1D9DD866007BA1D3 /* Parser.swift */; };
 		BD73E80E2333CC0700EE834C /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3E5A952333C5B900E57F5E /* ParserTests.swift */; };
+		BD98916D236BABE100E74CAB /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD98916B236BAB1400E74CAB /* Source.swift */; };
+		BD98916E236BABE300E74CAB /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD98916B236BAB1400E74CAB /* Source.swift */; };
+		BD989171236BAE7B00E74CAB /* Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD98916F236BAE5C00E74CAB /* Parse.swift */; };
+		BD989172236BAE7D00E74CAB /* Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD98916F236BAE5C00E74CAB /* Parse.swift */; };
+		BD989175236BAEBD00E74CAB /* SwiftParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD989173236BAE9800E74CAB /* SwiftParsing.swift */; };
+		BD989176236BAEBE00E74CAB /* SwiftParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD989173236BAE9800E74CAB /* SwiftParsing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,12 +80,14 @@
 		BD3E5A8B2333C5A100E57F5E /* BlockCommentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockCommentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD3E5A8F2333C5A100E57F5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD3E5A952333C5B900E57F5E /* ParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParserTests.swift; path = BlockCommentTests/ParserTests.swift; sourceTree = SOURCE_ROOT; };
-		BD3E5A972333C5CA00E57F5E /* BlockCommentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockCommentTests.swift; path = BlockCommentTests/BlockCommentTests.swift; sourceTree = SOURCE_ROOT; };
 		BD3E5AA12333C64F00E57F5E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD5A59162333B9A700AA5188 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BD5A59192333BA7700AA5188 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BD8DD1011D9DD839007BA1D3 /* BlockCommentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockCommentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD8DD10B1D9DD866007BA1D3 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		BD98916B236BAB1400E74CAB /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		BD98916F236BAE5C00E74CAB /* Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parse.swift; sourceTree = "<group>"; };
+		BD989173236BAE9800E74CAB /* SwiftParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftParsing.swift; sourceTree = "<group>"; };
 		BD9B64E61DA0543A004E4319 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BDDC9FF8233399EB007E700F /* BlockCommentApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BlockCommentApp.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,9 +165,12 @@
 		BD0246591D9D03D3008AEC26 /* BlockCommentExtension */ = {
 			isa = PBXGroup;
 			children = (
+				BD98916B236BAB1400E74CAB /* Source.swift */,
+				BD8DD10B1D9DD866007BA1D3 /* Parser.swift */,
+				BD98916F236BAE5C00E74CAB /* Parse.swift */,
+				BD989173236BAE9800E74CAB /* SwiftParsing.swift */,
 				BD02465C1D9D03D3008AEC26 /* BlockCommentExtension.swift */,
 				BD02465E1D9D03D3008AEC26 /* BlockCommentCommand.swift */,
-				BD8DD10B1D9DD866007BA1D3 /* Parser.swift */,
 				BD3E5AA12333C64F00E57F5E /* Info.plist */,
 				BD3E5A6E2333C2D100E57F5E /* BlockComment.entitlements */,
 			);
@@ -170,7 +180,6 @@
 		BD3E5A8C2333C5A100E57F5E /* BlockCommentTests */ = {
 			isa = PBXGroup;
 			children = (
-				BD3E5A972333C5CA00E57F5E /* BlockCommentTests.swift */,
 				BD3E5A952333C5B900E57F5E /* ParserTests.swift */,
 				BD3E5A8F2333C5A100E57F5E /* Info.plist */,
 			);
@@ -242,7 +251,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Brad Howes";
 				TargetAttributes = {
 					BD0246541D9D03D3008AEC26 = {
@@ -270,10 +279,9 @@
 			};
 			buildConfigurationList = BD02463C1D9D03A8008AEC26 /* Build configuration list for PBXProject "BlockComment" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -320,8 +328,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD98916D236BABE100E74CAB /* Source.swift in Sources */,
 				BD3E5A9E2333C62B00E57F5E /* BlockCommentExtension.swift in Sources */,
+				BD989171236BAE7B00E74CAB /* Parse.swift in Sources */,
 				BD3E5A9F2333C62E00E57F5E /* BlockCommentCommand.swift in Sources */,
+				BD989175236BAEBD00E74CAB /* SwiftParsing.swift in Sources */,
 				BD73E80B2333CAAC00EE834C /* Parser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,8 +350,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD98916E236BABE300E74CAB /* Source.swift in Sources */,
 				BD73E80D2333CBFA00EE834C /* Parser.swift in Sources */,
-				BD73E80C2333CBEB00EE834C /* BlockCommentTests.swift in Sources */,
+				BD989172236BAE7D00E74CAB /* Parse.swift in Sources */,
+				BD989176236BAEBE00E74CAB /* SwiftParsing.swift in Sources */,
 				BD73E80E2333CC0700EE834C /* ParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,10 +507,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BlockCommentApp/BlockCommentApp.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_TEAM = UP6SS5ES7E;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = BlockCommentExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
@@ -515,10 +529,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BlockCommentApp/BlockCommentApp.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_TEAM = UP6SS5ES7E;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = BlockCommentExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
@@ -542,6 +557,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = BlockCommentApp/BlockCommentApp.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = UP6SS5ES7E;
@@ -566,6 +582,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = BlockCommentApp/BlockCommentApp.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = UP6SS5ES7E;

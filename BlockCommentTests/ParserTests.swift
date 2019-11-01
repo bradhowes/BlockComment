@@ -1,188 +1,306 @@
-// Copyright © 2018 Brad Howes. All rights reserved.
-//
+// Copyright © 2019 Brad Howes. All rights reserved.
 
 import XCTest
 
 class ParserTests: XCTestCase {
 
-    func testNextCharacterThrowsIfNothingLeft() {
-        let lines = [""]
-        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-        XCTAssertThrowsError(try p.nextChar())
+    func testLiteralParsing() {
+        XCTAssertEqual(Parse.lit("1").parse("1"), "1")
+        XCTAssertEqual(Parse.lit("12").parse("12"), "12")
+        XCTAssertEqual(Parse.lit("foo").parse("  foo"), "foo")
+        XCTAssertEqual(Parse.lit("bar", optional: true).parse("   bar  "), "bar")
+        XCTAssertEqual(Parse.lit("bar", optional: true).parse("   "), "bar")
     }
 
-    func testNextCharacterThrowsIfNothingLeftInMultipleLines() {
-        let lines = ["", ""]
-        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-        XCTAssertThrowsError(try p.nextChar())
+    func testTupleParsing() {
+        XCTAssertEqual(tupleType.parse("(Int, Int)"),  "(Int, Int)")
+        XCTAssertEqual(tupleType.parse("(String, Boolean, (Int, Int))"), "(String, Boolean, (Int, Int))")
     }
 
-    func testNextCharacterReturnsNextCharacter() {
-        let lines = ["a", "bc", "d", ""]
-        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-        var c = try! p.nextChar()
-        XCTAssertEqual(c, "a" as Character)
-        c = try! p.nextChar()
-        XCTAssertEqual(c, "b" as Character)
-        c = try! p.nextChar()
-        XCTAssertEqual(c, "c" as Character)
-        c = try! p.nextChar()
-        XCTAssertEqual(c, "d" as Character)
-        XCTAssertThrowsError(try p.nextChar())
+    func testAttributeParsing() {
+        XCTAssertEqual(attribute.parse("@objc fo"), "@objc")
+        XCTAssertEqual(attribute.parse("@objc(one) foo"), "@objc")
+        XCTAssertEqual(attribute.parse("@objc"), "@objc")
     }
 
-    func testBackupThrowsIfFirstPosition() {
-        let lines = [""]
-        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-        XCTAssertThrowsError(try p.backup())
+    func testModifiersParsing() {
+        let l1 = ["override private open", "static", "@objc"]
+        XCTAssertEqual(modifiers.parse(Source(lines: l1, firstLine: 0)),
+                       ["override", "private", "open", "static", "@objc"])
+        XCTAssertEqual(modifiers.parse("@objc override   private   open func foo()"),
+                       ["@objc", "override", "private", "open"])
     }
 
-    func testBackupThrowsMovesToPreviousPosition() {
-        let lines = ["ab"]
-        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-        var c = try! p.nextChar()
-        XCTAssertEqual(c, "a" as Character)
-        XCTAssertNoThrow(try p.backup())
-        c = try! p.nextChar()
-        XCTAssertEqual(c, "a" as Character)
-        c = try! p.nextChar()
-        XCTAssertEqual(c, "b" as Character)
-        XCTAssertNoThrow(try p.backup())
-        c = try! p.nextChar()
-        XCTAssertEqual(c, "b" as Character)
+    func testArrayParsing() {
+        XCTAssertEqual(arrayType.parse("[ [ Int ]]"), "[ [ Int ]]")
+        XCTAssertEqual(arrayType.parse("[ Int ]]"), "[ Int ]")
     }
 
-    func testNextNonWhitespace() {
-        let lines = ["  ", " a b ", "  "]
-        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-        var c = try! p.nextNonWhiteSpace()
-        XCTAssertEqual(c, "a" as Character)
-        c = try! p.nextNonWhiteSpace()
-        XCTAssertEqual(c, "b" as Character)
-        XCTAssertThrowsError(try p.nextNonWhiteSpace())
+    func testReturnTypeParsing() {
+        XCTAssertEqual(returnType.parse("-> Void"), "Void")
+        XCTAssertEqual(returnType.parse("-> Int"), "Int")
+        XCTAssertEqual(returnType.parse("-> ()"), "()")
+        XCTAssertEqual(returnType.parse("-> (String, Double, (Int, Int))"), "(String, Double, (Int, Int))")
     }
 
-    func testAnyNextToken() {
-        let lines = ["one two(three, four)   five   :  six     "]
-        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-        var t = try! p.anyNextToken()
-        XCTAssertEqual(t, "one")
-        t = try! p.anyNextToken()
-        XCTAssertEqual(t, "two")
-        t = try! p.anyNextToken()
-        XCTAssertEqual(t, "(")
-        t = try! p.anyNextToken()
-        XCTAssertEqual(t, "three")
-        t = try! p.anyNextToken()
-        XCTAssertEqual(t, ",")
-        t = try! p.anyNextToken()
-        XCTAssertEqual(t, "four")
-        t = try! p.anyNextToken()
-        XCTAssertEqual(t, ")")
-        t = try! p.anyNextToken()
-        XCTAssertEqual(t, "five")
-        t = try! p.anyNextToken()
-        XCTAssertEqual(t, ":")
-        t = try! p.anyNextToken()
-        XCTAssertEqual(t, "six")
+    func testClosureParsing() {
+        XCTAssertEqual(closure.parse("(Int) -> Void"), "(Int)->Void")
+        XCTAssertEqual(closure.parse("(Int, Double) -> Void"), "(Int, Double)->Void")
+        XCTAssertEqual(closure.parse("(Int, Double) -> ()"), "(Int, Double)->()")
+        XCTAssertEqual(closure.parse("(Int, Double) -> (String, Boolean, (Int, Int))"),
+                       "(Int, Double)->(String, Boolean, (Int, Int))")
     }
 
-    func testfilteredNextTokenSkipsIgnoredTerms() {
-        let lines = ["@blah final mutating public private(set) static mutating let var = @bfoobar 1"]
-        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-        var t = try! p.filteredNextToken()
-        XCTAssertEqual(t, "let")
-        t = try! p.filteredNextToken()
-        XCTAssertEqual(t, "var")
-        t = try! p.filteredNextToken()
-        XCTAssertEqual(t, "=")
-        t = try! p.filteredNextToken()
-        XCTAssertEqual(t, "1")
+    func testTypeParser() {
+        XCTAssertEqual(Type.parser.parse("(Int) -> Void"), Type(spec: "(Int)->Void", opt: false))
+        XCTAssertEqual(Type.parser.parse("(Int, String) ->  Double"), Type(spec: "(Int, String)->Double", opt: false))
+        XCTAssertEqual(Type.parser.parse("Void"), Type(spec: "Void", opt: false))
+        XCTAssertEqual(Type.parser.parse("Int"), Type(spec: "Int", opt: false))
+        XCTAssertEqual(Type.parser.parse("Int?"), Type(spec: "Int", opt: true))
+        XCTAssertEqual(Type.parser.parse("[Blah]"), Type(spec: "[Blah]", opt: false))
+        XCTAssertEqual(Type.parser.parse("[Blah]?"), Type(spec: "[Blah]", opt: true))
+        XCTAssertEqual(Type.parser.parse("(Int, Foo)"), Type(spec: "(Int, Foo)", opt: false))
+        XCTAssertEqual(Type.parser.parse("(Int, Foo)?"), Type(spec: "(Int, Foo)", opt: true))
     }
 
-    func testFetchTypeAtEndOfData() {
-        let lines = ["  Int"]
-        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-        let a = try! p.fetchType()
-        XCTAssertEqual("Int", a)
+    func testClosureValueParsing() {
+        XCTAssertEqual(closureValue.parse("{ return 1 }   "), "{ return 1 }")
+        XCTAssertEqual(closureValue.parse("{ return { (a: Int, b: Int) -> Int in return a * b } }"),
+                       "{ return { (a: Int, b: Int) -> Int in return a * b } }")
     }
 
-    func testFetchTypeBeforeSpace() {
-        let lines = ["  Int  "]
-        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-        let a = try! p.fetchType()
-        XCTAssertEqual("Int", a)
+    func testStringParsing() {
+        XCTAssertEqual(string.parse("\"this is a \\\"test\\\"\""), "\"this is a \\\"test\\\"\"")
     }
 
-    func testFetchTypeOptional() {
-        let lines = ["  Int?  "]
-        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-        let a = try! p.fetchType()
-        XCTAssertEqual("Int?", a)
+    func testDefaultValueParsing() {
+        XCTAssertEqual(defaultvalue.parse("=123"), true)
+        XCTAssertEqual(defaultvalue.parse(" = true"), true)
+        XCTAssertEqual(defaultvalue.parse("""
+                = "testing",
+"""
+            ), true)
     }
 
-    func testFetchTypeBeforeTeriminal() {
-        for terminal in Parser.fetchTypeTerminals {
-            let lines = ["  Int\(terminal)z "]
-            let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-            let a = try! p.fetchType()
-            XCTAssertEqual("Int", a)
-        }
+    func testArgTypeParsing() {
+        XCTAssertEqual(argtype.parse("Int"), Type(spec: "Int", opt: false))
+        XCTAssertEqual(argtype.parse("inout Int"), Type(spec: "Int", opt: false))
+        XCTAssertEqual(argtype.parse("inout @escaping Int? = 123"), Type(spec: "Int", opt: true))
+        XCTAssertEqual(argtype.parse("(Int) -> Void"), Type(spec: "(Int)->Void", opt: false))
     }
 
-    func testFetchFunctionType() {
-        let lines = ["  ((Int?, Float)) -> ())"]
-        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-        let a = try! p.fetchType()
-        XCTAssertEqual("((Int?, Float)) -> ()", a)
+    func testArgumentParser() {
+        XCTAssertEqual(Argument.parser.parse("z: Abc"),
+                       Argument(name: "z", type: Type(spec: "Abc", opt: false), def: false))
+        XCTAssertEqual(Argument.parser.parse("one two   : Foo?"),
+                       Argument(name: "one", type: Type(spec: "Foo", opt: true), def: false))
+        XCTAssertEqual(Argument.parser.parse("_ abc: Int = 123"),
+                       Argument(name: "abc", type: Type(spec: "Int", opt: false), def: true))
     }
 
-    func testFetchArgsNone() {
-        let lines = ["   )"]
-        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-        let a = try! p.fetchArgs()
-        XCTAssertEqual(0, a.count)
+    func testArgumentsParsing() {
+        XCTAssertTrue(arguments.parse("")!.isEmpty)
+        XCTAssertEqual(arguments.parse("_ a: Int, _ b: String, c: Double")!.count, 3)
     }
 
-    func testFetchFuncArg() {
-        let lines = ["z: (Int) -> ())"]
-        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-        let a = try! p.fetchArgs()
-        XCTAssertEqual(1, a.count)
-        XCTAssertEqual("z", a[0].label)
-        XCTAssertEqual("z", a[0].name)
-        XCTAssertEqual("(Int) -> ()", a[0].type)
+    func testFunctionParser_Minimal() {
+        XCTAssertEqual(Function.parser.parse("func foo()"),
+                       Function(name: "foo", args:[], throwable: false, returns: nil))
+        XCTAssertTrue(Function.parser.parse("static func f(a:Int)->Bool{return true}") != nil)
     }
 
-    func testFetchFuncArg2() {
-        let lines = ["recorder: ((MusicTimeStamp, Note)->Void)? = nil)"]
-        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-        let a = try! p.fetchArgs()
-        XCTAssertEqual(1, a.count)
-        XCTAssertEqual("recorder", a[0].label)
-        XCTAssertEqual("recorder", a[0].name)
-        XCTAssertEqual("((MusicTimeStamp, Note)->Void)?", a[0].type)
+    func testFunctionParser_Throws() {
+        XCTAssertEqual(Function.parser.parse("func foo() throws"),
+                       Function(name: "foo", args:[], throwable: true, returns: nil))
     }
 
-    func testFetchArgs() {
-        let lines = ["foo bar: Int, blah: Int?, baz: (Int, Int)?, z: (Int) -> ())"]
-        let p = Parser(lines: lines, currentLine: 0, indent: "  ")
-        let a = try! p.fetchArgs()
-        XCTAssertEqual(4, a.count)
-        XCTAssertEqual("foo", a[0].label)
-        XCTAssertEqual("bar", a[0].name)
-        XCTAssertEqual("Int", a[0].type)
+    func testFunctionParser_Returns() {
+        XCTAssertEqual(Function.parser.parse("func foo() -> Int"),
+                       Function(name: "foo", args: [], throwable: false, returns: "Int"))
+    }
 
-        XCTAssertEqual("blah", a[1].label)
-        XCTAssertEqual("blah", a[1].name)
-        XCTAssertEqual("Int?", a[1].type)
+    func testFunctionParser_ThrowsAndReturns() {
+        XCTAssertEqual(Function.parser.parse("func foo() throws -> Int"),
+                       Function(name: "foo", args: [], throwable: true, returns: "Int"))
+    }
 
-        XCTAssertEqual("baz", a[2].label)
-        XCTAssertEqual("baz", a[2].name)
-        XCTAssertEqual("(Int, Int)?", a[2].type)
 
-        XCTAssertEqual("z", a[3].label)
-        XCTAssertEqual("z", a[3].name)
-        XCTAssertEqual("(Int) -> ()", a[3].type)
+    func testFunctionParser_VoidNoReturn() {
+        XCTAssertEqual(Function.parser.parse("func foo() throws -> Void"),
+                       Function(name: "foo", args: [], throwable: true, returns: nil))
+        XCTAssertEqual(Function.parser.parse("func foo() throws -> ()"),
+                       Function(name: "foo", args: [], throwable: true, returns: nil))
+    }
+
+    func testFunctionParser_Inits() {
+        XCTAssertEqual(Function.parser.parse("init()"),
+                       Function(name: "init", args: [], throwable: false, returns: nil))
+        XCTAssertEqual(Function.parser.parse("required init?()"),
+                       Function(name: "init?", args: [], throwable: false, returns: nil))
+        XCTAssertEqual(Function.parser.parse("init?(_ a: Int)"),
+            Function(name: "init?", args: [Argument(name: "a", type: Type(spec: "Int", opt: false), def: false)],
+                     throwable: false, returns: nil))
+    }
+
+    func testFunctionParser_Complex1() {
+        let lines = [
+            "   override",
+            "        private open",
+            " func comp김lex(   a: inout ",
+            "     @escaping Int, b c : Foo? = 121 ) throws -> (four: Int,",
+            "five: (six: Int, seven: Int)) "
+        ]
+        XCTAssertEqual(Function.parser.parse(Source(lines: lines, firstLine: 0)),
+            Function(name: "comp김lex",
+                     args: [
+                        Argument(name: "a", type: Type(spec: "Int", opt: false), def: false),
+                        Argument(name: "b", type: Type(spec: "Foo", opt: true), def: true)],
+                     throwable: true, returns: "(four: Int, five: (six: Int, seven: Int))"))
+    }
+
+    func testFunctionParser_Complex2() {
+        let complex = """
+        override internal \t\tfunc \tcomp김lex   (_ a김: inout
+        Int, o23김 b: (one: Int, two:
+        Int, three: Int), cc김 c김: inout Double) throws
+        -> (four: Int, five: \t\t(six: Int, seven: Int))
+        """
+        let tmp = Function.parser.parse(complex)
+        XCTAssertTrue(tmp != nil)
+        XCTAssertEqual(tmp?.name, "comp김lex")
+        XCTAssertEqual(tmp?.args.count, 3)
+        XCTAssertEqual(tmp?.throwable, true)
+        XCTAssertEqual(tmp?.returns, "(four: Int, five: \t\t(six: Int, seven: Int))")
+    }
+
+    func testFunctionParser_ClosureArg() {
+        XCTAssertTrue(Function.parser.parse("func f(c: (Int) -> Void)") != nil)
+    }
+
+    func testFunctionParser_OptionalArg() {
+        XCTAssertTrue(Function.parser.parse("""
+                func application(_ application: UIApplication, didFinishLaunchingWithOptions
+                launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+                """
+            ) != nil)
+    }
+
+    func testFunctionParser_TemplateArg() {
+        XCTAssertEqual(Function.parser.parse("func a<T: Blah where T.Element = Foo>   (          )     ")!.name, "a")
+        XCTAssertEqual(Function.parser.parse("func a <T: Blah where T.Element = Foo>   (          )     ")!.name, "a")
+    }
+
+    func testFunctionParser_WhereClause() {
+        XCTAssertEqual(Function.parser.parse("""
+        func allItemsMatch<C1: Container, C2: Container>
+            (_ someContainer: C1, _ anotherContainer: C2) -> Bool
+            where C1.Item == C2.Item, C1.Item: Equatable
+"""), Function(name: "allItemsMatch",
+               args: [Argument(name: "someContainer", type: Type(spec: "C1", opt: false), def: false),
+                      Argument(name: "anotherContainer", type: Type(spec: "C2", opt: false), def: false)],
+               throwable: false, returns: "Bool"))
+    }
+
+    func testFunctionParser_DefaultClosure() {
+        XCTAssertTrue(Function.parser.parse("func fetch(in a: B, c: (Foo<Self>) -> () = { _ in }) -> [Self] {") != nil)
+    }
+
+    func testContainerParser() {
+        XCTAssertEqual(Container.parser.parse("public struct Blah {"),
+                       Container(kind: .struct, name: "Blah", inherits: nil))
+        XCTAssertEqual(Container.parser.parse("public class Blah: Foo {"),
+                       Container(kind: .class, name: "Blah", inherits: "Foo"))
+        XCTAssertEqual(Container.parser.parse("public enum Blah: Int {"),
+                       Container(kind: .enum, name: "Blah", inherits: "Int"))
+        XCTAssertEqual(Container.parser.parse("protocol Blah: class {"),
+                       Container(kind: .protocol, name: "Blah", inherits: "class"))
+    }
+
+    func testPropertyParser() {
+        XCTAssertEqual(Property.parser.parse("private let foo: Int"), Property(kind: .let, name: "foo"))
+        XCTAssertEqual(Property.parser.parse("let foo = 3"), Property(kind: .let, name: "foo"))
+        XCTAssertEqual(Property.parser.parse("var foo: Int"), Property(kind: .var, name: "foo"))
+        XCTAssertEqual(Property.parser.parse("lazy var foo: Int = { 1 * 3 }()"), Property(kind: .var, name: "foo"))
+        XCTAssertEqual(Property.parser.parse("@objc public private(set) lazy var foo: Int = { 1 * 3 }()"),
+                       Property(kind: .var, name: "foo"))
+        XCTAssertEqual(Property.parser.parse("public typealias Element = Int"),
+                       Property(kind: .typealias, name: "Element"))
+        XCTAssertEqual(Property.parser.parse("associatedtype Element"),
+                       Property(kind: .associatedtype, name: "Element"))
+    }
+
+    func testCommentable_Property() {
+        let comment = commentable.parse("    private let foo: Int = 3")!
+        XCTAssertEqual(comment.count, 1)
+        let line = comment[0]
+        XCTAssertEqual(line, "/// <#Describe foo#>")
+    }
+
+    func testCommentable_Container() {
+        let comment = commentable.parse(" struct Foo: Bar {")!
+        XCTAssertEqual(comment.count, 4)
+        XCTAssertEqual(comment[0], "/**")
+        XCTAssertEqual(comment[1], " <#Describe Foo#>")
+        XCTAssertEqual(comment[2], " - SeeAlso: `Bar`")
+        XCTAssertEqual(comment[3], " */")
+    }
+
+    func testCommentable_FunctionNoReturnNoArgs() {
+        let comment = commentable.parse("  func play<A>() {")!
+        XCTAssertEqual(comment.count, 3)
+        XCTAssertEqual(comment[0], "/**")
+        XCTAssertEqual(comment[1], " <#Describe play#>")
+        XCTAssertEqual(comment[2], " */")
+    }
+    func testCommentable_FunctionThrows() {
+        let comment = commentable.parse("  func play<A>() throws {")!
+        XCTAssertEqual(comment.count, 5)
+        XCTAssertEqual(comment[0], "/**")
+        XCTAssertEqual(comment[1], " <#Describe play#>")
+        XCTAssertEqual(comment[2], "")
+        XCTAssertEqual(comment[3], " - throws <#Describe exceptions#>")
+        XCTAssertEqual(comment[4], " */")
+    }
+
+    func testCommentable_FunctionThrowsAndReturns() {
+        let comment = commentable.parse("  func play<A>() throws    -> Int {")!
+        XCTAssertEqual(comment.count, 6)
+        XCTAssertEqual(comment[0], "/**")
+        XCTAssertEqual(comment[1], " <#Describe play#>")
+        XCTAssertEqual(comment[2], "")
+        XCTAssertEqual(comment[3], " - returns <#Int#>")
+        XCTAssertEqual(comment[4], " - throws <#Describe exceptions#>")
+        XCTAssertEqual(comment[5], " */")
+    }
+
+    func testCommentable_FunctionArgsThrowsAndReturns() {
+        let comment = commentable.parse("  func play<A>(_ a: Int, b bb: King) throws    -> Int {")!
+        XCTAssertEqual(comment.count, 8)
+        XCTAssertEqual(comment[0], "/**")
+        XCTAssertEqual(comment[1], " <#Describe play#>")
+        XCTAssertEqual(comment[2], "")
+        XCTAssertEqual(comment[3], " - parameter a: <#Describe a#>")
+        XCTAssertEqual(comment[4], " - parameter b: <#Describe b#>")
+        XCTAssertEqual(comment[5], " - returns <#Int#>")
+        XCTAssertEqual(comment[6], " - throws <#Describe exceptions#>")
+        XCTAssertEqual(comment[7], " */")
+    }
+
+    func testCommentable_Default() {
+        let comment = commentable.parse("  this is a sillly test")!
+        XCTAssertEqual(comment.count, 1)
+        XCTAssertEqual(comment[0], "/// ")
+    }
+
+    func testParse() {
+        let lines = ["// line", "  func one(two: Three)", "-> Four ", "       {"]
+        let comment = parse(source: Source(lines: lines, firstLine: 1))
+        XCTAssertEqual(comment.count, 6)
+        XCTAssertEqual(comment[0], "  /**")
+        XCTAssertEqual(comment[1], "   <#Describe one#>")
+        XCTAssertEqual(comment[2], "  ")
+        XCTAssertEqual(comment[3], "   - parameter two: <#Describe two#>")
+        XCTAssertEqual(comment[4], "   - returns <#Four#>")
+        XCTAssertEqual(comment[5], "   */")
     }
 }
