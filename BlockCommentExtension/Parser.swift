@@ -1,4 +1,4 @@
-// Copyright © 2019 Brad Howes. All rights reserved.
+// Copyright © 2016-2019 Brad Howes. All rights reserved.
 //
 // This code uses ideas presented by POINT•FREE (https://www.pointfree.co) in their discussions on parsers. The
 // videos are subscriber-based (and highly recommended), but the Swift playgrounds that were used and discussed
