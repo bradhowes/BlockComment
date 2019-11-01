@@ -1,9 +1,4 @@
-//
-//  BlockCommentCommand.swift
-//  BlockCommentCommand
-//
-//  Created by Brad Howes on 9/29/16.
-//  Copyright © 2016 Brad Howes. All rights reserved.
+//  Copyright © 2016-2019 Brad Howes. All rights reserved.
 //
 
 import Foundation
@@ -13,11 +8,12 @@ final class BlockCommentCommand: NSObject, XCSourceEditorCommand {
 
     /**
      Perform an action in the BlockComment plugin.
-    
+
      - parameter invocation: the action to perform
      - parameter completionHandler: the callback to invoke when finished performing the requested action
      */
-    public func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
+    public func perform(with invocation: XCSourceEditorCommandInvocation,
+                        completionHandler: @escaping (Error?) -> Void ) -> Void {
 
         let buffer = invocation.buffer
         let lines = buffer.lines
@@ -44,9 +40,10 @@ final class BlockCommentCommand: NSObject, XCSourceEditorCommand {
         let command = invocation.commandIdentifier
         let comment: [String] = {
             switch command {
-            case "insertBlockComment": return parse(source: Source(lines: (lines as NSArray as! [String]), firstLine: pos))
+            case "insertBlockComment": return parse(source: Source(lines: (lines as NSArray as! [String]),
+                                                                   firstLine: pos))
             case "insertMarkComment": return ["// MARK: - "]
-            default: return []
+            default: return ["// *** Unknown command ***"]
             }
         }()
 
