@@ -19,7 +19,7 @@ typing to replace the tag with text.
 
 # Note on Version 3
 
-Version 3 includes a completely rewritten parser that primarily functional in design. It is based on ideas discussed in the
+Version 3 includes a completely rewritten parser that is primarily functional in design. It is based on ideas discussed in the
 excellent videos put out by the [POINT•FREE](https://www.pointfree.co) team. You can see the playgrounds they discuss on 
 their [Github repo](https://github.com/pointfreeco/episode-code-samples) -- in particular see playgrounds 0056 - 0064.
 
