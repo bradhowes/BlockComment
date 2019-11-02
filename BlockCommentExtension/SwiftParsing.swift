@@ -53,8 +53,7 @@ let tupleType = balanced("(", ")")
 let identifier = Parse.pat { $0.isLetter || $0.isNumber || $0 == "_" }
 
 /// Parser for Swift atrributes that start with '@'. Support optional "(...)"
-let attribute = zip(Parse.lit("@"), identifier, Parse.optional(tupleType))
-    .map { $0.0 + $0.1 }
+let attribute = zip(Parse.lit("@"), identifier, Parse.optional(tupleType)).map { $0.0 + $0.1 }
 
 /// Parser for an optional sequence of one or more attributes, access level, etc.
 let modifiers = Parse.any(Parse.first(
@@ -196,8 +195,8 @@ struct Function: Equatable, Commentable {
         return lines
     }
 
-    /// Parser for matching function declarations. Transforms a match into a `Function` instance that describes the parsed
-    /// function attributes.
+    /// Parser for matching function declarations. Transforms a match into a `Function` instance that describes the
+    /// parsed function attributes.
     static let parser = zip(modifiers,
                             Parse.first(
                                 zip(Parse.lit("func"), functionName).map { String($0.1) },
