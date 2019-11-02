@@ -55,7 +55,7 @@ to insert a horizontal divider and title in the pop-down list of interesting ite
 
 The code parsing takes place in
 [BlockCommentExtension/SwiftParsing.swift](https://github.com/bradhowes/BlockComment/blob/master/BlockCommentExtension/SwiftParsing.swift). The code starts with the
-fundamental bits and builds on them primarily via the `zip` and `oneOf` functions.
+fundamental bits and builds on them primarily via the `zip` and `first` functions.
 The processing of the request from Xcode happens in
 [BlockCommentExtension/BlockCommentCommand.swift](https://github.com/bradhowes/BlockComment/blob/master/BlockCommentExtension/BlockCommentCommand.swift). More general parsing
 functions are found in [BlockCommentExtension/Parse.swift](https://github.com/bradhowes/BlockComment/blob/master/BlockCommentExtension/Parse.swift) and
