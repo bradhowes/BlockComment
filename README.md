@@ -20,7 +20,7 @@ typing to replace the tag with text.
 # Note on Version 3
 
 Version 3 includes a completely rewritten parser that primarily functional in design. It is based on ideas discussed in the
-excellent videos put out by the [POINT•FREE]((https://www.pointfree.co) team. You can see the playgrounds they discuss on 
+excellent videos put out by the [POINT•FREE](https://www.pointfree.co) team. You can see the playgrounds they discuss on 
 their [Github repo](https://github.com/pointfreeco/episode-code-samples). I used their fundamental design but retooled it to
 work outside of a playground, and I extended it to of course handle Swift parsing. Be aware that when I say it parses Swift,
 it only does so in the most basic way to uncover the interesting features to include in a block comment. It would take quite 
