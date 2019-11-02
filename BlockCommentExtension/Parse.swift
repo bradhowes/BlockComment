@@ -10,7 +10,7 @@
 public enum Parse {
 
     /**
-     Utility to capture scan over text and capture the result.
+     Utility to scan over text and capture the result.
 
      - parameter start: the iterator to use for characters
      - parameter skipws: if true, skip over whitespace before parsing
@@ -86,16 +86,7 @@ public enum Parse {
      - parameter ps: the collection of parsers
      - returns: new parser
      */
-    public static func first<A>(_ ps: [Parser<A>]) -> Parser<A> {
-        Parser { it -> A? in
-            for p in ps {
-                if let match = p.scanner(&it) {
-                    return match
-                }
-            }
-            return nil
-        }
-    }
+    public static func first<A>(_ ps: [Parser<A>]) -> Parser<A> { first { ps } }
 
     /**
      Obtain a parser that succeeds when the first parser in a collection of parsers succeeds (at most one).
@@ -103,11 +94,12 @@ public enum Parse {
      - parameter ps: the collection of parsers
      - returns: new parser
      */
-    public static func first<A>(_ ps: Parser<A>...) -> Parser<A> { first(ps) }
+    public static func first<A>(_ ps: Parser<A>...) -> Parser<A> { first { ps } }
 
     /**
      Obtain a parser that succeeds when the first parser in a collection of parsers succeeds (at most one). This variant
-     obtains the collection from the given closure.
+     obtains the collection from the given closure, thus delaying evaluation of the collection until when it is actually
+     needed.
 
      - parameter ps: closure to invoke to obtain the collection to iterate over
      - returns: new parser
