@@ -52,6 +52,14 @@ public struct Parser<A> {
     public func map<B>(_ f: @escaping (A) -> B) -> Parser<B> { Parser<B> { it in self.scanner(&it).map(f) } }
 
     /**
+     Convenience method that transforms all `A` instances into the given value.
+
+     - parameter target: the value to transform into
+     - returns: new parser
+     */
+    public func to<B>(_ target: B) -> Parser<B> { map { _ in target } }
+
+    /**
      Create parser that will do the following:
 
      - attempt to parse the text with internal `scanner`
@@ -73,4 +81,7 @@ public struct Parser<A> {
             return matchB
         }
     }
+
+    /// Obtain a parser that results in a Void type, thus forgetting the type `A`.
+    public var forget: Parser<Void> { map { _ in () } }
 }

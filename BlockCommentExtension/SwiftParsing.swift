@@ -101,16 +101,16 @@ let closureValue = balanced("{", "}")
 /// Parser for String default values -- ignores anything inside the quotes
 let string = balanced("\"", "\"")
 
-/// Parser for any default value setting
+/// Parser for any default value setting. We don't care for the type, so we make them all Void.
 let value = Parse.first(
-    string.map { _ in () },
-    tupleType.map { _ in () },
-    arrayType.map { _ in () },
-    closureValue.map { _ in () },
-    Parse.int.map { _ in () },
-    Parse.double.map { _ in () },
-    Parse.lit("true").map { _ in () },
-    Parse.lit("false").map { _ in () }
+    string.forget,
+    tupleType.forget,
+    arrayType.forget,
+    closureValue.forget,
+    Parse.int.forget,
+    Parse.double.forget,
+    Parse.lit("true").forget,
+    Parse.lit("false").forget
 )
 
 /// Parser for a default value assignment set on a function argument
@@ -239,10 +239,10 @@ struct Container: Equatable, Commentable {
     /// Parser for `class`, `struct`, and `enum` specifications.
     static let parser = zip(modifiers,
                             Parse.first(
-                                Parse.lit("class").map { _ in Container.Kind.class },
-                                Parse.lit("struct").map { _ in Container.Kind.struct },
-                                Parse.lit("enum").map { _ in Container.Kind.enum },
-                                Parse.lit("protocol").map { _ in Container.Kind.protocol }),
+                                Parse.lit("class").to(.class),
+                                Parse.lit("struct").to(.struct),
+                                Parse.lit("enum").to(.enum),
+                                Parse.lit("protocol").to(.protocol)),
                             identifier, supertype)
         .map { Container(kind: $0.1, name: $0.2, inherits: $0.3.first.map { $0.1 } ) }
 }
@@ -260,10 +260,10 @@ struct Property: Equatable, Commentable {
     /// Parser for properties
     static let parser = zip(modifiers,
                             Parse.first(
-                                zip(Parse.optional(Parse.lit("lazy")), Parse.lit("var")).map { _ in Property.Kind.var },
-                                Parse.lit("typealias").map { _ in Property.Kind.typealias },
-                                Parse.lit("associatedtype").map { _ in Property.Kind.associatedtype },
-                                Parse.lit("let").map { _ in Property.Kind.let }),
+                                zip(Parse.optional(Parse.lit("lazy")), Parse.lit("var")).to(.var),
+                                Parse.lit("typealias").to(.typealias),
+                                Parse.lit("associatedtype").to(.associatedtype),
+                                Parse.lit("let").to(.let)),
                             identifier).map { Property(kind: $0.1, name: $0.2) }
 }
 
