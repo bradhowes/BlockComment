@@ -59,5 +59,5 @@ fundamental bits and builds on them primarily via the `zip` and `oneOf` function
 The processing of the request from Xcode happens in
 [BlockCommentExtension/BlockCommentCommand.swift](https://github.com/bradhowes/BlockComment/blob/master/BlockCommentExtension/BlockCommentCommand.swift). More general parsing
 functions are found in [BlockCommentExtension/Parse.swift](https://github.com/bradhowes/BlockComment/blob/master/BlockCommentExtension/Parse.swift) and
-functions are found in [BlockCommentExtension/Parser.swift](https://github.com/bradhowes/BlockComment/blob/master/BlockCommentExtension/Parser.swift).
+the Parser generic struct is found in [BlockCommentExtension/Parser.swift](https://github.com/bradhowes/BlockComment/blob/master/BlockCommentExtension/Parser.swift).
 
