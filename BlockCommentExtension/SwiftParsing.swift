@@ -9,10 +9,13 @@
  - parameter close: the Character that closes the sequence
  - returns: new parser
  */
-func balanced(_ open: Character, _ close: Character) -> Parser<String> {
+func balanced(_ open: Character, _ close: Character, skipws: Bool = true) -> Parser<String> {
     return Parser { it in
         let original = it
-        it.skip { $0.isWhitespace }
+        if skipws {
+            it.skip { $0.isWhitespace }
+        }
+
         let start = it
         guard it.next() == open else {
             it = original
@@ -52,8 +55,13 @@ let tupleType = balanced("(", ")")
 /// Parser for various identifiers such as property, struct, and enum names as well as argument labels.
 let identifier = Parse.pat { $0.isLetter || $0.isNumber || $0 == "_" }
 
+/// Parser for optional modifiers associated with an attribute. NOTE: the '(' must be attached directly to the attribute
+let attributeOptions = Parse.optional(balanced("(", ")", skipws: false))
+
 /// Parser for Swift atrributes that start with '@'. Support optional "(...)"
-let attribute = zip(Parse.lit("@"), identifier, Parse.optional(tupleType)).map { $0.0 + $0.1 }
+let attribute = zip(Parse.lit("@"), identifier, Parse.optional(attributeOptions)).map {
+    $0.0 + $0.1
+}
 
 /// Parser for an optional sequence of one or more attributes, access level, etc.
 let modifiers = Parse.any(Parse.first(
@@ -67,7 +75,8 @@ let modifiers = Parse.any(Parse.first(
     Parse.lit("fileprivate"),
     Parse.lit("internal"),
     Parse.lit("public"),
-    Parse.lit("open")
+    Parse.lit("open"),
+    Parse.lit("final")
 ), separatedBy: Parse.lit(" ", skipws: false))
 
 /// Parser for an array type or default value -- ignores anything inside of the brackets
@@ -75,13 +84,15 @@ let arrayType = balanced("[", "]")
 
 /// Parser of Swift types. Note that we do this dynamically so that we can have a valid `closure` definition which
 /// depends on `tupleType`
-let types = Parse.first { return [closure, arrayType, tupleType, identifier] }
+let types = Parse.first { return [function, arrayType, tupleType, identifier] }
 
 /// Parser of return type specifications. The parsed value will be the type spec.
 let returnType = zip(Parse.lit("->"), types).map { $0.1 }
 
 /// Parser for a closure type definition. Parsed value will be concatenation of calling spec, "->", and return type.
-let closure: Parser<String> = zip(tupleType, returnType).map { $0.0 + "->" + $0.1 }
+let function: Parser<String> = zip(tupleType, returnType).map {
+    $0.0 + "->" + $0.1
+}
 
 /**
  Attributes associated with a Swift type.
@@ -120,7 +131,9 @@ let defaultvalue = Parse.optional(zip(Parse.lit("="), value)).map { !$0.isEmpty 
 let argmods = Parse.any(Parse.first(Parse.lit("inout"), attribute), separatedBy: Parse.lit(" ", skipws: false))
 
 /// Parser for an argument type which may have one or more modifiers before the type specification
-let argtype = zip(argmods, Type.parser).map { $0.1 }
+let argtype = zip(argmods, Type.parser).map {
+    $0.1
+}
 
 /**
  Attributes associated with a `func` argument

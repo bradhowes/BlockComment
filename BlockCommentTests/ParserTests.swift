@@ -44,10 +44,10 @@ class ParserTests: XCTestCase {
     }
 
     func testClosureParsing() {
-        XCTAssertEqual(closure.parse("(Int) -> Void"), "(Int)->Void")
-        XCTAssertEqual(closure.parse("(Int, Double) -> Void"), "(Int, Double)->Void")
-        XCTAssertEqual(closure.parse("(Int, Double) -> ()"), "(Int, Double)->()")
-        XCTAssertEqual(closure.parse("(Int, Double) -> (String, Boolean, (Int, Int))"),
+        XCTAssertEqual(function.parse("(Int) -> Void"), "(Int)->Void")
+        XCTAssertEqual(function.parse("(Int, Double) -> Void"), "(Int, Double)->Void")
+        XCTAssertEqual(function.parse("(Int, Double) -> ()"), "(Int, Double)->()")
+        XCTAssertEqual(function.parse("(Int, Double) -> (String, Boolean, (Int, Int))"),
                        "(Int, Double)->(String, Boolean, (Int, Int))")
     }
 
@@ -82,11 +82,25 @@ class ParserTests: XCTestCase {
             ), true)
     }
 
+    func testArgModsTypeParsing() {
+        XCTAssertEqual(argmods.parse(""), [])
+        XCTAssertEqual(argmods.parse("inout"), ["inout"])
+        XCTAssertEqual(argmods.parse("@escaping"), ["@escaping"])
+        XCTAssertEqual(argmods.parse("@autoclosure @escaping"), ["@autoclosure", "@escaping"])
+        XCTAssertEqual(argmods.parse("@escaping (Int)->Void"), ["@escaping"])
+    }
+
     func testArgTypeParsing() {
         XCTAssertEqual(argtype.parse("Int"), Type(spec: "Int", opt: false))
         XCTAssertEqual(argtype.parse("inout Int"), Type(spec: "Int", opt: false))
         XCTAssertEqual(argtype.parse("inout @escaping Int? = 123"), Type(spec: "Int", opt: true))
         XCTAssertEqual(argtype.parse("(Int) -> Void"), Type(spec: "(Int)->Void", opt: false))
+        XCTAssertEqual(argtype.parse("@escaping (Int) -> Void"), Type(spec: "(Int)->Void", opt: false))
+        XCTAssertEqual(argtype.parse("@objc(blah) (Int) -> Void"), Type(spec: "(Int)->Void", opt: false))
+    }
+
+    func testArgTypeParsingWithAttribute() {
+        XCTAssertEqual(argtype.parse("@escaping (Int)->Void"), Type(spec: "(Int)->Void", opt: false))
     }
 
     func testArgumentParser() {
@@ -210,6 +224,10 @@ class ParserTests: XCTestCase {
                        Container(kind: .struct, name: "Blah", inherits: nil))
         XCTAssertEqual(Container.parser.parse("public class Blah: Foo {"),
                        Container(kind: .class, name: "Blah", inherits: "Foo"))
+        XCTAssertEqual(Container.parser.parse("public final class Beep: Boop {"),
+                       Container(kind: .class, name: "Beep", inherits: "Boop"))
+        XCTAssertEqual(Container.parser.parse("final public class Beep: Boop {"),
+                       Container(kind: .class, name: "Beep", inherits: "Boop"))
         XCTAssertEqual(Container.parser.parse("public enum Blah: Int {"),
                        Container(kind: .enum, name: "Blah", inherits: "Int"))
         XCTAssertEqual(Container.parser.parse("protocol Blah: class {"),
@@ -230,14 +248,14 @@ class ParserTests: XCTestCase {
     }
 
     func testCommentable_Property() {
-        let comment = commentable.parse("    private let foo: Int = 3")!
+        let comment = commentable.parse("    @objc private let foo: Int = 3")!
         XCTAssertEqual(comment.count, 1)
         let line = comment[0]
         XCTAssertEqual(line, "/// <#Describe foo#>")
     }
 
     func testCommentable_Container() {
-        let comment = commentable.parse(" struct Foo: Bar {")!
+        let comment = commentable.parse(" @objc struct Foo: Bar {")!
         XCTAssertEqual(comment.count, 4)
         XCTAssertEqual(comment[0], "/**")
         XCTAssertEqual(comment[1], " <#Describe Foo#>")

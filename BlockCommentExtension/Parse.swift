@@ -25,6 +25,7 @@ public enum Parse {
         iter(&it)
         guard let value = check(start.span(to: it)) else { return nil }
         start = it
+        print("captured: '\(value)' remaining: '\(it.remaining)")
         return value
     }
 
@@ -52,6 +53,8 @@ public enum Parse {
      Obtain a parser for literal value
 
      - parameter p: the literal value to expect
+     - parameter optiona: if true then succeed even if the literal does not exist
+     - parameter skipws: if true (default) allow for whitespace characters before literal
      - returns: new parser that matches on the given literal
      */
     public static func lit(_ p: String, optional: Bool = false, skipws: Bool = true) -> Parser<String> {
@@ -108,9 +111,11 @@ public enum Parse {
         Parser { it -> A? in
             for p in ps() {
                 if let match = p.scanner(&it) {
+                    print("first: match '\(match)' remaining: '\(it.remaining)'")
                     return match
                 }
             }
+            print("first: nil")
             return nil
         }
     }
@@ -127,17 +132,17 @@ public enum Parse {
             var rest = it
             var matches: [A] = []
             while let match = p.scanner(&it) {
-                // print("any: match '\(match)' remaining: '\(it.remaining)'")
+                print("any: match '\(match)' remaining: '\(it.remaining)'")
                 rest = it
                 matches.append(match)
                 if s.scanner(&it) == nil {
-                    // print("any: no separator")
+                    print("any: no separator")
                     break
                 }
             }
             it = rest
 
-            // print("any: \(matches)")
+            print("any: \(matches)")
             return matches
         }
     }
