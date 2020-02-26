@@ -77,14 +77,14 @@ let modifiers = Parse.any(Parse.first(
     Parse.lit("public"),
     Parse.lit("open"),
     Parse.lit("final")
-), separatedBy: Parse.lit(" ", skipws: false))
+), separatedBy: Parse.pat(skipws: false) { $0.isWhitespace })
 
 /// Parser for an array type or default value -- ignores anything inside of the brackets
 let arrayType = balanced("[", "]")
 
 /// Parser of Swift types. Note that we do this dynamically so that we can have a valid `closure` definition which
 /// depends on `tupleType`
-let types = Parse.first { return [function, arrayType, tupleType, identifier] }
+let types = Parse.first { [function, arrayType, tupleType, identifier] }
 
 /// Parser of return type specifications. The parsed value will be the type spec.
 let returnType = zip(Parse.lit("->"), types).map { $0.1 }

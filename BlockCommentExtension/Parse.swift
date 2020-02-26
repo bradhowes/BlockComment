@@ -66,11 +66,14 @@ public enum Parse {
     /**
      Obtain a parser that matches a class of characters.
 
+     - parameter skipws: if true (default) skip whitespace characters before parsing
      - parameter p: the predicate function that indicates if a character belongs in the desired class
      - returns: new parser for matching character classes
      */
-    public static func pat(while p: @escaping (Character) -> Bool) -> Parser<String> {
-        Parser { it in capture(&it, skipws: true, iter: { $0.skip(p) }, check: { !$0.isEmpty ? $0 : nil }) }
+    public static func pat(skipws: Bool = true, while p: @escaping (Character) -> Bool) -> Parser<String> {
+        Parser { it in
+            capture(&it, skipws: skipws, iter: { $0.skip(p) }, check: { !$0.isEmpty ? $0 : nil })
+        }
     }
 
     /**

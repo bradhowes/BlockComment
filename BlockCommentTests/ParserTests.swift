@@ -158,6 +158,7 @@ class ParserTests: XCTestCase {
 
     func testFunctionParser_Complex1() {
         let lines = [
+            "   @discardableResult",
             "   override",
             "        private open",
             " func comp김lex(   a: inout ",
