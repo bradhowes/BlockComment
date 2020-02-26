@@ -287,7 +287,7 @@ class ParserTests: XCTestCase {
         XCTAssertEqual(comment[0], "/**")
         XCTAssertEqual(comment[1], " <#Describe play#>")
         XCTAssertEqual(comment[2], "")
-        XCTAssertEqual(comment[3], " - returns <#Int#>")
+        XCTAssertEqual(comment[3], " - returns: <#Int#>")
         XCTAssertEqual(comment[4], " - throws <#Describe exceptions#>")
         XCTAssertEqual(comment[5], " */")
     }
@@ -300,7 +300,7 @@ class ParserTests: XCTestCase {
         XCTAssertEqual(comment[2], "")
         XCTAssertEqual(comment[3], " - parameter a: <#Describe a#>")
         XCTAssertEqual(comment[4], " - parameter b: <#Describe b#>")
-        XCTAssertEqual(comment[5], " - returns <#Int#>")
+        XCTAssertEqual(comment[5], " - returns: <#Int#>")
         XCTAssertEqual(comment[6], " - throws <#Describe exceptions#>")
         XCTAssertEqual(comment[7], " */")
     }
@@ -319,7 +319,7 @@ class ParserTests: XCTestCase {
         XCTAssertEqual(comment[1], "   <#Describe one#>")
         XCTAssertEqual(comment[2], "  ")
         XCTAssertEqual(comment[3], "   - parameter two: <#Describe two#>")
-        XCTAssertEqual(comment[4], "   - returns <#Four#>")
+        XCTAssertEqual(comment[4], "   - returns: <#Four#>")
         XCTAssertEqual(comment[5], "   */")
     }
 }

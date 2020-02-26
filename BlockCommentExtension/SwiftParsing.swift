@@ -201,7 +201,7 @@ struct Function: Equatable, Commentable {
         if !args.isEmpty || returns != nil  || throwable {
             lines.append("")
             lines += args.map { " - parameter \($0.name): \(makeTag("Describe " + $0.name))" }
-            if let r = returns { lines.append(" - returns \(makeTag(r))") }
+            if let r = returns { lines.append(" - returns: \(makeTag(r))") }
             if throwable { lines.append(" - throws \(makeTag("Describe exceptions"))") }
         }
         lines.append(" */")
