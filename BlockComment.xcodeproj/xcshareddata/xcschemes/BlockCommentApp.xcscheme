@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BD0246541D9D03D3008AEC26"
-               BuildableName = "BlockComment.appex"
-               BlueprintName = "BlockComment"
+               BuildableName = "BlockCommentExt.appex"
+               BlueprintName = "BlockCommentExt"
                ReferencedContainer = "container:BlockComment.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BD3E5A722333C30600E57F5E"
-               BuildableName = "BlockCommentApp.app"
-               BlueprintName = "BlockCommentApp"
+               BuildableName = "BlockComment.app"
+               BlueprintName = "BlockComment"
                ReferencedContainer = "container:BlockComment.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BD3E5A722333C30600E57F5E"
-            BuildableName = "BlockCommentApp.app"
-            BlueprintName = "BlockCommentApp"
+            BuildableName = "BlockComment.app"
+            BlueprintName = "BlockComment"
             ReferencedContainer = "container:BlockComment.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -78,8 +78,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BD3E5A722333C30600E57F5E"
-            BuildableName = "BlockCommentApp.app"
-            BlueprintName = "BlockCommentApp"
+            BuildableName = "BlockComment.app"
+            BlueprintName = "BlockComment"
             ReferencedContainer = "container:BlockComment.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -95,8 +95,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BD3E5A722333C30600E57F5E"
-            BuildableName = "BlockCommentApp.app"
-            BlueprintName = "BlockCommentApp"
+            BuildableName = "BlockComment.app"
+            BlueprintName = "BlockComment"
             ReferencedContainer = "container:BlockComment.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

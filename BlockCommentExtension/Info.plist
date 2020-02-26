@@ -34,7 +34,7 @@
 					<key>XCSourceEditorCommandIdentifier</key>
 					<string>insertBlockComment</string>
 					<key>XCSourceEditorCommandName</key>
-					<string>Insert Block Comment</string>
+					<string>Block Comment</string>
 				</dict>
 				<dict>
 					<key>XCSourceEditorCommandClassName</key>
@@ -42,7 +42,7 @@
 					<key>XCSourceEditorCommandIdentifier</key>
 					<string>insertMarkComment</string>
 					<key>XCSourceEditorCommandName</key>
-					<string>Insert Mark Comment</string>
+					<string>Mark Comment</string>
 				</dict>
 			</array>
 			<key>XCSourceEditorExtensionPrincipalClass</key>
