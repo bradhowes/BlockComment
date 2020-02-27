@@ -23,7 +23,6 @@
 		BD989172236BAE7D00E74CAB /* Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD98916F236BAE5C00E74CAB /* Parse.swift */; };
 		BD989175236BAEBD00E74CAB /* SwiftParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD989173236BAE9800E74CAB /* SwiftParsing.swift */; };
 		BD989176236BAEBE00E74CAB /* SwiftParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD989173236BAE9800E74CAB /* SwiftParsing.swift */; };
-		BDCE635B24068EA700A32206 /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCE635A24068EA700A32206 /* Dummy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -343,7 +342,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD3E5A9B2333C60D00E57F5E /* AppDelegate.swift in Sources */,
-				BDCE635B24068EA700A32206 /* Dummy.swift in Sources */,
 				BD3E5A9A2333C60A00E57F5E /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,13 +510,13 @@
 				CODE_SIGN_ENTITLEMENTS = BlockCommentApp/BlockCommentApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20200227094348;
+				CURRENT_PROJECT_VERSION = 20200227172836;
 				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = BlockCommentExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 3.0.11;
+				MARKETING_VERSION = 3.0.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.braysoftware.BlockCommentApp.BlockComment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -534,14 +532,14 @@
 				CODE_SIGN_ENTITLEMENTS = BlockCommentApp/BlockCommentApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20200227094348;
+				CURRENT_PROJECT_VERSION = 20200227172836;
 				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = BlockCommentExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 3.0.11;
+				MARKETING_VERSION = 3.0.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.braysoftware.BlockCommentApp.BlockComment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -564,13 +562,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20200227094348;
+				CURRENT_PROJECT_VERSION = 20200227172836;
 				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = BlockCommentApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MARKETING_VERSION = 3.0.11;
+				MARKETING_VERSION = 3.0.12;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.braysoftware.BlockCommentApp;
@@ -592,13 +590,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20200227094348;
+				CURRENT_PROJECT_VERSION = 20200227172836;
 				DEVELOPMENT_TEAM = UP6SS5ES7E;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = BlockCommentApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MARKETING_VERSION = 3.0.11;
+				MARKETING_VERSION = 3.0.12;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.braysoftware.BlockCommentApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

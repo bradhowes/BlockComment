@@ -1,6 +1,5 @@
 // Copyright © 2016-2019 Brad Howes. All rights reserved.
 
-import Foundation
 import XcodeKit
 
 final class BlockCommentExtension: NSObject, XCSourceEditorExtension {
