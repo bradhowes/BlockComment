@@ -17,9 +17,23 @@ class ViewController: NSViewController {
         }
     }
 
+    func openExtensionWithScript() {
+        let source = """
+tell application "System Preferences"
+    activate
+    reveal anchor "Extensions" of pane id "com.apple.preferences.extensions"
+end tell
+"""
+        let script = NSAppleScript(source: source)!
+        var error: NSDictionary?
+        script.executeAndReturnError(&error)
+        print("\(error?.description ?? "NA")")
+    }
+
     @IBAction func openExtensions(_ sender: Any) {
-        let url = URL(string: "x-apple.systempreferences:com.apple.preferences")!
-        NSWorkspace.shared.open(url)
+        openExtensionWithScript()
+        // let url = URL(string: "x-apple.systempreferences:com.apple.preferences")!
+        // NSWorkspace.shared.open(url)
     }
 
     @IBAction func quitApp(_ sender: Any) {

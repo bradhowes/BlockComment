@@ -107,7 +107,7 @@ class ParserTests: XCTestCase {
         XCTAssertEqual(Argument.parser.parse("z: Abc"),
                        Argument(name: "z", type: Type(spec: "Abc", opt: false), def: false))
         XCTAssertEqual(Argument.parser.parse("one two   : Foo?"),
-                       Argument(name: "one", type: Type(spec: "Foo", opt: true), def: false))
+                       Argument(name: "two", type: Type(spec: "Foo", opt: true), def: false))
         XCTAssertEqual(Argument.parser.parse("_ abc: Int = 123"),
                        Argument(name: "abc", type: Type(spec: "Int", opt: false), def: true))
     }
@@ -169,7 +169,7 @@ class ParserTests: XCTestCase {
             Function(name: "comp김lex",
                      args: [
                         Argument(name: "a", type: Type(spec: "Int", opt: false), def: false),
-                        Argument(name: "b", type: Type(spec: "Foo", opt: true), def: true)],
+                        Argument(name: "c", type: Type(spec: "Foo", opt: true), def: true)],
                      throwable: true, returns: "(four: Int, five: (six: Int, seven: Int))"))
     }
 
@@ -201,7 +201,7 @@ class ParserTests: XCTestCase {
     }
 
     func testFunctionParser_TemplateArg() {
-        XCTAssertEqual(Function.parser.parse("func a<T: Blah where T.Element = Foo>   (          )     ")!.name, "a")
+        XCTAssertEqual(Function.parser.parse("func a<T: Blah where (T.Element = Foo)>   (          )     ")!.name, "a")
         XCTAssertEqual(Function.parser.parse("func a <T: Blah where T.Element = Foo>   (          )     ")!.name, "a")
     }
 
@@ -299,7 +299,7 @@ class ParserTests: XCTestCase {
         XCTAssertEqual(comment[1], " <#Describe play#>")
         XCTAssertEqual(comment[2], "")
         XCTAssertEqual(comment[3], " - parameter a: <#Describe a#>")
-        XCTAssertEqual(comment[4], " - parameter b: <#Describe b#>")
+        XCTAssertEqual(comment[4], " - parameter bb: <#Describe bb#>")
         XCTAssertEqual(comment[5], " - returns: <#Int#>")
         XCTAssertEqual(comment[6], " - throws <#Describe exceptions#>")
         XCTAssertEqual(comment[7], " */")
@@ -321,5 +321,11 @@ class ParserTests: XCTestCase {
         XCTAssertEqual(comment[3], "   - parameter two: <#Describe two#>")
         XCTAssertEqual(comment[4], "   - returns: <#Four#>")
         XCTAssertEqual(comment[5], "   */")
+    }
+
+    func testZZZ() {
+        let lines = ["    func insertionIndex(of value: Iterator.Element, predicate: OrderPredicate) -> Index {"]
+        let comment = parse(source: Source(lines: lines, firstLine: 0))
+        XCTAssertEqual(comment.count, 7)
     }
 }

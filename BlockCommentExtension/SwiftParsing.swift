@@ -53,7 +53,7 @@ func balanced(_ open: Character, _ close: Character, skipws: Bool = true) -> Par
 let tupleType = balanced("(", ")")
 
 /// Parser for various identifiers such as property, struct, and enum names as well as argument labels.
-let identifier = Parse.pat { $0.isLetter || $0.isNumber || $0 == "_" }
+let identifier = Parse.pat { $0.isLetter || $0.isNumber || $0 == "_" || $0 == "." }
 
 /// Parser for optional modifiers associated with an attribute. NOTE: the '(' must be attached directly to the attribute
 let attributeOptions = Parse.optional(balanced("(", ")", skipws: false))
@@ -146,7 +146,7 @@ struct Argument: Equatable {
     /// Parser for a function argument specification. Successful parsing results in a 3-tuple with the argument's name,
     /// type spec, and a Bool indicating if there is a default value.
     static let parser = zip(
-        Parse.first(zip(identifier, identifier).map { $0.0 != "_" ? $0.0 : $0.1 }, identifier),
+        Parse.first(zip(identifier, identifier).map { $0.1 }, identifier),
         Parse.lit(":"),
         argtype,
         defaultvalue
@@ -156,11 +156,16 @@ struct Argument: Equatable {
 /// Parser for a sequence of zero or more argument specifications separated by a ','
 let arguments = Parse.any(Argument.parser, separatedBy: Parse.lit(","))
 
-/// Parser for function names. Strips off any generic specification.
-let functionName = Parse.pat { $0 != "(" } .map { (name: String) -> String in
-    guard let pos = name.firstIndex(where: { $0.isWhitespace || $0 == "<" }) else { return name }
-    return String(name[name.startIndex..<pos])
-}
+/// Parser for function names. Captures everything up to the first '(', but strips off any generic specification.
+/// This of course fails *if* there is a '(' in the generic spec. To solve, split this into two parts: a name with an
+/// optional balanced '<>' bit that is dropped followed by a literal '('.
+
+let genericSpec = Parse.optional(balanced("<", ">"))
+let functionName = zip(identifier, genericSpec).map { $0.0 }
+//let functionName = Parse.pat { $0 != "(" } .map { (name: String) -> String in
+//    guard let pos = name.firstIndex(where: { $0.isWhitespace || $0 == "<" }) else { return name }
+//    return String(name[name.startIndex..<pos])
+//}
 
 /**
  Protocol for parsers which can transform parsed info into a Swift comment. Implementations offer a computed property

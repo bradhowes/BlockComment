@@ -733,8 +733,8 @@
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6aw-1n-hU8">
-                                                <rect key="frame" x="44" y="335" width="198" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Show System Preferences" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vtf-6s-ulw">
+                                                <rect key="frame" x="71" y="335" width="143" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Show Extensions" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vtf-6s-ulw">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>

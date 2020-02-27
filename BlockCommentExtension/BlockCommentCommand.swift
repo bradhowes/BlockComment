@@ -5,6 +5,15 @@ import XcodeKit
 
 final class BlockCommentCommand: NSObject, XCSourceEditorCommand {
 
+    enum Command: String {
+        case insertBlockComment
+        case insertMarkComment
+    }
+
+    enum Failure: Error {
+        case unknownCommand
+    }
+
     /**
      Perform an action in the BlockComment plugin.
 
@@ -13,6 +22,11 @@ final class BlockCommentCommand: NSObject, XCSourceEditorCommand {
      */
     public func perform(with invocation: XCSourceEditorCommandInvocation,
                         completionHandler: @escaping (Error?) -> Void ) -> Void {
+
+        guard let command = Command(rawValue: invocation.commandIdentifier) else {
+            completionHandler(Failure.unknownCommand)
+            return
+        }
 
         let buffer = invocation.buffer
         let lines = buffer.lines
@@ -36,13 +50,11 @@ final class BlockCommentCommand: NSObject, XCSourceEditorCommand {
             pos += 1
         }
 
-        let command = invocation.commandIdentifier
         let comment: [String] = {
             switch command {
-            case "insertBlockComment": return parse(source: Source(lines: (lines as NSArray as! [String]),
+            case .insertBlockComment: return parse(source: Source(lines: (lines as NSArray as! [String]),
                                                                    firstLine: pos))
-            case "insertMarkComment": return ["// MARK: - "]
-            default: return ["// *** Unknown command ***"]
+            case .insertMarkComment: return ["// MARK: - "]
             }
         }()
 
