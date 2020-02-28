@@ -55,6 +55,12 @@ let tupleType = balanced("(", ")")
 /// Parser for various identifiers such as property, struct, and enum names as well as argument labels.
 let identifier = Parse.pat { $0.isLetter || $0.isNumber || $0 == "_" || $0 == "." }
 
+/// Parser for optional template spec.
+let templateClause = Parse.optional(balanced("<", ">"))
+
+/// Parser for a
+let type = zip(identifier, templateClause).map { $0.0 }
+
 /// Parser for optional modifiers associated with an attribute. NOTE: the '(' must be attached directly to the attribute
 let attributeOptions = Parse.optional(balanced("(", ")", skipws: false))
 
@@ -84,7 +90,7 @@ let arrayType = balanced("[", "]")
 
 /// Parser of Swift types. Note that we do this dynamically so that we can have a valid `closure` definition which
 /// depends on `tupleType`
-let types = Parse.first { [function, arrayType, tupleType, identifier] }
+let types = Parse.first { [function, arrayType, tupleType, type] }
 
 /// Parser of return type specifications. The parsed value will be the type spec.
 let returnType = zip(Parse.lit("->"), types).map { $0.1 }
@@ -157,15 +163,7 @@ struct Argument: Equatable {
 let arguments = Parse.any(Argument.parser, separatedBy: Parse.lit(","))
 
 /// Parser for function names. Captures everything up to the first '(', but strips off any generic specification.
-/// This of course fails *if* there is a '(' in the generic spec. To solve, split this into two parts: a name with an
-/// optional balanced '<>' bit that is dropped followed by a literal '('.
-
-let genericSpec = Parse.optional(balanced("<", ">"))
-let functionName = zip(identifier, genericSpec).map { $0.0 }
-//let functionName = Parse.pat { $0 != "(" } .map { (name: String) -> String in
-//    guard let pos = name.firstIndex(where: { $0.isWhitespace || $0 == "<" }) else { return name }
-//    return String(name[name.startIndex..<pos])
-//}
+let functionName = zip(identifier, templateClause).map { $0.0 }
 
 /**
  Protocol for parsers which can transform parsed info into a Swift comment. Implementations offer a computed property

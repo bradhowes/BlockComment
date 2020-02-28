@@ -61,6 +61,8 @@ class ParserTests: XCTestCase {
         XCTAssertEqual(Type.parser.parse("[Blah]?"), Type(spec: "[Blah]", opt: true))
         XCTAssertEqual(Type.parser.parse("(Int, Foo)"), Type(spec: "(Int, Foo)", opt: false))
         XCTAssertEqual(Type.parser.parse("(Int, Foo)?"), Type(spec: "(Int, Foo)", opt: true))
+        XCTAssertEqual(Type.parser.parse("Foo<Bar>?"), Type(spec: "Foo", opt: true))
+        XCTAssertEqual(Type.parser.parse("Foo.Bar<Beep>?"), Type(spec: "Foo.Bar", opt: true))
     }
 
     func testClosureValueParsing() {
@@ -321,11 +323,5 @@ class ParserTests: XCTestCase {
         XCTAssertEqual(comment[3], "   - parameter two: \("Describe two".tagged)")
         XCTAssertEqual(comment[4], "   - returns: \("Four".tagged)")
         XCTAssertEqual(comment[5], "   */")
-    }
-
-    func testZZZ() {
-        let lines = ["    func insertionIndex(of value: Iterator.Element, predicate: OrderPredicate) -> Index {"]
-        let comment = parse(source: Source(lines: lines, firstLine: 0))
-        XCTAssertEqual(comment.count, 7)
     }
 }
