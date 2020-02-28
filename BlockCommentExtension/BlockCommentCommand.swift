@@ -50,10 +50,10 @@ final class BlockCommentCommand: NSObject, XCSourceEditorCommand {
         }
 
         let comment: [String] = {
+            let source = Source(lines: (lines as NSArray as! [String]), firstLine: pos)
             switch command {
-            case .insertBlockComment: return parse(source: Source(lines: (lines as NSArray as! [String]),
-                                                                   firstLine: pos))
-            case .insertMarkComment: return ["// MARK: - "]
+            case .insertBlockComment: return parse(source: source)
+            case .insertMarkComment: return mark(source: source)
             }
         }()
 

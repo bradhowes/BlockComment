@@ -175,16 +175,10 @@ protocol Commentable {
     var commentary: [String] {get}
 }
 
-extension Commentable {
+extension String {
 
-    /**
-     Utiltity method for Commentable parsers that creates magic tags in a comment that the user can access by repeated
-     pressing of the TAB key.
-
-     - parameter content: the text to appear in the tag
-     - returns: the String to insert for the tag to appear
-     */
-    func makeTag(_ content: String) -> String { "<" + "#" + content + "#" + ">" }
+    /// Create a magic tag to embed in a comment that the user can access and replace with their own text.
+    var tagged: String { "<" + "#" + self + "#" + ">" }
 }
 
 /**
@@ -202,12 +196,12 @@ struct Function: Equatable, Commentable {
     /// describe what it will throw and why.
     var commentary: [String] {
         var lines = ["/**"]
-        lines.append(" \(makeTag("Describe " + name))")
+        lines.append(" \(("Describe " + name).tagged)")
         if !args.isEmpty || returns != nil  || throwable {
             lines.append("")
-            lines += args.map { " - parameter \($0.name): \(makeTag("Describe " + $0.name))" }
-            if let r = returns { lines.append(" - returns: \(makeTag(r))") }
-            if throwable { lines.append(" - throws \(makeTag("Describe exceptions"))") }
+            lines += args.map { " - parameter \($0.name): \(("Describe " + $0.name).tagged)" }
+            if let r = returns { lines.append(" - returns: \(r.tagged)") }
+            if throwable { lines.append(" - throws \(("Describe exceptions").tagged)") }
         }
         lines.append(" */")
         return lines
@@ -246,7 +240,7 @@ struct Container: Equatable, Commentable {
     let inherits: String?
 
     var commentary: [String] {
-        var lines = ["/**", " \(makeTag("Describe " + name))" ]
+        var lines = ["/**", " \(("Describe " + name).tagged)" ]
         if let parent = inherits {
             lines.append(" - SeeAlso: `\(parent)`")
         }
@@ -273,7 +267,7 @@ struct Property: Equatable, Commentable {
     let kind: Kind
     let name: String
 
-    var commentary: [String] { return ["/// \(makeTag("Describe " + name))"] }
+    var commentary: [String] { return ["/// \(("Describe " + name).tagged)"] }
 
     /// Parser for properties
     static let parser = zip(modifiers,
@@ -283,6 +277,11 @@ struct Property: Equatable, Commentable {
                                 Parse.lit("associatedtype").to(.associatedtype),
                                 Parse.lit("let").to(.let)),
                             identifier).map { Property(kind: $0.1, name: $0.2) }
+}
+
+struct Marker: Commentable {
+    static let shared = Marker()
+    var commentary: [String] { ["/// Mark: - \(("Title").tagged)"] }
 }
 
 /// General parser which returns a collection of lines if there is a commentable item after the cursor. Note that the
@@ -299,5 +298,9 @@ let commentable = Parse.first(Function.parser.map { $0.commentary },
  - returns: the comment found for the source
  */
 public func parse(source: Source) -> [String] {
-    return commentable.parse(source)?.map { source.indentation + $0 } ?? []
+    commentable.parse(source)?.map { source.indentation + $0 } ?? []
+}
+
+public func mark(source: Source) -> [String] {
+    Marker.shared.commentary
 }

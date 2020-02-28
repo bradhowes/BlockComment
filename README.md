@@ -1,4 +1,4 @@
-# BlockComment
+# Swocks -- Swift Block Comments
 
 Xcode 8+ source editor extension for Swift editing that will insert a block comment, possibly with some tags.
 
@@ -40,8 +40,8 @@ Extension should be available after a restart of Xcode.  NOTE: if you are reinst
 
 ![](https://github.com/bradhowes/BlockComment/blob/master/images/menu.png?raw=true)
 
-Place cursor before the entity to document, then select the `Insert Block Comment` menu command (or assign a key shortcut in
-Xcode preferences. There is also a dumb `Insert Mark Comment` that just inserts
+Place cursor before the entity to document, then select the `Block Comment` menu command (or assign a key shortcut in
+Xcode preferences. There is also a dumb `Mark Comment` that just inserts
 
 ```
 // MARK: - <#Description#>

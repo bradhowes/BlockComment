@@ -316,10 +316,10 @@ class ParserTests: XCTestCase {
         let comment = parse(source: Source(lines: lines, firstLine: 1))
         XCTAssertEqual(comment.count, 6)
         XCTAssertEqual(comment[0], "  /**")
-        XCTAssertEqual(comment[1], "   <#Describe one#>")
+        XCTAssertEqual(comment[1], "   \("Describe one".tagged)")
         XCTAssertEqual(comment[2], "  ")
-        XCTAssertEqual(comment[3], "   - parameter two: <#Describe two#>")
-        XCTAssertEqual(comment[4], "   - returns: <#Four#>")
+        XCTAssertEqual(comment[3], "   - parameter two: \("Describe two".tagged)")
+        XCTAssertEqual(comment[4], "   - returns: \("Four".tagged)")
         XCTAssertEqual(comment[5], "   */")
     }
 
