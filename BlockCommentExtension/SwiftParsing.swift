@@ -279,7 +279,7 @@ struct Property: Equatable, Commentable {
 
 struct Marker: Commentable {
     static let shared = Marker()
-    var commentary: [String] { ["/// Mark: - \(("Title").tagged)"] }
+    var commentary: [String] { ["// MARK: - \(("Title").tagged)"] }
 }
 
 /// General parser which returns a collection of lines if there is a commentable item after the cursor. Note that the
