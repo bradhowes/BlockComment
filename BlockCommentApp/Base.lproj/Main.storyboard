@@ -725,16 +725,24 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29N-o6-7BP">
-                                                <rect key="frame" x="-2" y="415" width="289" height="38"/>
-                                                <textFieldCell key="cell" selectable="YES" allowsUndo="NO" alignment="center" title="Open the &quot;Extensions&quot; panel of System Preferences." allowsEditingTextAttributes="YES" id="s6R-iH-1Vf">
+                                                <rect key="frame" x="-2" y="417" width="289" height="57"/>
+                                                <textFieldCell key="cell" selectable="YES" allowsUndo="NO" alignment="left" title="Since this is an Xcode extension, you must have Xcode installed to do anything worthwhile." allowsEditingTextAttributes="YES" id="s6R-iH-1Vf">
+                                                    <font key="font" metaFont="system" size="15"/>
+                                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3G-xK-dWN">
+                                                <rect key="frame" x="-2" y="356" width="289" height="38"/>
+                                                <textFieldCell key="cell" selectable="YES" allowsUndo="NO" alignment="left" title="Open the &quot;Extensions&quot; panel of System Preferences." allowsEditingTextAttributes="YES" id="ykC-lw-Aj5">
                                                     <font key="font" metaFont="system" size="15"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6aw-1n-hU8">
-                                                <rect key="frame" x="71" y="335" width="143" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Show Extensions" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vtf-6s-ulw">
+                                                <rect key="frame" x="44" y="288" width="198" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Open System Preferences" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vtf-6s-ulw">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
@@ -743,24 +751,24 @@
                                                 </connections>
                                             </button>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnQ-Dp-YNC">
-                                                <rect key="frame" x="-2" y="252" width="289" height="38"/>
-                                                <textFieldCell key="cell" selectable="YES" allowsUndo="NO" alignment="center" title="Choose &quot;Xcode Source Editor&quot; in the list on the left side." allowsEditingTextAttributes="YES" id="4QA-Tw-TER">
+                                                <rect key="frame" x="-2" y="217" width="289" height="38"/>
+                                                <textFieldCell key="cell" selectable="YES" allowsUndo="NO" alignment="left" title="Choose &quot;Xcode Source Editor&quot; in the list on the left side." allowsEditingTextAttributes="YES" id="4QA-Tw-TER">
                                                     <font key="font" metaFont="system" size="15"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Is2-0e-9OO">
-                                                <rect key="frame" x="-2" y="170" width="289" height="38"/>
-                                                <textFieldCell key="cell" selectable="YES" allowsUndo="NO" alignment="center" title="Make sure that &quot;Swocks&quot; is checked on the right." allowsEditingTextAttributes="YES" id="M0n-pU-Xhh">
+                                                <rect key="frame" x="-2" y="147" width="289" height="38"/>
+                                                <textFieldCell key="cell" selectable="YES" allowsUndo="NO" alignment="left" title="Make sure that &quot;Swocks&quot; is checked on the right." allowsEditingTextAttributes="YES" id="M0n-pU-Xhh">
                                                     <font key="font" metaFont="system" size="15"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6k-XP-mwR">
-                                                <rect key="frame" x="-2" y="79" width="289" height="57"/>
-                                                <textFieldCell key="cell" selectable="YES" allowsUndo="NO" alignment="center" title="Restart Xcode. You should see a new menu item called &quot;Swocks&quot; at the bottom of the &quot;Editor&quot; menu." allowsEditingTextAttributes="YES" id="FMj-C3-pey">
+                                                <rect key="frame" x="-2" y="68" width="289" height="57"/>
+                                                <textFieldCell key="cell" selectable="YES" allowsUndo="NO" alignment="left" title="Restart Xcode. You should see a new menu item called &quot;Swocks&quot; at the bottom of the &quot;Editor&quot; menu." allowsEditingTextAttributes="YES" id="FMj-C3-pey">
                                                     <font key="font" metaFont="system" size="15"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -786,8 +794,10 @@
                                             <integer value="1000"/>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
+                                            <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
