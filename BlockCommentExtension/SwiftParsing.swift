@@ -124,8 +124,8 @@ let value = Parse.first(
     tupleType.forget,
     arrayType.forget,
     closureValue.forget,
-    Parse.int.forget,
     Parse.double.forget,
+    Parse.int.forget,
     Parse.lit("true").forget,
     Parse.lit("false").forget
 )

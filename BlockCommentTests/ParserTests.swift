@@ -7,6 +7,7 @@ class ParserTests: XCTestCase {
     func testLiteralParsing() {
         XCTAssertEqual(Parse.lit("1").parse("1"), "1")
         XCTAssertEqual(Parse.lit("12").parse("12"), "12")
+        XCTAssertEqual(Parse.lit("1.23").parse("1.23"), "1.23")
         XCTAssertEqual(Parse.lit("foo").parse("  foo"), "foo")
         XCTAssertEqual(Parse.lit("bar", optional: true).parse("   bar  "), "bar")
         XCTAssertEqual(Parse.lit("bar", optional: true).parse("   "), "bar")
@@ -78,6 +79,7 @@ class ParserTests: XCTestCase {
     func testDefaultValueParsing() {
         XCTAssertEqual(defaultvalue.parse("=123"), true)
         XCTAssertEqual(defaultvalue.parse(" = true"), true)
+        XCTAssertEqual(defaultvalue.parse(" = 1.23"), true)
         XCTAssertEqual(defaultvalue.parse("""
                 = "testing",
 """
@@ -112,6 +114,8 @@ class ParserTests: XCTestCase {
                        Argument(name: "two", type: Type(spec: "Foo", opt: true), def: false))
         XCTAssertEqual(Argument.parser.parse("_ abc: Int = 123"),
                        Argument(name: "abc", type: Type(spec: "Int", opt: false), def: true))
+        XCTAssertEqual(Argument.parser.parse("_ factor: CGFloat = 1.25"),
+                       Argument(name: "factor", type: Type(spec: "CGFloat", opt: false), def: true))
     }
 
     func testArgumentsParsing() {
@@ -188,6 +192,13 @@ class ParserTests: XCTestCase {
         XCTAssertEqual(tmp?.args.count, 3)
         XCTAssertEqual(tmp?.throwable, true)
         XCTAssertEqual(tmp?.returns, "(four: Int, five: \t\t(six: Int, seven: Int))")
+    }
+
+    func testFunction_Failed() {
+        let lines = [ "", "public func lighter(_ factor: CGFloat = 1.25) -> UIColor {", ""]
+        let tmp = Function.parser.parse(Source(lines: lines, firstLine: 1))
+        XCTAssertTrue(tmp != nil)
+        XCTAssertEqual(tmp?.name, "lighter")
     }
 
     func testFunctionParser_ClosureArg() {
