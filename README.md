@@ -6,7 +6,7 @@ Xcode 8+ source editor extension for Swift editing that will insert a block comm
 > knowledge about the code being commented on. This was more of a learning exercise. I also like my style of
 > comments over Xcode's use of '///' everywhere.
 
-![](https://github.com/bradhowes/BlockComment/blob/master/images/screenshot.gif?raw=true)
+![](https://github.com/bradhowes/BlockComment/blob/main/images/screenshot.gif?raw=true)
 
 The command does a rudimentary scan forward from the cursor, looking for something to comment. If it finds a
 `func` or `init` expression, it will insert a block comment describing the function definition. It also has
@@ -33,12 +33,12 @@ some effort to accurately parse the Swift language.
 Build the main `BlockCommentApp`. This will also build the `BlockComment.appex` extension. Run the app,
 and follow the instructions presented to you. 
 
-![](https://github.com/bradhowes/BlockComment/blob/master/images/app.png?raw=true)
+![](https://github.com/bradhowes/BlockComment/blob/main/images/app.png?raw=true)
 
 Extension should be available after a restart of Xcode.  NOTE: if you are reinstalling or upgrading, probably best to remove the old version 
 *first* by moving to trash and then emptying the trash.
 
-![](https://github.com/bradhowes/BlockComment/blob/master/images/menu.png?raw=true)
+![](https://github.com/bradhowes/BlockComment/blob/main/images/menu.png?raw=true)
 
 Place cursor before the entity to document, then select the `Block Comment` menu command (or assign a key shortcut in
 Xcode preferences. There is also a dumb `Mark Comment` that just inserts
@@ -49,16 +49,16 @@ Xcode preferences. There is also a dumb `Mark Comment` that just inserts
 
 to insert a horizontal divider and title in the pop-down list of interesting items.
 
-![](https://github.com/bradhowes/BlockComment/blob/master/images/mark.png?raw=true)
+![](https://github.com/bradhowes/BlockComment/blob/main/images/mark.png?raw=true)
 
 
 # Code
 
 The code parsing takes place in
-[BlockCommentExtension/SwiftParsing.swift](https://github.com/bradhowes/BlockComment/blob/master/BlockCommentExtension/SwiftParsing.swift). The code starts with the
+[BlockCommentExtension/SwiftParsing.swift](https://github.com/bradhowes/BlockComment/blob/main/BlockCommentExtension/SwiftParsing.swift). The code starts with the
 fundamental bits and builds on them primarily via the `zip` and `first` functions.
 The processing of the request from Xcode happens in
-[BlockCommentExtension/BlockCommentCommand.swift](https://github.com/bradhowes/BlockComment/blob/master/BlockCommentExtension/BlockCommentCommand.swift). More general parsing
-functions are found in [BlockCommentExtension/Parse.swift](https://github.com/bradhowes/BlockComment/blob/master/BlockCommentExtension/Parse.swift) and
-the Parser generic struct is found in [BlockCommentExtension/Parser.swift](https://github.com/bradhowes/BlockComment/blob/master/BlockCommentExtension/Parser.swift).
+[BlockCommentExtension/BlockCommentCommand.swift](https://github.com/bradhowes/BlockComment/blob/main/BlockCommentExtension/BlockCommentCommand.swift). More general parsing
+functions are found in [BlockCommentExtension/Parse.swift](https://github.com/bradhowes/BlockComment/blob/main/BlockCommentExtension/Parse.swift) and
+the Parser generic struct is found in [BlockCommentExtension/Parser.swift](https://github.com/bradhowes/BlockComment/blob/main/BlockCommentExtension/Parser.swift).
 
