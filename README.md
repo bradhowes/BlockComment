@@ -1,3 +1,7 @@
+[![CI](https://github.com/bradhowes/BlockComment/workflows/CI/badge.svg)](https://github.com/bradhowes/BlockComment)
+[![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://swift.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # Swocks -- Swift Block Comments
 
 Xcode 8+ source editor extension for Swift editing that will insert a block comment, possibly with some tags.
@@ -20,22 +24,22 @@ typing to replace the tag with text.
 # Note on Version 3
 
 Version 3 includes a completely rewritten parser that is primarily functional in design. It is based on ideas discussed in the
-excellent videos put out by the [POINT•FREE](https://www.pointfree.co) team. You can see the playgrounds they discuss on 
+excellent videos put out by the [POINT•FREE](https://www.pointfree.co) team. You can see the playgrounds they discuss on
 their [Github repo](https://github.com/pointfreeco/episode-code-samples) -- in particular see playgrounds 0056 - 0064.
 
-I used their fundamental design but retooled it to work outside of a playground, and I extended it to of course handle Swift 
+I used their fundamental design but retooled it to work outside of a playground, and I extended it to of course handle Swift
 parsing. Be aware that when I say it parses Swift,
-it only does so in the most basic way to uncover the interesting features to include in a block comment. It would take quite 
+it only does so in the most basic way to uncover the interesting features to include in a block comment. It would take quite
 some effort to accurately parse the Swift language.
 
 # To Use
 
 Build the main `BlockCommentApp`. This will also build the `BlockComment.appex` extension. Run the app,
-and follow the instructions presented to you. 
+and follow the instructions presented to you.
 
 ![](https://github.com/bradhowes/BlockComment/blob/main/images/app.png?raw=true)
 
-Extension should be available after a restart of Xcode.  NOTE: if you are reinstalling or upgrading, probably best to remove the old version 
+Extension should be available after a restart of Xcode.  NOTE: if you are reinstalling or upgrading, probably best to remove the old version
 *first* by moving to trash and then emptying the trash.
 
 ![](https://github.com/bradhowes/BlockComment/blob/main/images/menu.png?raw=true)
@@ -61,4 +65,3 @@ The processing of the request from Xcode happens in
 [BlockCommentExtension/BlockCommentCommand.swift](https://github.com/bradhowes/BlockComment/blob/main/BlockCommentExtension/BlockCommentCommand.swift). More general parsing
 functions are found in [BlockCommentExtension/Parse.swift](https://github.com/bradhowes/BlockComment/blob/main/BlockCommentExtension/Parse.swift) and
 the Parser generic struct is found in [BlockCommentExtension/Parser.swift](https://github.com/bradhowes/BlockComment/blob/main/BlockCommentExtension/Parser.swift).
-
