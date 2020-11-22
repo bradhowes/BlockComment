@@ -14,4 +14,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Run tests
-      run: xcodebuild test -destination 'platform=macOS' -scheme 'Swocks'
+      run: xcodebuild test -scheme SwocksExt
