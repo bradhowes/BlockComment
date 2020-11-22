@@ -335,4 +335,17 @@ class ParserTests: XCTestCase {
         XCTAssertEqual(comment[4], "   - returns: \("Four".tagged)")
         XCTAssertEqual(comment[5], "   */")
     }
+
+//    @objc dynamic func handleGesture(_ panner: UIPanGestureRecognizer) {
+    func testParse2() {
+        let lines = ["@objc dynamic func handleGesture(_ panner: UIPanGestureRecognizer) {"]
+        let comment = parse(source: Source(lines: lines, firstLine: 0))
+        XCTAssertEqual(comment.count, 5)
+        XCTAssertEqual(comment[0], "/**")
+        XCTAssertEqual(comment[1], " \("Describe handleGesture".tagged)")
+        XCTAssertEqual(comment[2], "")
+        XCTAssertEqual(comment[3], " - parameter panner: \("Describe panner".tagged)")
+        XCTAssertEqual(comment[4], " */")
+    }
+
 }

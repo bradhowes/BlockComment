@@ -72,6 +72,8 @@ let attribute = zip(Parse.lit("@"), identifier, Parse.optional(attributeOptions)
 /// Parser for an optional sequence of one or more attributes, access level, etc.
 let modifiers = Parse.any(Parse.first(
     attribute,
+    Parse.lit("weak"),
+    Parse.lit("dynamic"),
     Parse.lit("static"),
     Parse.lit("required"),
     Parse.lit("convenience"),

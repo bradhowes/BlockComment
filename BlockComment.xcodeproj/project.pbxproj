@@ -23,6 +23,8 @@
 		BD989172236BAE7D00E74CAB /* Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD98916F236BAE5C00E74CAB /* Parse.swift */; };
 		BD989175236BAEBD00E74CAB /* SwiftParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD989173236BAE9800E74CAB /* SwiftParsing.swift */; };
 		BD989176236BAEBE00E74CAB /* SwiftParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD989173236BAE9800E74CAB /* SwiftParsing.swift */; };
+		BDB69E432562E8DF00910F96 /* XcodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB69E422562E8DF00910F96 /* XcodeKit.framework */; };
+		BDB69E442562E8DF00910F96 /* XcodeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BDB69E422562E8DF00910F96 /* XcodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,17 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BDB69E452562E8DF00910F96 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDB69E442562E8DF00910F96 /* XcodeKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +101,7 @@
 		BD98916F236BAE5C00E74CAB /* Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parse.swift; sourceTree = "<group>"; };
 		BD989173236BAE9800E74CAB /* SwiftParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftParsing.swift; sourceTree = "<group>"; };
 		BD9B64E61DA0543A004E4319 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BDB69E422562E8DF00910F96 /* XcodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XcodeKit.framework; path = Library/Frameworks/XcodeKit.framework; sourceTree = DEVELOPER_DIR; };
 		BDCE635A24068EA700A32206 /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
 		BDDC9FF8233399EB007E700F /* BlockCommentApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BlockCommentApp.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDB69E432562E8DF00910F96 /* XcodeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +172,7 @@
 		BD0246561D9D03D3008AEC26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BDB69E422562E8DF00910F96 /* XcodeKit.framework */,
 				BD0246571D9D03D3008AEC26 /* Cocoa.framework */,
 			);
 			name = Frameworks;
@@ -196,6 +212,7 @@
 				BD0246511D9D03D3008AEC26 /* Sources */,
 				BD0246521D9D03D3008AEC26 /* Frameworks */,
 				BD0246531D9D03D3008AEC26 /* Resources */,
+				BDB69E452562E8DF00910F96 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -251,7 +268,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "Brad Howes";
 				TargetAttributes = {
 					BD0246541D9D03D3008AEC26 = {
@@ -410,6 +427,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -436,7 +454,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -473,6 +491,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -493,7 +512,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -515,7 +534,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = BlockCommentExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 3.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.braysoftware.BlockCommentApp.BlockComment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -538,7 +557,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = BlockCommentExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 3.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.braysoftware.BlockCommentApp.BlockComment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -568,6 +587,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = BlockCommentApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 3.1.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -596,6 +616,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = BlockCommentApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 3.1.6;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.braysoftware.BlockCommentApp;
