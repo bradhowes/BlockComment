@@ -1,0 +1,7 @@
+//
+//  CI.xcconfig
+//  BlockComment
+//
+// https://help.apple.com/xcode/#/dev745c5c974
+DEVELOPMENT_TEAM=
+CODE_SIGN_IDENTITY=-
