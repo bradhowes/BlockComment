@@ -12,8 +12,9 @@ class ViewController: NSViewController {
     }
 
     @IBAction func openExtensions(_ sender: Any) {
-        let url = URL(string: "x-apple.systempreferences:com.apple.preferences")!
-        NSWorkspace.shared.open(url)
+        // let url = URL(string: "x-apple.systempreferences:com.apple.preferences")!
+        // NSWorkspace.shared.open(url)
+        NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Library/PreferencePanes/Extensions.prefPane"))
     }
 
     @IBAction func quitApp(_ sender: Any) {
