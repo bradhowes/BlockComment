@@ -195,10 +195,10 @@ class ParserTests: XCTestCase {
     }
 
     func testFunction_Failed() {
-        let lines = [ "", "public func lighter(_ factor: CGFloat = 1.25) -> UIColor {", ""]
+        let lines = [ "", "public static func == (lhs: LegacyFavorite, rhs: LegacyFavorite) -> Bool", ""]
         let tmp = Function.parser.parse(Source(lines: lines, firstLine: 1))
         XCTAssertTrue(tmp != nil)
-        XCTAssertEqual(tmp?.name, "lighter")
+        XCTAssertEqual(tmp?.name, "==")
     }
 
     func testFunctionParser_ClosureArg() {
