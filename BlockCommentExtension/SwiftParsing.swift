@@ -64,7 +64,7 @@ let type = zip(identifier, templateClause).map { $0.0 }
 /// Parser for optional modifiers associated with an attribute. NOTE: the '(' must be attached directly to the attribute
 let attributeOptions = Parse.optional(balanced("(", ")", skipws: false))
 
-/// Parser for Swift atrributes that start with '@'. Support optional "(...)"
+/// Parser for Swift attributes that start with '@'. Support optional "(...)"
 let attribute = zip(Parse.lit("@"), identifier, Parse.optional(attributeOptions)).map {
     $0.0 + $0.1
 }
@@ -165,7 +165,12 @@ struct Argument: Equatable {
 let arguments = Parse.any(Argument.parser, separatedBy: Parse.lit(","))
 
 /// Parser for function names. Captures everything up to the first '(', but strips off any generic specification.
-let functionName = zip(identifier, templateClause).map { $0.0 }
+let functionName = Parse.first(
+    // Usual case
+    zip(identifier, templateClause).map { $0.0 },
+    // Hack to handle operator definitions such as "func =="
+    Parse.pat { $0 != "(" }.map { $0.trimmingCharacters(in: .whitespaces) }
+)
 
 /**
  Protocol for parsers which can transform parsed info into a Swift comment. Implementations offer a computed property
