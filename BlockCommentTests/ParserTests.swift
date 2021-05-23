@@ -194,11 +194,18 @@ class ParserTests: XCTestCase {
         XCTAssertEqual(tmp?.returns, "(four: Int, five: \t\t(six: Int, seven: Int))")
     }
 
-    func testFunction_Failed() {
+    func testFunction_Operator() {
         let lines = [ "", "public static func == (lhs: LegacyFavorite, rhs: LegacyFavorite) -> Bool", ""]
         let tmp = Function.parser.parse(Source(lines: lines, firstLine: 1))
         XCTAssertTrue(tmp != nil)
         XCTAssertEqual(tmp?.name, "==")
+    }
+
+    func testFunction_Mutating() {
+        let lines = [ "", "    public mutating func post(to sampler: Sampler) {", ""]
+        let tmp = Function.parser.parse(Source(lines: lines, firstLine: 1))
+        XCTAssertTrue(tmp != nil)
+        XCTAssertEqual(tmp?.name, "post")
     }
 
     func testFunctionParser_ClosureArg() {
