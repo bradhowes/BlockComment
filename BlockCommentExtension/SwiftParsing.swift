@@ -9,12 +9,10 @@
  - parameter close: the Character that closes the sequence
  - returns: new parser
  */
-func balanced(_ open: Character, _ close: Character, skipws: Bool = true) -> Parser<String> {
+func balanced(_ open: Character, _ close: Character, skipWS: Bool = true) -> Parser<String> {
   return Parser { it in
     let original = it
-    if skipws {
-      it.skip { $0.isWhitespace }
-    }
+    if skipWS { it.skip { $0.isWhitespace } }
     
     let start = it
     guard it.next() == open else {
@@ -58,41 +56,41 @@ let identifier = Parse.pat { $0.isLetter || $0.isNumber || $0 == "_" || $0 == ".
 /// Parser for optional template spec.
 let templateClause = Parse.optional(balanced("<", ">"))
 
-/// Parser for a
+/// Parser for an identifier with an optional generics clause
 let type = zip(identifier, templateClause).map { $0.0 }
 
 /// Parser for optional modifiers associated with an attribute. NOTE: the '(' must be attached directly to the attribute
-let attributeOptions = Parse.optional(balanced("(", ")", skipws: false))
+let attributeOptions = Parse.optional(balanced("(", ")", skipWS: false))
 
 /// Parser for Swift attributes that start with '@'. Support optional "(...)"
-let attribute = zip(Parse.lit("@"), identifier, Parse.optional(attributeOptions)).map {
+let attribute = zip(Parse.lit("@"), identifier, attributeOptions).map {
   $0.0 + $0.1
 }
 
 /// Parser for an optional sequence of one or more attributes, access level, etc.
 let modifiers = Parse.any(Parse.first(
   attribute,
-  Parse.lit("mutating"),
-  Parse.lit("weak"),
-  Parse.lit("dynamic"),
-  Parse.lit("static"),
-  Parse.lit("required"),
   Parse.lit("convenience"),
+  Parse.lit("dynamic"),
+  Parse.lit("fileprivate"),
+  Parse.lit("final"),
+  Parse.lit("internal"),
+  Parse.lit("mutating"),
+  Parse.lit("open"),
   Parse.lit("override"),
   Parse.lit("private(set)"),
   Parse.lit("private"),
-  Parse.lit("fileprivate"),
-  Parse.lit("internal"),
   Parse.lit("public"),
-  Parse.lit("open"),
-  Parse.lit("final")
-), separatedBy: Parse.pat(skipws: false) { $0.isWhitespace })
+  Parse.lit("required"),
+  Parse.lit("static"),
+  Parse.lit("weak")
+), separatedBy: Parse.pat(skipWS: false) { $0.isWhitespace })
 
 /// Parser for an array type or default value -- ignores anything inside of the brackets
 let arrayType = balanced("[", "]")
 
 /// Parser of Swift types. Note that we do this dynamically so that we can have a valid `closure` definition which
-/// depends on `tupleType`
+/// depends on `function` that is defined below.
 let types = Parse.first { [function, arrayType, tupleType, type] }
 
 /// Parser of return type specifications. The parsed value will be the type spec.
@@ -111,7 +109,7 @@ struct Type: Equatable {
   let opt: Bool
   
   /// Parser for any type specification. Supports presence of optional "?".
-  static let parser = zip(types, Parse.optional(Parse.lit("?", skipws: false)))
+  static let parser = zip(types, Parse.optional(Parse.lit("?", skipWS: false)))
     .map { Type(spec: $0.0, opt: !$0.1.isEmpty) }
 }
 
@@ -127,6 +125,7 @@ let value = Parse.first(
   tupleType.forget,
   arrayType.forget,
   closureValue.forget,
+  identifier.forget,
   Parse.double.forget,
   Parse.int.forget,
   Parse.lit("true").forget,
@@ -134,13 +133,13 @@ let value = Parse.first(
 )
 
 /// Parser for a default value assignment set on a function argument
-let defaultvalue = Parse.optional(zip(Parse.lit("="), value)).map { !$0.isEmpty }
+let defaultValue = Parse.optional(zip(Parse.lit("="), value)).map { !$0.isEmpty }
 
 /// Parser for optional attributes set on an argument
-let argmods = Parse.any(Parse.first(Parse.lit("inout"), attribute), separatedBy: Parse.lit(" ", skipws: false))
+let argMods = Parse.any(Parse.first(Parse.lit("inout"), attribute), separatedBy: Parse.lit(" ", skipWS: false))
 
 /// Parser for an argument type which may have one or more modifiers before the type specification
-let argtype = zip(argmods, Type.parser).map {
+let argType = zip(argMods, Type.parser).map {
   $0.1
 }
 
@@ -150,16 +149,16 @@ let argtype = zip(argmods, Type.parser).map {
 struct Argument: Equatable {
   let name: String
   let type: Type
-  let def: Bool
+  let hasDefault: Bool
   
   /// Parser for a function argument specification. Successful parsing results in a 3-tuple with the argument's name,
   /// type spec, and a Bool indicating if there is a default value.
   static let parser = zip(
     Parse.first(zip(identifier, identifier).map { $0.1 }, identifier),
     Parse.lit(":"),
-    argtype,
-    defaultvalue
-  ).map { Argument(name: $0.0, type: $0.2, def: $0.3) }
+    argType,
+    defaultValue
+  ).map { Argument(name: $0.0, type: $0.2, hasDefault: $0.3) }
 }
 
 /// Parser for a sequence of zero or more argument specifications separated by a ','

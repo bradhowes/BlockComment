@@ -13,32 +13,33 @@ public enum Parse {
    Utility to scan over text and capture the result.
    
    - parameter start: the iterator to use for characters
-   - parameter skipws: if true, skip over whitespace before parsing
-   - parameter iter: closure to execute to scan/parse the text
-   - parameter check: closure to execute to determine if the parse was successful and to generate an `A` instance if so
-   - returns: optional `A` instance
+   - parameter skipWS: if true, skip over whitespace before parsing
+   - parameter tokenizer: closure to execute to scan/parse the text
+   - parameter map: closure to execute to determine if the parse was successful and to generate an `OutputType`
+   instance if so
+   - returns: optional `OutputType` instance
    */
-  public static func capture<A>(_ start: inout Source.Iterator, skipws: Bool, iter: (inout Source.Iterator) -> Void,
-                                check: (String)-> A?) -> A? {
-    if skipws { start.skip { $0.isWhitespace } }
+  private static func parse<OutputType>(_ start: inout Source.Iterator, skipWS: Bool,
+                                        tokenizer: (inout Source.Iterator) -> Void,
+                                        map: (String)-> OutputType?) -> OutputType? {
+    if skipWS { start.skip { $0.isWhitespace } }
     var it = start
-    iter(&it)
-    guard let value = check(start.span(to: it)) else { return nil }
+    tokenizer(&it)
+    guard let value = map(start.span(to: it)) else { return nil }
     start = it
-    print("captured: '\(value)' remaining: '\(it.remaining)")
     return value
   }
   
   /// Parser for decimal integer values
   public static let int = Parser<Int> { it in
-    capture(&it, skipws: true, iter: { $0.skip { $0.isNumber } }, check: { Int($0) })
+    parse(&it, skipWS: true, tokenizer: { $0.skip { $0.isNumber } }) { Int($0) }
   }
   
   //assert(int.parse("  123") == 123)
   
   /// Parser for floating-point values
   public static let double = Parser<Double> { it in
-    capture(&it, skipws: true, iter: { $0.skip { $0.isNumber || $0 == "." } }, check: { Double($0) })
+    parse(&it, skipWS: true, tokenizer: { $0.skip { $0.isNumber || $0 == "." } }) { Double($0) }
   }
   
   //assert(double.parse(" 123.456  ") == 123.456)
@@ -53,26 +54,26 @@ public enum Parse {
    Obtain a parser for literal value
    
    - parameter p: the literal value to expect
-   - parameter optiona: if true then succeed even if the literal does not exist
-   - parameter skipws: if true (default) allow for whitespace characters before literal
+   - parameter optional: if true then succeed even if the literal does not exist
+   - parameter skipWS: if true (default) allow for whitespace characters before literal
    - returns: new parser that matches on the given literal
    */
-  public static func lit(_ p: String, optional: Bool = false, skipws: Bool = true) -> Parser<String> {
-    Parser { it in
-      capture(&it, skipws: skipws, iter: { $0.skip(count: p.count) }, check: { $0 == p || optional ? p : nil })
+  public static func lit(_ p: String, optional: Bool = false, skipWS: Bool = true) -> Parser<String> {
+    .init { it in
+      parse(&it, skipWS: skipWS, tokenizer: { $0.skip(count: p.count) }) { $0 == p || optional ? p : nil }
     }
   }
   
   /**
    Obtain a parser that matches a class of characters.
    
-   - parameter skipws: if true (default) skip whitespace characters before parsing
+   - parameter skipWS: if true (default) skip whitespace characters before parsing
    - parameter p: the predicate function that indicates if a character belongs in the desired class
    - returns: new parser for matching character classes
    */
-  public static func pat(skipws: Bool = true, while p: @escaping (Character) -> Bool) -> Parser<String> {
-    Parser { it in
-      capture(&it, skipws: skipws, iter: { $0.skip(p) }, check: { !$0.isEmpty ? $0 : nil })
+  public static func pat(skipWS: Bool = true, while p: @escaping (Character) -> Bool) -> Parser<String> {
+    .init { it in
+      parse(&it, skipWS: skipWS, tokenizer: { $0.skip(p) }) { !$0.isEmpty ? $0 : nil }
     }
   }
   
@@ -82,7 +83,7 @@ public enum Parse {
    - parameter a: the value to return for the parser
    - returns: the new parser
    */
-  public static func always<A>(_ a: A) -> Parser<A> { Parser<A> { _ in a } }
+  public static func always<A>(_ a: A) -> Parser<A> { .init { _ in a } }
   
   //always(123).parse("testing")
   
@@ -111,7 +112,7 @@ public enum Parse {
    - returns: new parser
    */
   public static func first<A>(_ ps: @escaping () -> [Parser<A>]) -> Parser<A> {
-    Parser { it -> A? in
+    .init { it -> A? in
       for p in ps() {
         if let match = p.scanner(&it) {
           print("first: match '\(match)' remaining: '\(it.remaining)'")
@@ -131,7 +132,7 @@ public enum Parse {
    - returns: the new parser
    */
   public static func any<A>(_ p: Parser<A>, separatedBy s: Parser<String>) -> Parser<[A]> {
-    Parser { it in
+    .init { it in
       var rest = it
       var matches: [A] = []
       while let match = p.scanner(&it) {
@@ -157,7 +158,7 @@ public enum Parse {
    - returns: new parser
    */
   public static func optional<A>(_ p: Parser<A>) -> Parser<[A]> {
-    Parser { it in
+    .init { it in
       guard let match = p.scanner(&it) else { return [] }
       return [match]
     }
@@ -173,7 +174,7 @@ public enum Parse {
  - returns: new parser
  */
 public func zip<A, B>(_ a: Parser<A>, _ b: Parser<B>) -> Parser<(A, B)> {
-  Parser { it -> (A, B)? in
+  .init { it -> (A, B)? in
     let original = it
     guard let matchA = a.scanner(&it) else { return nil }
     guard let matchB = b.scanner(&it) else {
@@ -207,8 +208,7 @@ public func zip<A, B, C>(_ a: Parser<A>, _ b: Parser<B>, _ c: Parser<C>) -> Pars
  - parameter d: fourth parser to execute
  - returns: new parser
  */
-public func zip<A, B, C, D>(_ a: Parser<A>, _ b: Parser<B>, _ c: Parser<C>, _ d: Parser<D>) ->
-Parser<(A, B, C, D)> {
+public func zip<A, B, C, D>(_ a: Parser<A>, _ b: Parser<B>, _ c: Parser<C>, _ d: Parser<D>) -> Parser<(A, B, C, D)> {
   zip(a, zip(b, c, d)).map { a, rest in (a, rest.0, rest.1, rest.2) }
 }
 

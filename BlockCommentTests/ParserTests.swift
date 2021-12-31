@@ -77,45 +77,45 @@ class ParserTests: XCTestCase {
   }
   
   func testDefaultValueParsing() {
-    XCTAssertEqual(defaultvalue.parse("=123"), true)
-    XCTAssertEqual(defaultvalue.parse(" = true"), true)
-    XCTAssertEqual(defaultvalue.parse(" = 1.23"), true)
-    XCTAssertEqual(defaultvalue.parse("""
+    XCTAssertEqual(defaultValue.parse("=123"), true)
+    XCTAssertEqual(defaultValue.parse(" = true"), true)
+    XCTAssertEqual(defaultValue.parse(" = 1.23"), true)
+    XCTAssertEqual(defaultValue.parse("""
                 = "testing",
 """
                                      ), true)
   }
   
   func testArgModsTypeParsing() {
-    XCTAssertEqual(argmods.parse(""), [])
-    XCTAssertEqual(argmods.parse("inout"), ["inout"])
-    XCTAssertEqual(argmods.parse("@escaping"), ["@escaping"])
-    XCTAssertEqual(argmods.parse("@autoclosure @escaping"), ["@autoclosure", "@escaping"])
-    XCTAssertEqual(argmods.parse("@escaping (Int)->Void"), ["@escaping"])
+    XCTAssertEqual(argMods.parse(""), [])
+    XCTAssertEqual(argMods.parse("inout"), ["inout"])
+    XCTAssertEqual(argMods.parse("@escaping"), ["@escaping"])
+    XCTAssertEqual(argMods.parse("@autoclosure @escaping"), ["@autoclosure", "@escaping"])
+    XCTAssertEqual(argMods.parse("@escaping (Int)->Void"), ["@escaping"])
   }
   
   func testArgTypeParsing() {
-    XCTAssertEqual(argtype.parse("Int"), Type(spec: "Int", opt: false))
-    XCTAssertEqual(argtype.parse("inout Int"), Type(spec: "Int", opt: false))
-    XCTAssertEqual(argtype.parse("inout @escaping Int? = 123"), Type(spec: "Int", opt: true))
-    XCTAssertEqual(argtype.parse("(Int) -> Void"), Type(spec: "(Int)->Void", opt: false))
-    XCTAssertEqual(argtype.parse("@escaping (Int) -> Void"), Type(spec: "(Int)->Void", opt: false))
-    XCTAssertEqual(argtype.parse("@objc(blah) (Int) -> Void"), Type(spec: "(Int)->Void", opt: false))
+    XCTAssertEqual(argType.parse("Int"), Type(spec: "Int", opt: false))
+    XCTAssertEqual(argType.parse("inout Int"), Type(spec: "Int", opt: false))
+    XCTAssertEqual(argType.parse("inout @escaping Int? = 123"), Type(spec: "Int", opt: true))
+    XCTAssertEqual(argType.parse("(Int) -> Void"), Type(spec: "(Int)->Void", opt: false))
+    XCTAssertEqual(argType.parse("@escaping (Int) -> Void"), Type(spec: "(Int)->Void", opt: false))
+    XCTAssertEqual(argType.parse("@objc(blah) (Int) -> Void"), Type(spec: "(Int)->Void", opt: false))
   }
   
   func testArgTypeParsingWithAttribute() {
-    XCTAssertEqual(argtype.parse("@escaping (Int)->Void"), Type(spec: "(Int)->Void", opt: false))
+    XCTAssertEqual(argType.parse("@escaping (Int)->Void"), Type(spec: "(Int)->Void", opt: false))
   }
   
   func testArgumentParser() {
     XCTAssertEqual(Argument.parser.parse("z: Abc"),
-                   Argument(name: "z", type: Type(spec: "Abc", opt: false), def: false))
+                   Argument(name: "z", type: Type(spec: "Abc", opt: false), hasDefault: false))
     XCTAssertEqual(Argument.parser.parse("one two   : Foo?"),
-                   Argument(name: "two", type: Type(spec: "Foo", opt: true), def: false))
+                   Argument(name: "two", type: Type(spec: "Foo", opt: true), hasDefault: false))
     XCTAssertEqual(Argument.parser.parse("_ abc: Int = 123"),
-                   Argument(name: "abc", type: Type(spec: "Int", opt: false), def: true))
+                   Argument(name: "abc", type: Type(spec: "Int", opt: false), hasDefault: true))
     XCTAssertEqual(Argument.parser.parse("_ factor: CGFloat = 1.25"),
-                   Argument(name: "factor", type: Type(spec: "CGFloat", opt: false), def: true))
+                   Argument(name: "factor", type: Type(spec: "CGFloat", opt: false), hasDefault: true))
   }
   
   func testArgumentsParsing() {
@@ -158,7 +158,8 @@ class ParserTests: XCTestCase {
     XCTAssertEqual(Function.parser.parse("required init?()"),
                    Function(name: "init?", args: [], throwable: false, returns: nil))
     XCTAssertEqual(Function.parser.parse("init?(_ a: Int)"),
-                   Function(name: "init?", args: [Argument(name: "a", type: Type(spec: "Int", opt: false), def: false)],
+                   Function(name: "init?", args: [Argument(name: "a", type: Type(spec: "Int", opt: false),
+                                                           hasDefault: false)],
                             throwable: false, returns: nil))
   }
   
@@ -174,8 +175,8 @@ class ParserTests: XCTestCase {
     XCTAssertEqual(Function.parser.parse(Source(lines: lines, firstLine: 0)),
                    Function(name: "comp김lex",
                             args: [
-                              Argument(name: "a", type: Type(spec: "Int", opt: false), def: false),
-                              Argument(name: "c", type: Type(spec: "Foo", opt: true), def: true)],
+                              Argument(name: "a", type: Type(spec: "Int", opt: false), hasDefault: false),
+                              Argument(name: "c", type: Type(spec: "Foo", opt: true), hasDefault: true)],
                             throwable: true, returns: "(four: Int, five: (six: Int, seven: Int))"))
   }
   
@@ -231,8 +232,8 @@ class ParserTests: XCTestCase {
             (_ someContainer: C1, _ anotherContainer: C2) -> Bool
             where C1.Item == C2.Item, C1.Item: Equatable
 """), Function(name: "allItemsMatch",
-               args: [Argument(name: "someContainer", type: Type(spec: "C1", opt: false), def: false),
-                      Argument(name: "anotherContainer", type: Type(spec: "C2", opt: false), def: false)],
+               args: [Argument(name: "someContainer", type: Type(spec: "C1", opt: false), hasDefault: false),
+                      Argument(name: "anotherContainer", type: Type(spec: "C2", opt: false), hasDefault: false)],
                throwable: false, returns: "Bool"))
   }
   
@@ -354,5 +355,18 @@ class ParserTests: XCTestCase {
     XCTAssertEqual(comment[3], " - parameter panner: \("Describe panner".tagged)")
     XCTAssertEqual(comment[4], " */")
   }
-  
+
+  // public init(inApp: Bool, suiteName: String = Settings.defaultSuiteName, identity: Int? = nil) {
+  func testParse3() {
+    let lines = ["public init(inApp: Bool, suiteName: String = Settings.defaultSuiteName, identity: Int? = nil) {"]
+    let comment = parse(source: Source(lines: lines, firstLine: 0))
+    XCTAssertEqual(comment.count, 7)
+    XCTAssertEqual(comment[0], "/**")
+    XCTAssertEqual(comment[1], " \("Describe init".tagged)")
+    XCTAssertEqual(comment[2], "")
+    XCTAssertEqual(comment[3], " - parameter inApp: \("Describe inApp".tagged)")
+    XCTAssertEqual(comment[4], " - parameter suiteName: \("Describe suiteName".tagged)")
+    XCTAssertEqual(comment[5], " - parameter identity: \("Describe identity".tagged)")
+    XCTAssertEqual(comment[6], " */")
+  }
 }

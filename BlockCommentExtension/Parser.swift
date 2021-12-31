@@ -7,15 +7,15 @@
 /**
  Definition of a text scanner/parser that converts input characters into an instance of A.
  */
-public struct Parser<A> {
+public struct Parser<OutputType> {
   
   /// Prototype of the function that transforms a span of text starting at a given iterator into an instance of A.
   /// The function takes in an iterator to the next character to process. The function will update the iterator as it
   /// advances, but it can also set the iterator to a new value if necessary to undo any advances.
-  public typealias Scanner = (inout Source.Iterator) -> A?
+  public typealias Scanner = (inout Source.Iterator) -> OutputType?
   
-  /// Common value that represents a unparsable entity
-  public static var never: Parser { Parser { _ in nil } }
+  /// Common value that represents a un-parsable entity
+  public static var never: Parser { .init { _ in nil } }
   
   /// Function that transforms given text into an instance of A or nil if the transformation cannot take place
   public let scanner: Scanner
@@ -26,7 +26,7 @@ public struct Parser<A> {
    - parameter str: what to parse
    - returns: 2-tuple containing the optional A instance, and the remaining, unprocessed string.
    */
-  public func parse(_ str: String) -> A? {
+  public func parse(_ str: String) -> OutputType? {
     parse(Source(lines: [str], firstLine: 0))
   }
   
@@ -34,9 +34,9 @@ public struct Parser<A> {
    Attempt to parse a given text Source.
    
    - parameter source: the source of the text to parse
-   - returns: optional `A` instance built from the parsings
+   - returns: optional `OutputType` instance built from the parsings
    */
-  public func parse(_ source: Source) -> A? {
+  public func parse(_ source: Source) -> OutputType? {
     var it = source.makeIterator()
     it.skip { $0.isWhitespace }
     return self.scanner(&it)
@@ -49,7 +49,7 @@ public struct Parser<A> {
    - parameter f: transform function to apply
    - returns: new parser
    */
-  public func map<B>(_ f: @escaping (A) -> B) -> Parser<B> { Parser<B> { it in self.scanner(&it).map(f) } }
+  public func map<B>(_ f: @escaping (OutputType) -> B) -> Parser<B> { Parser<B> { it in self.scanner(&it).map(f) } }
   
   /**
    Convenience method that transforms all `A` instances into the given value.
@@ -71,7 +71,7 @@ public struct Parser<A> {
    - parameter f: transform function to use to generate a new parser from an `A` instance
    - returns: new Parser
    */
-  public func flatMap<B>(_ f: @escaping (A) -> Parser<B>) -> Parser<B> {
+  public func flatMap<B>(_ f: @escaping (OutputType) -> Parser<B>) -> Parser<B> {
     Parser<B> { it in
       let original = it
       guard let matchB = self.scanner(&it).map(f)?.scanner(&it) else {
