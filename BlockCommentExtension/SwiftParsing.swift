@@ -62,15 +62,16 @@ let type = zip(identifier, templateClause).map { $0.0 }
 /// Parser for optional modifiers associated with an attribute. NOTE: the '(' must be attached directly to the attribute
 let attributeOptions = Parse.optional(balanced("(", ")", skipWS: false))
 
-/// Parser for Swift attributes that start with '@'. Support optional "(...)"
+/// Parser for Swift attributes that start with '@'. Support optional "(...) like "(set)""
 let attribute = zip(Parse.lit("@"), identifier, attributeOptions).map {
   $0.0 + $0.1
 }
 
-/// Parser for an optional sequence of one or more attributes, access level, etc.
-let modifiers = Parse.any(Parse.first(
+/// Parser for an optional sequence of one or more attributes, access level, etc. In a real parser, these would be
+/// broken up into specialized groups, but for our purposes we are just trying to capture anything that can appear
+/// before a 'func' or 'class' or 'struct' term.
+let modifierCollection = [
   attribute,
-  Parse.lit("class"),
   Parse.lit("convenience"),
   Parse.lit("dynamic"),
   Parse.lit("fileprivate"),
@@ -85,7 +86,18 @@ let modifiers = Parse.any(Parse.first(
   Parse.lit("required"),
   Parse.lit("static"),
   Parse.lit("weak")
-), separatedBy: Parse.pat(skipWS: false) { $0.isWhitespace })
+]
+
+/// Parser for any combination (including duplicates) of the above terms before a `class`, `struct`, or `enum`
+/// specification.
+let modifiers = Parse.any(Parse.first(modifierCollection), separatedBy: Parse.pat(skipWS: false) { $0.isWhitespace })
+
+/// Variation for 'func' parsing which can include the "class" term.
+let functionModifierCollection = modifierCollection + [Parse.lit("class")]
+
+/// Parser for any combination of the above terms before a `func` specification.
+let functionModifiers = Parse.any(Parse.first(functionModifierCollection),
+                                  separatedBy: Parse.pat(skipWS: false) { $0.isWhitespace })
 
 /// Parser for an array type or default value -- ignores anything inside of the brackets
 let arrayType = balanced("[", "]")
@@ -215,7 +227,7 @@ struct Function: Equatable, Commentable {
   
   /// Parser for matching function declarations. Transforms a match into a `Function` instance that describes the
   /// parsed function attributes.
-  static let parser = zip(modifiers,
+  static let parser = zip(functionModifiers,
                           Parse.first(
                             zip(Parse.lit("func"), functionName).map { String($0.1) },
                             Parse.lit("subscript"),
