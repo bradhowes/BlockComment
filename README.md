@@ -1,7 +1,7 @@
 [![CI](https://github.com/bradhowes/BlockComment/workflows/CI/badge.svg)](https://github.com/bradhowes/BlockComment)
 [![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://swift.org)
 [![Xcode](https://img.shields.io/badge/Xcode-extension-green.svg?style=flat)](https://swift.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-A31F34.svg)](https://opensource.org/licenses/MIT)
 
 # Swocks -- Swift Block Comments
 
