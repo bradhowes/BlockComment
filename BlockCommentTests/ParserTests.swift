@@ -369,4 +369,36 @@ class ParserTests: XCTestCase {
     XCTAssertEqual(comment[5], " - parameter identity: \("Describe identity".tagged)")
     XCTAssertEqual(comment[6], " */")
   }
+
+  //  class func createParameter(withIdentifier identifier: String, name: String, address: FilterParameterAddress,
+  // min: AUValue, max: AUValue, unit: AudioUnitParameterUnit, unitName: String? = nil,
+  // flags: AudioUnitParameterOptions = [.flag_IsReadable, .flag_IsWritable],
+  // valueStrings: [String]? = nil, dependentParameters: [NSNumber]? = nil) -> AUParameter {
+  func testParse4() {
+    let lines = [
+      "class func createParameter(withIdentifier identifier: String, name: String, address: FilterParameterAddress,",
+      "min: AUValue, max: AUValue, unit: AudioUnitParameterUnit, unitName: String? = nil,",
+      "flags: AudioUnitParameterOptions = [.flag_IsReadable, .flag_IsWritable],",
+      "valueStrings: [String]? = nil, dependentParameters: [NSNumber]? = nil) -> AUParameter {"
+    ]
+    let comment = parse(source: Source(lines: lines, firstLine: 0))
+    XCTAssertEqual(comment.count, 15)
+    XCTAssertEqual(comment[0], "/**")
+    XCTAssertEqual(comment[1], " \("Describe createParameter".tagged)")
+    XCTAssertEqual(comment[2], "")
+    XCTAssertEqual(comment[3], " - parameter identifier: \("Describe identifier".tagged)")
+    XCTAssertEqual(comment[4], " - parameter name: \("Describe name".tagged)")
+    XCTAssertEqual(comment[5], " - parameter address: \("Describe address".tagged)")
+    XCTAssertEqual(comment[6], " - parameter min: \("Describe min".tagged)")
+    XCTAssertEqual(comment[7], " - parameter max: \("Describe max".tagged)")
+    XCTAssertEqual(comment[8], " - parameter unit: \("Describe unit".tagged)")
+    XCTAssertEqual(comment[9], " - parameter unitName: \("Describe unitName".tagged)")
+    XCTAssertEqual(comment[10], " - parameter flags: \("Describe flags".tagged)")
+    XCTAssertEqual(comment[11], " - parameter valueStrings: \("Describe valueStrings".tagged)")
+    XCTAssertEqual(comment[12], " - parameter dependentParameters: \("Describe dependentParameters".tagged)")
+    XCTAssertEqual(comment[13], " - returns: \("AUParameter".tagged)")
+    XCTAssertEqual(comment[14], " */")
+
+  }
+
 }
